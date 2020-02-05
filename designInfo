@@ -1,0 +1,13 @@
+Willen:
+	Uniform systeem(dus niet gekoppeld aan osiris/canvas)
+	Docent makkelijk contact met SLBer wanneer student niet genoeg aanwezig
+	Automatisch bijhouden(hoe?)
+	Makkelijk docent bereiken(student->docent)
+	Student kan aangeven wanneer afwezig(meerdere mogelijkheden)
+
+Actoren:
+	Student
+	Docent
+	SLBer
+	Decaan
+	Systeembeheerder
