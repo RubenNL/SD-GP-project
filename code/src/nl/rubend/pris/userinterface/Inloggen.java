@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Inloggen {
 
@@ -15,7 +16,7 @@ public class Inloggen {
 
 	@FXML
 	void cancelButton(ActionEvent event) {
-
+		((Stage) emailBox.getScene().getWindow()).close();
 	}
 
 	@FXML
@@ -23,5 +24,4 @@ public class Inloggen {
 		System.out.println(emailBox.getText());
 		System.out.println(wachtwoordBox.getText());
 	}
-
 }
