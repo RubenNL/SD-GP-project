@@ -5,10 +5,14 @@ import java.util.ArrayList;
 public class Klas {
 	private String klasNaam;
 	private ArrayList<Cursus> cursusen;
+	private ArrayList<Student> studenten;
+	private ArrayList<RoosterItem> roosterItems;
 
 	public Klas(String nm) {
 		this.klasNaam = nm;
 		cursusen = new ArrayList<>();
+		studenten = new ArrayList<>();
+		roosterItems = new ArrayList<>();
 	}
 
 	public String getKlasNaam() {
