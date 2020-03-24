@@ -1,4 +1,4 @@
-package nl.rubend.pris;
+package nl.rubend.pris.model;
 
 public class Gebruiker {
 	private String email;
