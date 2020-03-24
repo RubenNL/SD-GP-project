@@ -3,9 +3,6 @@ package nl.rubend.pris.model;
 import java.util.ArrayList;
 
 public class Docent extends Gebruiker {
-	private String email;
-	private String wachtwoord;
-	private String naam;
 	private int docentNummer;
 	private ArrayList<RoosterItem> roosterItems;
 
