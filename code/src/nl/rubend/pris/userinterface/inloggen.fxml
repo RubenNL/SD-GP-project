@@ -35,7 +35,7 @@
          </image>
       </ImageView>
       <Label fx:id="errorField" layoutX="87.0" layoutY="142.0" />
-      <Button layoutX="73.0" layoutY="261.0" mnemonicParsing="false" onAction="#cancelButton" text="Cancel" />
-      <Button layoutX="217.0" layoutY="261.0" mnemonicParsing="false" onAction="#okButton" text="OK" />
+      <Button layoutX="189.0" layoutY="261.0" mnemonicParsing="false" onAction="#cancelButton" text="Cancel" />
+      <Button layoutX="273.0" layoutY="261.0" mnemonicParsing="false" onAction="#okButton" text="OK" />
    </children>
 </AnchorPane>
