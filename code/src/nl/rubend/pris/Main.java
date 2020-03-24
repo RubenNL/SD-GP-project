@@ -20,7 +20,7 @@ public class Main extends Application {
 
 		Scene scene = new Scene(root);
 
-		stage.setTitle("FXML Welcome");
+		stage.setTitle("PRIS Inloggen");
 		stage.setScene(scene);
 		stage.show();
 	}
