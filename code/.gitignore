@@ -2,5 +2,5 @@
 /lib/
 /.idea/
 /.idea.libraries/
-code.iml
-misc.xml
+code/code.iml
+code/.idea/misc.xml
