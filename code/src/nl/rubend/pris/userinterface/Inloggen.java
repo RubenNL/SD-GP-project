@@ -29,25 +29,25 @@ public class Inloggen {
 
 	@FXML
 	void okButton(ActionEvent event) {
+		Gebruiker gebruiker;
 		try {
-			Gebruiker gebruiker=School.getSchool().getGebruikerByEmail(emailBox.getText());
-			if(gebruiker.checkWachtwoord(wachtwoordBox.getText())) {
-				try {
-					openGUI(gebruiker);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else {
-				throw new Exception();
-			}
+			gebruiker = School.getSchool().getGebruikerByEmail(emailBox.getText());
 		} catch (Exception e) {
-			PauseTransition pause = new PauseTransition(Duration.seconds(2));
-			pause.setOnFinished(f -> errorField.setText(""));
-			pause.play();
-			errorField.setText("Email/wachtwoord incorrect!");
+			incorrect();
+			return;
+		}
+		if(gebruiker.checkWachtwoord(wachtwoordBox.getText())) {
+			openGUI(gebruiker);
+		} else {
+			incorrect();
 		}
 	}
-
+	private void incorrect() {
+		PauseTransition pause = new PauseTransition(Duration.seconds(2));
+		pause.setOnFinished(f -> errorField.setText(""));
+		pause.play();
+		errorField.setText("Email/wachtwoord incorrect!");
+	}
 	@FXML
 	void cancelButton(ActionEvent event) {
 		((Stage) emailBox.getScene().getWindow()).close();
