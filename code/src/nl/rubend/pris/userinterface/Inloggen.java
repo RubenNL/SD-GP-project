@@ -57,6 +57,7 @@ public class Inloggen {
 		Scene scene = null;
 		try {
 			scene = new Scene(fxmlLoader.load());
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
