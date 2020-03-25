@@ -2,8 +2,6 @@ package nl.rubend.pris.model;
 import java.util.Objects;
 
 public class Gebruiker {
-
-abstract class Gebruiker {
 	private String email;
 	private String wachtwoord;
 	private String naam;
