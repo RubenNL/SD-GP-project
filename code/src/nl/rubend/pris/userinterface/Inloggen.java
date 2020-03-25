@@ -67,5 +67,6 @@ public class Inloggen {
 		stage.setTitle("PRIS");
 		stage.setScene(scene);
 		stage.show();
+		cancelButton(null);
 	}
 }
