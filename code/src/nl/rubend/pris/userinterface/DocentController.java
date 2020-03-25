@@ -1,4 +1,4 @@
 package nl.rubend.pris.userinterface;
 
-public class Docent {
+public class DocentController {
 }
