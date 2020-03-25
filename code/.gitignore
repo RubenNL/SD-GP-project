@@ -1,5 +1,6 @@
-out
-lib
-.idea
-.idea.libraries
-code.iml
+/out/
+/lib/
+/.idea/
+/.idea.libraries/
+code/code.iml
+code/.idea/misc.xml

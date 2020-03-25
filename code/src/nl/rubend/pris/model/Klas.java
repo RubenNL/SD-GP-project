@@ -1,6 +1,7 @@
 package nl.rubend.pris.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Klas {
 	private String klasNaam;
@@ -22,4 +23,13 @@ public class Klas {
 	public void setKlasNaam(String klasNaam) {
 		this.klasNaam = klasNaam;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Klas klas = (Klas) o;
+		return Objects.equals(klasNaam, klas.klasNaam);
+	}
+
 }
