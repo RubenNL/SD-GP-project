@@ -32,8 +32,7 @@ public class Inloggen {
 		try {
 			Gebruiker gebruiker=School.getSchool().getGebruikerByEmail(emailBox.getText());
 			if(gebruiker.checkWachtwoord(wachtwoordBox.getText())) {
-				String gebruikerType=gebruiker.getClass().getSimpleName();
-				openGUI(gebruikerType.toLowerCase());
+				openGUI(gebruiker);
 			} else {
 				throw new Exception();
 			}
@@ -49,10 +48,11 @@ public class Inloggen {
 	void cancelButton(ActionEvent event) {
 		((Stage) emailBox.getScene().getWindow()).close();
 	}
-	private void openGUI(String fxmlName) throws IOException {
+	private void openGUI(Gebruiker gebruiker) throws IOException {
 		cancelButton(null);
-		FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(getClass().getResource(fxmlName + ".fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(gebruiker.getClass().getSimpleName().toLowerCase() + ".fxml"));
+		Parent root= (Parent) fxmlLoader.load();
+
 		Scene scene = new Scene(fxmlLoader.load());
 		Stage stage = new Stage();
 		stage.setTitle("PRIS");
