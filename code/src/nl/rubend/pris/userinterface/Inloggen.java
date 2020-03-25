@@ -1,13 +1,20 @@
 package nl.rubend.pris.userinterface;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import nl.rubend.pris.model.Gebruiker;
 import nl.rubend.pris.model.School;
+
+import java.io.IOException;
 
 public class Inloggen {
 
@@ -26,11 +33,14 @@ public class Inloggen {
 			Gebruiker gebruiker=School.getSchool().getGebruikerByEmail(emailBox.getText());
 			if(gebruiker.checkWachtwoord(wachtwoordBox.getText())) {
 				String gebruikerType=gebruiker.getClass().getSimpleName();
-				errorField.setText("Ingelogd als "+gebruikerType);//TODO dit laten verwijzen!
+				openGUI(gebruikerType.toLowerCase());
 			} else {
-				errorField.setText("Email/wachtwoord incorrect!");
+				throw new Exception();
 			}
 		} catch (Exception e) {
+			PauseTransition pause = new PauseTransition(Duration.seconds(2));
+			pause.setOnFinished(f -> errorField.setText(""));
+			pause.play();
 			errorField.setText("Email/wachtwoord incorrect!");
 		}
 	}
@@ -38,5 +48,15 @@ public class Inloggen {
 	@FXML
 	void cancelButton(ActionEvent event) {
 		((Stage) emailBox.getScene().getWindow()).close();
+	}
+	private void openGUI(String fxmlName) throws IOException {
+		cancelButton(null);
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(getClass().getResource(fxmlName + ".fxml"));
+		Scene scene = new Scene(fxmlLoader.load());
+		Stage stage = new Stage();
+		stage.setTitle("PRIS");
+		stage.setScene(scene);
+		stage.show();
 	}
 }
