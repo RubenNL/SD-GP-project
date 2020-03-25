@@ -1,5 +1,7 @@
 package nl.rubend.pris.model;
 
+import java.util.Objects;
+
 public class Student extends Gebruiker {
 	private int studentNummer;
 
@@ -16,5 +18,12 @@ public class Student extends Gebruiker {
 		this.studentNummer = studentNummer;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Student student = (Student) o;
+		return studentNummer == student.studentNummer;
+	}
 
 }
