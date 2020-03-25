@@ -1,13 +1,14 @@
 package nl.rubend.pris.model;
-
 import java.util.Objects;
+
+public class Gebruiker {
 
 abstract class Gebruiker {
 	private String email;
 	private String wachtwoord;
 	private String naam;
 	public Gebruiker(String email, String wachtwoord, String naam) {
-		this.email=email;
+		setEmail(email);
 		this.wachtwoord=wachtwoord;
 		this.naam=naam;
 	}
@@ -27,6 +28,4 @@ abstract class Gebruiker {
 		return Objects.equals(email, gebruiker.email) &&
 				Objects.equals(naam, gebruiker.naam);
 	}
-
-
 }
