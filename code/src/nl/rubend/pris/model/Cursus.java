@@ -1,22 +1,24 @@
 package nl.rubend.pris.model;
 
-import java.util.ArrayList;
-
 public class Cursus {
-	private String cursusCode;
+	private String cursusNummer;
 	private String cursusNaam;
-	private ArrayList<Klas> klassen=new ArrayList<Klas>();
-	public Cursus(String cursusCode, String cursusNaam) {
-		this.cursusCode = cursusCode;
-		this.cursusNaam = cursusNaam;
+
+	public Cursus(String cNu, String cNa) {
+		this.cursusNummer = cNu;
+		this.cursusNaam = cNa;
 	}
-	protected void addKlas(Klas klas) {this.klassen.add(klas);}
-	public ArrayList<Klas> getKlassen() {return this.klassen;}
+
 	public String getCursusNaam() {
 		return cursusNaam;
 	}
-	public String getCursusCode() {
-		return cursusCode;
+
+	public String getCursusNummer() {
+		return cursusNummer;
+	}
+
+	public void setCursusNaam(String cursusNaam) {
+		this.cursusNaam = cursusNaam;
 	}
 
 }
