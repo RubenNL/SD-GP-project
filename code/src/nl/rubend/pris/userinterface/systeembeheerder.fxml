@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.SysteembeheerderController">
    <children>
       <VBox layoutX="-2.0" prefHeight="420.0" prefWidth="158.0" style="-fx-background-color: #e9e9e9;">
          <children>
@@ -28,8 +28,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="accountAanmakenFormButton" mnemonicParsing="false" onAction="#toonPane" prefHeight="48.0" prefWidth="176.0" text="Accont aanmaken" />
-                  <Button fx:id="AccountsLijstButton" mnemonicParsing="false" onAction="#toonPane" prefHeight="50.0" prefWidth="176.0" text="Accounts weergeven" GridPane.rowIndex="1" />
+                  <Button fx:id="accountAanmakenMenuButton" mnemonicParsing="false" onAction="#toonScherm" prefHeight="48.0" prefWidth="176.0" text="Accont aanmaken" />
+                  <Button fx:id="accountWeergevenMenuButton" mnemonicParsing="false" onAction="#toonScherm" prefHeight="50.0" prefWidth="176.0" text="Accounts weergeven" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>
@@ -48,17 +48,17 @@
          <children>
             <AnchorPane fx:id="accountAanmakenPane" prefHeight="339.0" prefWidth="411.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ComboBox fx:id="accoutTypeComboBox" layoutX="21.0" layoutY="53.0" prefHeight="26.0" prefWidth="124.0" />
+                  <ComboBox fx:id="accountTypeComboBox" layoutX="21.0" layoutY="53.0" prefHeight="26.0" prefWidth="124.0" />
                   <Label layoutX="79.0" layoutY="113.0" text="Naam" />
                   <Label layoutX="78.0" layoutY="167.0" text="E-mail " />
                   <Label layoutX="57.0" layoutY="208.0" text="Wachtwoord" />
                   <Label layoutX="73.0" layoutY="257.0" text="nummer" />
                   <Button layoutX="312.0" layoutY="337.0" mnemonicParsing="false" onAction="#maakAccountAan" prefHeight="26.0" prefWidth="81.0" text="Ok" />
-                  <Button fx:id="uitloggenButton" layoutX="309.0" layoutY="53.0" mnemonicParsing="false" onAction="#sluitScherm" prefHeight="26.0" prefWidth="81.0" text="Uitloggen" />
-                  <TextField fx:id="niewAccountName" layoutX="178.0" layoutY="108.0" />
-                  <TextField fx:id="niewAccountEmail" layoutX="178.0" layoutY="154.0" />
-                  <TextField fx:id="niewAccountWachtwoord" layoutX="181.0" layoutY="203.0" />
-                  <TextField fx:id="niewAccountNummer" layoutX="178.0" layoutY="252.0" />
+                  <Button layoutX="309.0" layoutY="53.0" mnemonicParsing="false" onAction="#sluitScherm" prefHeight="26.0" prefWidth="81.0" text="Uitloggen" />
+                  <TextField fx:id="nieuwAccountName" layoutX="178.0" layoutY="108.0" />
+                  <TextField fx:id="nieuwAccountEmail" layoutX="178.0" layoutY="154.0" />
+                  <TextField fx:id="nieuwAccountWachtwoord" layoutX="181.0" layoutY="203.0" />
+                  <TextField fx:id="nieuwAccountNummer" layoutX="178.0" layoutY="252.0" />
                   <Text fill="#464646" layoutX="16.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account aanmaken" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
@@ -80,7 +80,8 @@
                   <ScrollBar layoutX="-4.0" layoutY="340.0" prefHeight="17.0" prefWidth="395.0" />
                   <ScrollBar layoutX="386.0" layoutY="63.0" orientation="VERTICAL" prefHeight="277.0" prefWidth="17.0" />
                   <Button fx:id="uitloggenButton" layoutX="310.0" layoutY="14.0" mnemonicParsing="false" onAction="#sluitScherm" text="Uitloggen" />
-               </children></AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </GridPane>
    </children>

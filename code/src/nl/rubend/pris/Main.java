@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import nl.rubend.pris.model.Docent;
 import nl.rubend.pris.model.School;
 import nl.rubend.pris.model.Student;
+import nl.rubend.pris.model.Systeembeheerder;
 
 public class Main extends Application {
 	public static void main(String[] args) {
@@ -21,6 +22,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		School.getSchool().addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		School.getSchool().addGebruiker(new Student("s","","Abc Def", 4564));
+		School.getSchool().addGebruiker(new Systeembeheerder("b","","Abc Def"));
 		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
 
 		Scene scene = new Scene(root);

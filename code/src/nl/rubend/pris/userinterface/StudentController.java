@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StudentController implements Initializable, IngelogdGebruiker {
-	Student student;
-	ArrayList<AnchorPane> allPanes = new ArrayList();
+	private Student student;
+	ArrayList<AnchorPane> allPanes = new ArrayList<AnchorPane>();
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
@@ -26,6 +26,10 @@ public class StudentController implements Initializable, IngelogdGebruiker {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		allPanes.add(welkomPane);
+		allPanes.add(ziekPane);
+		allPanes.add(lesPane);
+		allPanes.add(langdurigPane);
 		switchToPane(welkomPane);
 		welkomLabel.setText("Welkom ");
 	}
@@ -58,11 +62,6 @@ public class StudentController implements Initializable, IngelogdGebruiker {
 	private AnchorPane langdurigPane;
 
 	private void switchToPane(AnchorPane targetPane){
-		allPanes.add(welkomPane);
-		allPanes.add(ziekPane);
-		allPanes.add(lesPane);
-		allPanes.add(langdurigPane);
-
 		for (AnchorPane pane : allPanes){
 			if(pane.equals(targetPane)){
 				pane.setVisible(true);
