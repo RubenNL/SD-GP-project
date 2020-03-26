@@ -24,6 +24,8 @@ public class Main extends Application {
 		school.addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("s","","Abc Def", 4564));
 		school.addKlas(new Klas("TICT-SD-V1E"));
+		school.addCursus(new Cursus("TCIF-V1GP-19_2019","SD-GroupProject"));
+		school.getKlasByName("TICT-SD-V1E").addCursus(school.getCursusByCode("TCIF-V1GP-19_2019"));
 		school.getKlasByName("TICT-SD-V1E").addStudent((Student)school.getGebruikerByEmail("s"));
 		Les les=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203");
 		les.addKlas(school.getKlasByName("TICT-SD-V1E"));

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Student extends Gebruiker {
 	private int studentNummer;
+	private ArrayList<Klas> klassen=new ArrayList<Klas>();
 	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<Aanwezigheid>();
 	public Student(String email, String wachtwoord, String naam, int sN) {
 		super(email, wachtwoord, naam);
@@ -14,7 +15,12 @@ public class Student extends Gebruiker {
 	public int getStudentNummer() {
 		return studentNummer;
 	}
-
+	protected void addKlas(Klas klas) {
+		this.klassen.add(klas);
+	}
+	public ArrayList<Klas> getKlassen() {
+		return this.klassen;
+	}
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
 		this.aanwezigheid.add(aanwezigheid);
 	}

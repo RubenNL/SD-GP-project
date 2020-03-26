@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Docent extends Gebruiker {
 	private int docentNummer;
-	private ArrayList<Les> lessen = new ArrayList<>();
+	private ArrayList<Les> lessen = new ArrayList<Les>();
 
 
 	public Docent (String email, String wachtwoord, String naam, int dN) {
