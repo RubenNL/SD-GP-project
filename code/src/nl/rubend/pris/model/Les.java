@@ -3,6 +3,8 @@ package nl.rubend.pris.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Les {
@@ -10,20 +12,37 @@ public class Les {
 	private LocalTime eindTijd;
 	private LocalDate datum;
 	private String lokaal;
-	private ArrayList<Klas> klassen;
-	private ArrayList<Docent> docenten;
-
+	private ArrayList<Klas> klassen = new ArrayList<Klas>();
+	private ArrayList<Docent> docenten = new ArrayList<Docent>();
 
 	public Les(LocalTime bTijd, LocalTime eTijd, LocalDate dtm, String lokaalk) {
 		this.beginTijd = bTijd;
 		this.eindTijd = eTijd;
 		this.datum = dtm;
 		this.lokaal = lokaalk;
-
-		klassen = new ArrayList<>();
-		klassen = new ArrayList<>();
 	}
-
+	public void addKlas(Klas klas) {
+		klassen.add(klas);
+		klas.addLes(this);
+	}
+	public void addDocent(Docent docent) {
+		docenten.add(docent);
+		docent.addLes(this);
+	}
+	public ArrayList<Student> getStudenten() {
+		ArrayList<Student> response=new ArrayList<Student>();
+		for(Klas klas:klassen) {
+			response.addAll(klas.getStudenten());
+		}
+		return response;
+	}
+	public Map<Student,Aanwezigheid> getAanwezigheid() {
+		Map<Student,Aanwezigheid> response=new HashMap<Student,Aanwezigheid>();
+		for(Klas klas:klassen) {
+			response.putAll(klas.getAanwezigheidBijLes(this));
+		}
+		return response;
+	}
 	public LocalDate getDatum() {
 		return datum;
 	}
@@ -43,6 +62,7 @@ public class Les {
 	public void setLokaal(String lokaal) {
 		this.lokaal = lokaal;
 	}
+
 
 	@Override
 	public boolean equals(Object o) {

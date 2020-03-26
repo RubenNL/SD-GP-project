@@ -7,13 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import nl.rubend.pris.model.Docent;
-import nl.rubend.pris.model.Gebruiker;
+import nl.rubend.pris.model.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
-import nl.rubend.pris.model.Klas;
-import nl.rubend.pris.model.Student;
 
 import java.awt.*;
 import java.net.URL;
@@ -41,6 +38,7 @@ public class DocentController implements Initializable, IngelogdGebruiker {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		this.setKlas(School.getSchool().getKlasByName("TICT-SD-V1E"));//TODO dit is alleen voor testen
 		switchToPane(welkomPane);
 		welkomLabel.setText("Welkom ");
 
