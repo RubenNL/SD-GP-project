@@ -1,5 +1,6 @@
 package nl.rubend.pris.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Les {
+public class Les implements Serializable {
 	private LocalTime beginTijd;
 	private LocalTime eindTijd;
 	private LocalDate datum;

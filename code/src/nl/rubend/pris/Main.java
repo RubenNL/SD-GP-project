@@ -12,19 +12,10 @@ import nl.rubend.pris.userinterface.DocentController;
 
 public class Main extends Application {
 	public static void main(String[] args) {
-		Klas pijn = new Klas("pijn");
-		Student A = new Student("abc@cde", "a", "A", 234);
-		Student B = new Student("abc@cde", "b", "B", 123);
-		pijn.addStudent(A);
-		pijn.addStudent(B);
-		DocentController.setKlas(pijn);
 		launch(args);
 	}
 
-
-
-	@Override
-	public void start(Stage stage) throws Exception {
+	private void serializeDemoData() throws Exception {
 		School school=School.getSchool();
 		school.addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("s","","Abc Def", 4564));
@@ -40,8 +31,15 @@ public class Main extends Application {
 		for(Les outles:((Docent)school.getSchool().getGebruikerByEmail("d")).getLessenByDag(LocalDate.of(2020,3,26))) {
 			System.out.println(outles.getAanwezigheid().get((Student) school.getGebruikerByEmail("s")).getStatus());
 		};
-		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
+		School.serialize();
+	}
 
+	@Override
+	public void start(Stage stage) throws Exception {
+		serializeDemoData();
+		School.deserialize();
+		DocentController.setKlas(School.getSchool().getKlasByName("TICT-SD-V1E"));
+		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
 		Scene scene = new Scene(root);
 
 		stage.setTitle("PRIS Inloggen");
