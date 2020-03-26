@@ -30,9 +30,9 @@ public class Docent extends Gebruiker {
 	}
 	@Override
 	public boolean equals(Object o) {
-		Docent docent = (Docent) o;
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
+		Docent docent = (Docent) o;
 		return docentNummer == docent.docentNummer;
 	}
 
