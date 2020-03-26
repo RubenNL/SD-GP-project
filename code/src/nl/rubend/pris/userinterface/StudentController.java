@@ -8,18 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
+import nl.rubend.pris.model.Student;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StudentController implements Initializable, IngelogdGebruiker {
-	Gebruiker gebruiker;
+	Student student;
 	ArrayList<AnchorPane> allPanes = new ArrayList();
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
-		this.gebruiker=gebruiker;
+		this.student=(Student) gebruiker;
 	}
 
 	@Override
