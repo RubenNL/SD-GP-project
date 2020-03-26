@@ -36,8 +36,9 @@ public class Klas {
 	protected void addLes(Les les) {
 		this.lessen.add(les);
 	}
-	protected void addCursus(Cursus cursus) {
+	public void addCursus(Cursus cursus) {
 		this.cursusen.add(cursus);
+		cursus.addKlas(this);
 	}
 	public ArrayList<Cursus> getCursusen() {
 		return this.cursusen;
