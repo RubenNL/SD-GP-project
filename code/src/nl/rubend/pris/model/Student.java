@@ -1,7 +1,6 @@
 package nl.rubend.pris.model;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Student extends Gebruiker {
 	private int studentNummer;
