@@ -21,7 +21,14 @@ public class Les {
 		this.datum = dtm;
 		this.lokaal = lokaalk;
 	}
-
+	public void addKlas(Klas klas) {
+		klassen.add(klas);
+		klas.addLes(this);
+	}
+	public void addDocent(Docent docent) {
+		docenten.add(docent);
+		docent.addLes(this);
+	}
 	public ArrayList<Student> getStudenten() {
 		ArrayList<Student> response=new ArrayList<Student>();
 		for(Klas klas:klassen) {

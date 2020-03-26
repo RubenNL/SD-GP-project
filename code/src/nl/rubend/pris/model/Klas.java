@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public class Klas {
 	private String klasNaam;
-	private ArrayList<Cursus> cursusen = new ArrayList<Cursus>();;
-	private ArrayList<Student> studenten = new ArrayList<Student>();;
+	private ArrayList<Cursus> cursusen = new ArrayList<Cursus>();
+	private ArrayList<Student> studenten = new ArrayList<Student>();
 	private ArrayList<Les> lessen = new ArrayList<Les>();
 
 	public Klas(String nm) {
@@ -19,10 +19,10 @@ public class Klas {
 		return klasNaam;
 	}
 
-	public void setKlasNaam(String klasNaam) {
-		this.klasNaam = klasNaam;
+	public void addStudent(Student student) {
+		this.studenten.add(student);
+		student.addKlas(this);
 	}
-
 	public ArrayList<Student> getStudenten() {
 		return this.studenten;
 	}
@@ -32,6 +32,16 @@ public class Klas {
 			response.put(student,student.getAanwezigheidBijLes(les));
 		}
 		return response;
+	}
+	protected void addLes(Les les) {
+		this.lessen.add(les);
+	}
+	public void addCursus(Cursus cursus) {
+		this.cursusen.add(cursus);
+		cursus.addKlas(this);
+	}
+	public ArrayList<Cursus> getCursusen() {
+		return this.cursusen;
 	}
 	@Override
 	public boolean equals(Object o) {
