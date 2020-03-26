@@ -10,7 +10,7 @@ public class Les {
 	private LocalTime eindTijd;
 	private LocalDate datum;
 	private String lokaal;
-	private ArrayList<Klas> klassen;
+	private ArrayList<Klas> klassen=new ArrayList<Klas>();
 	private ArrayList<Docent> docenten;
 
 
@@ -19,9 +19,6 @@ public class Les {
 		this.eindTijd = eTijd;
 		this.datum = dtm;
 		this.lokaal = lokaalk;
-
-		klassen = new ArrayList<>();
-		klassen = new ArrayList<>();
 	}
 
 	public LocalDate getDatum() {
