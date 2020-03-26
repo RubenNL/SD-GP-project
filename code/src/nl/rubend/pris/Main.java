@@ -19,8 +19,8 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		School.getSchool().addGebruiker(new Docent("martijn.jansen@hu.nl","TestWachtwoord","Martijn Jansen", 1234));
-		School.getSchool().addGebruiker(new Student("abc@student.hu.nl","abcWachtwoord","Abc Def", 4564));
+		School.getSchool().addGebruiker(new Docent("d","","Martijn Jansen", 1234));
+		School.getSchool().addGebruiker(new Student("s","","Abc Def", 4564));
 		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
 
 		Scene scene = new Scene(root);
