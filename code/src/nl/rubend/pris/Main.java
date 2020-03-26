@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import nl.rubend.pris.model.*;
 
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ public class Main extends Application {
 		School school=School.getSchool();
 		school.addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("s","","Abc Def", 4564));
+    school.addGebruiker(new Systeembeheerder("b","","sysBeheerNaam"));
 		school.addKlas(new Klas("TICT-SD-V1E"));
 		school.addCursus(new Cursus("TCIF-V1GP-19_2019","SD-GroupProject"));
 		school.getKlasByName("TICT-SD-V1E").addCursus(school.getCursusByCode("TCIF-V1GP-19_2019"));
