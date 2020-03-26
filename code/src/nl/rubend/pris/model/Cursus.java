@@ -21,8 +21,4 @@ public class Cursus {
 		this.cursusNaam = cursusNaam;
 	}
 
-
-	public void setCursusNummer(String cursusNummer) {
-		this.cursusNummer = cursusNummer;
-	}
 }

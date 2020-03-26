@@ -29,13 +29,13 @@
             <PasswordField fx:id="wachtwoordBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="112.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="256.0" layoutX="106.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Hogeschool-Utrecht-logo.jpg" />
+            <Image url="@hogeschool-utrecht-logo-klein.png" />
          </image>
       </ImageView>
       <Label fx:id="errorField" layoutX="87.0" layoutY="142.0" />
-      <Button layoutX="249.0" layoutY="253.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="26.0" prefWidth="63.0" text="Cancel" />
+      <Button layoutX="253.0" layoutY="253.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="26.0" prefWidth="63.0" text="Cancel" />
       <Button layoutX="328.0" layoutY="253.0" mnemonicParsing="false" onAction="#okButton" prefHeight="26.0" prefWidth="63.0" text="OK" />
    </children>
 </AnchorPane>
