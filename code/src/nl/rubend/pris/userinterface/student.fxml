@@ -23,9 +23,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="ziekMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonZiekmelden" prefHeight="30.0" prefWidth="122.0" text="Ziekmelden" />
-                  <Button fx:id="lesMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonLesAfmelden" prefHeight="30.0" prefWidth="120.0" text="Les afmelden" GridPane.rowIndex="1" />
-                  <Button fx:id="langdurigMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonLangdurig" prefHeight="30.0" prefWidth="134.0" text="Langdurig" GridPane.rowIndex="2" />
+                  <Button fx:id="ziekMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonScherm" prefHeight="30.0" prefWidth="122.0" text="Ziekmelden" />
+                  <Button fx:id="lesMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonScherm" prefHeight="30.0" prefWidth="120.0" text="Les afmelden" GridPane.rowIndex="1" />
+                  <Button fx:id="langdurigMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonScherm" prefHeight="30.0" prefWidth="134.0" text="Langdurig" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

@@ -2,6 +2,7 @@ package nl.rubend.pris.userinterface;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import nl.rubend.pris.model.Gebruiker;
 import javafx.scene.control.Button;
@@ -73,20 +74,10 @@ public class StudentController implements Initializable, IngelogdGebruiker {
 			}
 		}
 	}
-
 	@FXML
-	void toonLangdurig(ActionEvent event) {
-		switchToPane(langdurigPane);
+	void toonScherm(ActionEvent event) {
+		Control control=(Control) event.getSource();
+		String paneId=control.getId().split("MenuButton")[0]+"Pane";
+		switchToPane((AnchorPane) control.getScene().lookup("#"+paneId));
 	}
-
-	@FXML
-	void toonLesAfmelden(ActionEvent event) {
-		switchToPane(lesPane);
-	}
-
-	@FXML
-	void toonZiekmelden(ActionEvent event) {
-		switchToPane(ziekPane);
-	}
-
 }
