@@ -21,7 +21,12 @@ public class Student extends Gebruiker {
 	public ArrayList<Aanwezigheid> getAanwezigheidList() {
 		return aanwezigheid;
 	}
-
+	public Aanwezigheid getAanwezigheidBijLes(Les les) {
+		for(Aanwezigheid aanwezigheid:this.aanwezigheid) {
+			if(aanwezigheid.getLes().equals(les)) return aanwezigheid;
+		}
+		return null;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
