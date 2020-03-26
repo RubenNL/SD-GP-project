@@ -18,10 +18,6 @@ public class Docent extends Gebruiker {
 		return docentNummer;
 	}
 
-	public void setDocentNummer(int docentNummer) {
-		this.docentNummer = docentNummer;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

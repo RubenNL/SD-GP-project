@@ -14,10 +14,6 @@ public class Student extends Gebruiker {
 		return studentNummer;
 	}
 
-	public void setStudentNummer(int studentNummer) {
-		this.studentNummer = studentNummer;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
