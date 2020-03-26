@@ -58,61 +58,11 @@
                <children>
                   <ImageView fitHeight="54.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Hogeschool-Utrecht-logo.jpg" />
+                        <Image url="@hogeschool-utrecht-logo-klein.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="95.0" layoutY="27.0" text="Hier kunt u de aanwezigheid van leerlingen aangeven " />
-                  <ListView layoutY="54.0" prefHeight="242.0" prefWidth="178.0" />
-                  <Label layoutY="54.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="78.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="246.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="102.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="126.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="150.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="174.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="270.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="220.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutY="196.0" prefHeight="24.0" prefWidth="34.0" text="Koos">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
+                  <ListView fx:id="studentAanwezigheid" layoutY="54.0" prefHeight="236.0" prefWidth="191.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="lesPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">

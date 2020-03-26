@@ -9,13 +9,23 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import nl.rubend.pris.model.Docent;
+import nl.rubend.pris.model.Klas;
 import nl.rubend.pris.model.School;
 import nl.rubend.pris.model.Student;
+import nl.rubend.pris.userinterface.DocentController;
 
 public class Main extends Application {
 	public static void main(String[] args) {
+		Klas pijn = new Klas("pijn");
+		Student A = new Student("abc@cde", "a", "A", 234);
+		Student B = new Student("abc@cde", "b", "B", 123);
+		pijn.setStudenten(A);
+		pijn.setStudenten(B);
+		DocentController.setKlas(pijn);
 		launch(args);
 	}
+
+
 
 	@Override
 	public void start(Stage stage) throws Exception {

@@ -7,18 +7,20 @@ public class Klas {
 	private String klasNaam;
 	private ArrayList<Cursus> cursusen;
 	private ArrayList<Student> studenten;
-	private ArrayList<RoosterItem> roosterItems;
+	//private ArrayList<RoosterItem> roosterItems;
 
 	public Klas(String nm) {
 		this.klasNaam = nm;
 		cursusen = new ArrayList<>();
 		studenten = new ArrayList<>();
-		roosterItems = new ArrayList<>();
+		//roosterItems = new ArrayList<>();
 	}
 
 	public String getKlasNaam() {
 		return klasNaam;
 	}
+	public ArrayList<Student> getStudenten() { return studenten; }
+	public void setStudenten(Student stud) { studenten.add(stud); }
 
 	public void setKlasNaam(String klasNaam) {
 		this.klasNaam = klasNaam;
