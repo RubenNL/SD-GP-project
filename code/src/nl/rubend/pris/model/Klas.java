@@ -19,10 +19,9 @@ public class Klas {
 		return klasNaam;
 	}
 
-	public void setKlasNaam(String klasNaam) {
-		this.klasNaam = klasNaam;
+	public void addStudent(Student student) {
+		this.studenten.add(student);
 	}
-
 	public ArrayList<Student> getStudenten() {
 		return this.studenten;
 	}
@@ -32,6 +31,9 @@ public class Klas {
 			response.put(student,student.getAanwezigheidBijLes(les));
 		}
 		return response;
+	}
+	public void addLes(Les les) {
+		this.lessen.add(les);
 	}
 	@Override
 	public boolean equals(Object o) {

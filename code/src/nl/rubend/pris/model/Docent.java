@@ -1,5 +1,6 @@
 package nl.rubend.pris.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -17,13 +18,22 @@ public class Docent extends Gebruiker {
 		return docentNummer;
 	}
 
+	public void addLes(Les les) {this.lessen.add(les);}
+
+	public ArrayList<Les> getLessen() {return this.lessen;}
+	public ArrayList<Les> getLessenByDag(LocalDate date) {
+		ArrayList<Les> response=new ArrayList<Les>();
+		for(Les les:getLessen()) {
+			if(les.getDatum().equals(date)) response.add(les);
+		}
+		return response;
+	}
 	@Override
 	public boolean equals(Object o) {
+		Docent docent = (Docent) o;
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Docent docent = (Docent) o;
 		return docentNummer == docent.docentNummer;
 	}
-
 
 }
