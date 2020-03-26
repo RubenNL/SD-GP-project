@@ -19,14 +19,10 @@ public class Klas {
 		return klasNaam;
 	}
 	public ArrayList<Student> getStudenten() { return studenten; }
-	public void setStudenten(Student stud) { studenten.add(stud); }
 
 	public void addStudent(Student student) {
 		this.studenten.add(student);
 		student.addKlas(this);
-	}
-	public ArrayList<Student> getStudenten() {
-		return this.studenten;
 	}
 	public Map<Student,Aanwezigheid> getAanwezigheidBijLes(Les les) {
 		Map<Student,Aanwezigheid> response=new HashMap<Student,Aanwezigheid>();

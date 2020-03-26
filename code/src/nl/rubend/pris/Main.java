@@ -15,8 +15,8 @@ public class Main extends Application {
 		Klas pijn = new Klas("pijn");
 		Student A = new Student("abc@cde", "a", "A", 234);
 		Student B = new Student("abc@cde", "b", "B", 123);
-		pijn.setStudenten(A);
-		pijn.setStudenten(B);
+		pijn.addStudent(A);
+		pijn.addStudent(B);
 		DocentController.setKlas(pijn);
 		launch(args);
 	}
