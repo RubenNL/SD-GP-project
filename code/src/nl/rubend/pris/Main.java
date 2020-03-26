@@ -4,23 +4,31 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import nl.rubend.pris.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import nl.rubend.pris.userinterface.DocentController;
 
 public class Main extends Application {
 	public static void main(String[] args) {
+		Klas pijn = new Klas("pijn");
+		Student A = new Student("abc@cde", "a", "A", 234);
+		Student B = new Student("abc@cde", "b", "B", 123);
+		pijn.setStudenten(A);
+		pijn.setStudenten(B);
+		DocentController.setKlas(pijn);
 		launch(args);
 	}
+
+
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		School school=School.getSchool();
 		school.addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("s","","Abc Def", 4564));
-    	school.addGebruiker(new Systeembeheerder("b","","sysBeheerNaam"));
+    school.addGebruiker(new Systeembeheerder("b","","sysBeheerNaam"));
 		school.addKlas(new Klas("TICT-SD-V1E"));
 		school.addCursus(new Cursus("TCIF-V1GP-19_2019","SD-GroupProject"));
 		school.getKlasByName("TICT-SD-V1E").addCursus(school.getCursusByCode("TCIF-V1GP-19_2019"));
