@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class RoosterItem {
+public class Les {
 	private LocalTime beginTijd;
 	private LocalTime eindTijd;
 	private LocalDate datum;
@@ -14,7 +14,7 @@ public class RoosterItem {
 	private ArrayList<Docent> docenten;
 
 
-	public RoosterItem(LocalTime bTijd, LocalTime eTijd, LocalDate dtm, String lokaalk) {
+	public Les(LocalTime bTijd, LocalTime eTijd, LocalDate dtm, String lokaalk) {
 		this.beginTijd = bTijd;
 		this.eindTijd = eTijd;
 		this.datum = dtm;
@@ -48,7 +48,7 @@ public class RoosterItem {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		RoosterItem that = (RoosterItem) o;
+		Les that = (Les) o;
 		return Objects.equals(beginTijd, that.beginTijd) &&
 				Objects.equals(eindTijd, that.eindTijd) &&
 				Objects.equals(datum, that.datum) &&
