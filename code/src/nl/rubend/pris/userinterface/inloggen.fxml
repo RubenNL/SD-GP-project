@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="309.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Inloggen">
+<AnchorPane maxHeight="309.0" maxWidth="423.0" minHeight="309.0" minWidth="423.0" prefHeight="309.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Inloggen">
    <children>
       <GridPane layoutX="52.0" layoutY="158.0" prefHeight="86.0" prefWidth="339.0">
         <columnConstraints>
