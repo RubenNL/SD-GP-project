@@ -40,18 +40,6 @@ public class RoosterItem {
 		return lokaal;
 	}
 
-	public void setBeginTijd(LocalTime beginTijd) {
-		this.beginTijd = beginTijd;
-	}
-
-	public void setEindTijd(LocalTime eindTijd) {
-		this.eindTijd = eindTijd;
-	}
-
-	public void setDatum(LocalDate datum) {
-		this.datum = datum;
-	}
-
 	public void setLokaal(String lokaal) {
 		this.lokaal = lokaal;
 	}
