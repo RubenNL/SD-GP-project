@@ -9,7 +9,6 @@ import nl.rubend.pris.model.*;
 import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import nl.rubend.pris.userinterface.Docent.DocentController;
 
 public class Main extends Application {
 	public static void main(String[] args) {
@@ -45,7 +44,6 @@ public class Main extends Application {
 			serializeDemoData();
 			School.deserialize();
 		}
-		DocentController.setKlas(School.getSchool().getKlasByName("TICT-SD-V1E"));
 		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
 		Scene scene = new Scene(root);
 

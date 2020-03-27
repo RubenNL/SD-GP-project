@@ -20,8 +20,8 @@ import java.util.ResourceBundle;
 
 public class StudentController implements Initializable, IngelogdGebruiker {
 	private Student student;
-	ArrayList<Parent> allPanes = new ArrayList<Parent>();
-	ArrayList<IngelogdGebruiker> paneControllers = new ArrayList<IngelogdGebruiker>();
+	private ArrayList<Parent> allPanes = new ArrayList<Parent>();
+	private ArrayList<IngelogdGebruiker> paneControllers = new ArrayList<IngelogdGebruiker>();
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		this.student=(Student) gebruiker;

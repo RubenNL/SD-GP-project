@@ -26,9 +26,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="presentieMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonScherm" prefHeight="30.0" prefWidth="160.0" text="Presentie" />
-                  <Button fx:id="lesMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonScherm" prefHeight="30.0" prefWidth="178.0" text="Les afmelden" GridPane.rowIndex="1" />
-                  <Button fx:id="langdurigMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonScherm" prefHeight="30.0" prefWidth="208.0" text="Langdurig" GridPane.rowIndex="2" />
+                  <Button fx:id="docentPresentieMenuButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#toonScherm" prefHeight="30.0" prefWidth="160.0" text="Presentie" />
                </children>
             </GridPane>
          </children>
@@ -54,35 +52,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="presentiePane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fitHeight="54.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@hogeschool-utrecht-logo-klein.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="95.0" layoutY="27.0" text="Hier kunt u de aanwezigheid van leerlingen aangeven " />
-                  <ListView fx:id="studentAanwezigheid" layoutY="54.0" prefHeight="236.0" prefWidth="191.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="lesPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label prefHeight="54.0" prefWidth="403.0" text="Les afmelden">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="langdurigPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label prefHeight="54.0" prefWidth="403.0" text="Langdurig">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
+            <fx:include source="docentPresentiePane.fxml" fx:id="docentPresentiePane" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
          </children>
       </GridPane>
    </children>
