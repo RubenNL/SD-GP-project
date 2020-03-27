@@ -3,4 +3,5 @@
 /.idea/
 /.idea.libraries/
 code.iml
-.idea/misc.xml
+code/out.ser
+code/.idea/misc.xml
