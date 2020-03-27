@@ -2,17 +2,11 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
     <children>
-        <Label fx:id="labelId" prefHeight="54.0" prefWidth="403.0" text="Ziek-test">
+        <Label fx:id="labelId" prefHeight="54.0" prefWidth="600.0" text="Dag afmelden">
             <font>
                 <Font size="36.0" />
             </font>

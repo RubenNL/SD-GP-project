@@ -2,6 +2,26 @@
     -fx-font-family:"Roboto";
 }
 
+.red-text {
+    -fx-text-fill:#E41E13;
+}
+
+.blue-text {
+    -fx-text-fill:#0099D3;
+}
+
+.black-text {
+    -fx-text-fill:#414141;
+}
+
+.grey-text {
+    -fx-text-fill:#6e6e6e;
+}
+
+.light-grey-text {
+    -fx-text-fill:#efefef;
+}
+
 .root {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -39,4 +59,28 @@
 .cancel-button:hover {
     -fx-background-color:#D9D9D9;
     -fx-text-fill: #595959;
+}
+
+.main-menu-button {
+    -fx-background-color:#fff;
+    -fx-background-radius: 0;
+}
+
+.main-menu-button:focused {
+    -fx-background-color:#0099D3;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 0;
+}
+
+.main-menu-button:focused:hover {
+    -fx-background-color:#0099D3;
+    -fx-text-fill: #fff;
+}
+
+.main-menu-button:hover {
+    -fx-background-color:#efefef;
+}
+
+.menu-bg {
+    -fx-effect:dropshadow(Gaussian, #000, 11, 0.1, -2, 0);
 }
