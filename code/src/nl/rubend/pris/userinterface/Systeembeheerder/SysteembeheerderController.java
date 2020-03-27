@@ -45,7 +45,7 @@ public class SysteembeheerderController implements Initializable, IngelogdGebrui
 		allPanes.add(accountWeergevenPane);
 		paneControllers.add(accountAanmakenPaneController);
 		paneControllers.add(accountWeergevenPaneController);
-		//switchToPane(accountAanmakenPane);
+		switchToPane(accountAanmakenPane);
 	}
 
 	private void switchToPane(Parent targetPane){
