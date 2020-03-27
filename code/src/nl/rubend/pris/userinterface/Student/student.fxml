@@ -16,17 +16,17 @@
             <children>
             <AnchorPane prefHeight="65.0" prefWidth="140.0">
                <children>
-                  <Label layoutX="35.0" layoutY="1.0" prefHeight="65.0" prefWidth="18.0" styleClass="blue-text" text="H">
+                  <Label layoutX="34.0" layoutY="1.0" prefHeight="65.0" prefWidth="15.0" styleClass="blue-text" text="H">
                      <font>
                         <Font name="Roboto Medium" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="50.0" layoutY="1.0" prefHeight="65.0" prefWidth="14.0" styleClass="red-text" text="U">
+                  <Label layoutX="50.0" prefHeight="66.0" prefWidth="17.0" styleClass="red-text" text="U">
                      <font>
                         <Font name="Roboto Medium" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="68.0" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="38.0" text="Pris" textFill="#414141">
+                  <Label layoutX="69.0" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="38.0" text="Pris" textFill="#414141">
                      <font>
                         <Font name="Roboto" size="22.0" />
                      </font>
@@ -65,19 +65,19 @@
         </VBox>
         <GridPane fx:id="gridContainer" layoutX="156.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="594.0" style="-fx-background-color: #fff;">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="287.19999389648433" prefWidth="530.4000244140625" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="287.19999389648433" prefWidth="464.33334655761723" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <AnchorPane fx:id="welkomPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Label fx:id="welkomLabel" prefHeight="54.0" prefWidth="403.0" text="Welkom">
+                        <Label fx:id="welkomLabel" prefHeight="37.0" prefWidth="403.0" text="Welkom">
                             <font>
                                 <Font size="36.0" />
                             </font>
