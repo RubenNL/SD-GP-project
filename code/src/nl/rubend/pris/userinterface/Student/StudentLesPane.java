@@ -1,7 +1,8 @@
-package nl.rubend.pris.userinterface;
+package nl.rubend.pris.userinterface.Student;
 
 import nl.rubend.pris.model.Gebruiker;
 import nl.rubend.pris.model.Student;
+import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 public class StudentLesPane implements IngelogdGebruiker {
 	private Student student;

@@ -1,4 +1,4 @@
-package nl.rubend.pris.userinterface;
+package nl.rubend.pris.userinterface.Student;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
 import nl.rubend.pris.model.Student;
+import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
 import java.util.ArrayList;
