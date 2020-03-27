@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="nl.rubend.pris.userinterface.Docent.DocentPresentiePane"
+            prefHeight="400.0" prefWidth="600.0">
+    <Label fx:id="labelId" prefHeight="54.0" prefWidth="403.0" text="presentieTest">
+        <font>
+            <Font size="36.0" />
+        </font>
+    </Label>
+</AnchorPane>
