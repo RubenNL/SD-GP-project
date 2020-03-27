@@ -93,5 +93,8 @@
 .uitloggen-button {
     -fx-background-color:#efefef;
     -fx-text-fill:#6e6e6e;
-    -fx-font-family:'test';
+}
+
+.off-icon {
+    -fx-font-family:'FontAwesome';
 }
