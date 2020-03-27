@@ -63,7 +63,7 @@
                 </GridPane>
             <AnchorPane prefHeight="304.0" prefWidth="140.0">
                <children>
-                  <Button layoutY="281.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="140.0" styleClass="uitloggen-button" text="Uitloggen">
+                  <Button layoutY="281.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="140.0" styleClass="uitloggen-button" text="Uitloggen" onAction="#handleUitloggen">
                      <font>
                         <Font name="Roboto" size="15.0" />
                      </font>

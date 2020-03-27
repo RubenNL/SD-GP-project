@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import nl.rubend.pris.Main;
 import nl.rubend.pris.model.Gebruiker;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +16,7 @@ import javafx.event.ActionEvent;
 import nl.rubend.pris.model.Student;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -76,5 +79,9 @@ public class StudentController implements Initializable, IngelogdGebruiker {
 		Control control=(Control) event.getSource();
 		String paneId=control.getId().split("MenuButton")[0]+"Pane";
 		switchToPane((AnchorPane) control.getScene().lookup("#"+paneId));
+	}
+	@FXML
+	void handleUitloggen(ActionEvent event) throws IOException {
+		Main.showInloggen((Stage) ziekMenuButton.getScene().getWindow());
 	}
 }
