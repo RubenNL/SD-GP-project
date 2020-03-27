@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="309.0" maxWidth="423.0" minHeight="309.0" minWidth="423.0" prefHeight="309.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Inloggen">
+<AnchorPane maxHeight="309.0" maxWidth="423.0" minHeight="309.0" minWidth="423.0" prefHeight="309.0" prefWidth="423.0" style="-fx-background-color: #fff;" stylesheets="@../stylesheet-pris.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Inloggen">
    <children>
-      <GridPane layoutX="52.0" layoutY="158.0" prefHeight="86.0" prefWidth="339.0">
+      <GridPane alignment="CENTER" layoutX="30.0" layoutY="155.0" prefHeight="67.0" prefWidth="339.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="98.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="241.0" />
@@ -23,19 +23,19 @@
           <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="E-mail" />
-            <Label text="Wachtwoord" GridPane.rowIndex="1" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="18.0" prefWidth="74.0" text="E-mail" />
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="71.0" text="Wachtwoord" GridPane.rowIndex="1" />
             <TextField fx:id="emailBox" GridPane.columnIndex="1" />
             <PasswordField fx:id="wachtwoordBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <ImageView fitHeight="59.0" fitWidth="256.0" layoutX="106.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="401.0" layoutX="106.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@hogeschool-utrecht-logo-klein.png" />
          </image>
       </ImageView>
       <Label fx:id="errorField" layoutX="87.0" layoutY="142.0" />
-      <Button layoutX="253.0" layoutY="253.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="26.0" prefWidth="63.0" text="Cancel" />
-      <Button layoutX="328.0" layoutY="253.0" mnemonicParsing="false" onAction="#okButton" prefHeight="26.0" prefWidth="63.0" text="OK" />
+      <Button layoutX="195.0" layoutY="251.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="26.0" prefWidth="82.0" styleClass="cancel-button" text="Annuleren" />
+      <Button layoutX="289.0" layoutY="251.0" mnemonicParsing="false" onAction="#okButton" prefHeight="22.0" prefWidth="82.0" styleClass="confirm-button" text="Inloggen" />
    </children>
 </AnchorPane>

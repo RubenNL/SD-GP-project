@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import nl.rubend.pris.userinterface.DocentController;

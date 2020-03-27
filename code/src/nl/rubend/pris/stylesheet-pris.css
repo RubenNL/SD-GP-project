@@ -1,0 +1,42 @@
+.label-login {
+    -fx-font-family:"Roboto";
+}
+
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.text-field {
+    -fx-border-color: #6e6e6e;
+    -fx-border-radius:2px;
+}
+
+.text-field:focused {
+    -fx-stroke: none;
+}
+
+.button:hover {
+    -fx-cursor: hand;
+}
+
+.confirm-button {
+    -fx-background-color:#0099D3;
+    -fx-text-fill: #fff;
+    -fx-font-family:"Roboto Medium";
+    -fx-padding: 5px 8px;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #00A1DB;
+}
+
+.cancel-button {
+    -fx-background-color: #dfdfdf;
+    -fx-text-fill: #737373;
+}
+
+.cancel-button:hover {
+    -fx-background-color:#D9D9D9;
+    -fx-text-fill: #595959;
+}
