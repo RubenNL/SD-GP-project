@@ -1,5 +1,6 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import nl.rubend.pris.Main;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import nl.rubend.pris.userinterface.Student.StudentLangdurigPane;
@@ -22,7 +24,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SysteembeheerderController implements Initializable, IngelogdGebruiker {
+public class SysteembeheerderController implements Initializable, IngelogdGebruiker  {
+	@FXML private AnchorPane welkomPane;
 	@FXML private Parent accountAanmakenPane;
 	@FXML private AccountAanmakenPane accountAanmakenPaneController;
 	@FXML private Parent accountWeergevenPane;
@@ -41,11 +44,12 @@ public class SysteembeheerderController implements Initializable, IngelogdGebrui
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		allPanes.add(welkomPane);
 		allPanes.add(accountAanmakenPane);
 		allPanes.add(accountWeergevenPane);
 		paneControllers.add(accountAanmakenPaneController);
 		paneControllers.add(accountWeergevenPaneController);
-		switchToPane(accountAanmakenPane);
+		switchToPane(welkomPane);
 	}
 
 	private void switchToPane(Parent targetPane){
@@ -67,7 +71,7 @@ public class SysteembeheerderController implements Initializable, IngelogdGebrui
 		switchToPane((AnchorPane) control.getScene().lookup("#"+paneId));
 	}
 	@FXML
-	void handleUitloggen(ActionEvent event) {
-		((Stage) accountAanmakenPane.getScene().getWindow()).close();
+	void handleUitloggen(ActionEvent event) throws IOException {
+		Main.showInloggen((Stage) accountAanmakenPane.getScene().getWindow());
 	}
 }
