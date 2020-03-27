@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SysteembeheerderController implements Initializable, IngelogdGebruiker {
+	@FXML private AnchorPane welkomPane;
 	@FXML private Parent accountAanmakenPane;
 	@FXML private AccountAanmakenPane accountAanmakenPaneController;
 	@FXML private Parent accountWeergevenPane;
@@ -41,11 +42,12 @@ public class SysteembeheerderController implements Initializable, IngelogdGebrui
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		allPanes.add(welkomPane);
 		allPanes.add(accountAanmakenPane);
 		allPanes.add(accountWeergevenPane);
 		paneControllers.add(accountAanmakenPaneController);
 		paneControllers.add(accountWeergevenPaneController);
-		switchToPane(accountAanmakenPane);
+		switchToPane(welkomPane);
 	}
 
 	private void switchToPane(Parent targetPane){
