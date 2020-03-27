@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 
-import java.nio.file.Path;
+import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import nl.rubend.pris.userinterface.DocentController;
@@ -16,7 +16,7 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	private void serializeDemoData() throws Exception {
+	private void serializeDemoData() throws NotFoundException {
 		School school=School.getSchool();
 		school.addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("s","","Abc Def", 4564));
@@ -38,7 +38,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		//serializeDemoData();
-		School.deserialize();
+		try {
+			School.deserialize();
+		} catch (InvalidClassException e) {
+			System.out.println("Data is afkomstig van oude versie van model. Default data wordt geimporteert.");
+			serializeDemoData();
+			School.deserialize();
+		}
 		DocentController.setKlas(School.getSchool().getKlasByName("TICT-SD-V1E"));
 		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
 		Scene scene = new Scene(root);
@@ -46,5 +52,11 @@ public class Main extends Application {
 		stage.setTitle("PRIS Inloggen");
 		stage.setScene(scene);
 		stage.show();
+
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+			public void run() {
+				School.serialize();
+			}
+		}));
 	}
 }
