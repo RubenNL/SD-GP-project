@@ -1,4 +1,13 @@
 package nl.rubend.pris.userinterface;
 
-public class StudentLesPane {
+import nl.rubend.pris.model.Gebruiker;
+import nl.rubend.pris.model.Student;
+
+public class StudentLesPane implements IngelogdGebruiker {
+	private Student student;
+
+	@Override
+	public void setGebruiker(Gebruiker gebruiker) {
+		this.student=(Student) gebruiker;
+	}
 }
