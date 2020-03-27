@@ -1,8 +1,3 @@
-@font-face {
-    -fx-font-family: 'test';
-    src: url(fonts/FontAwesome5Free-Regular-400.otf);
-}
-
 .label-login {
     -fx-font-family:"Roboto";
 }
@@ -93,8 +88,4 @@
 .uitloggen-button {
     -fx-background-color:#efefef;
     -fx-text-fill:#6e6e6e;
-}
-
-.off-icon {
-    -fx-font-family:'FontAwesome';
 }

@@ -67,9 +67,6 @@
                      <font>
                         <Font name="Roboto" size="15.0" />
                      </font>
-                     <graphic>
-                        <Label styleClass="off-icon" text="" />
-                     </graphic>
                   </Button>
                </children>
             </AnchorPane>
