@@ -1,4 +1,5 @@
 @font-face {
+    -fx-font-family: 'test';
     src: url(fonts/FontAwesome5Free-Regular-400.otf);
 }
 
@@ -92,4 +93,5 @@
 .uitloggen-button {
     -fx-background-color:#efefef;
     -fx-text-fill:#6e6e6e;
+    -fx-font-family:'test';
 }
