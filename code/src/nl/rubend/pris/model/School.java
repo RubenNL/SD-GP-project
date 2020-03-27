@@ -11,28 +11,28 @@ public class School implements Serializable {
 	public void addGebruiker(Gebruiker gebruiker) {
 		gebruikers.add(gebruiker);
 	}
-	public Gebruiker getGebruikerByEmail(String email) throws Exception {
+	public Gebruiker getGebruikerByEmail(String email) throws NotFoundException {
 		for(Gebruiker gebruiker:gebruikers) {
 			if(email.toLowerCase().equals(gebruiker.getEmail())) return gebruiker;
 		}
-		throw new Exception("Gebruiker niet gevonden");
+		throw new NotFoundException("Gebruiker niet gevonden");
 	}
 	public void addCursus(Cursus cursus) { this.cursussen.add(cursus); }
 	public ArrayList<Cursus> getCursussen() { return this.cursussen; }
-	public Cursus getCursusByCode(String naam) {
+	public Cursus getCursusByCode(String naam) throws NotFoundException {
 		for(Cursus cursus:cursussen) {
 			if(cursus.getCursusCode().equals(naam)) return cursus;
 		}
-		return null;
+		throw new NotFoundException("Cursus niet gevonden");
 	}
 	public void addKlas(Klas klas) {this.klassen.add(klas);}
-	public Klas getKlasByName(String klasNaam) {
+	public Klas getKlasByName(String klasNaam) throws NotFoundException {
 		for(Klas klas:klassen) {
 			if(klas.getKlasNaam().equals(klasNaam)) {
 				return klas;
 			}
 		}
-		return null;
+		throw new NotFoundException("Klas niet gevonden");
 	}
 	public static School getSchool() {
 		return school;
