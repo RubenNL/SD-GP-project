@@ -51,9 +51,9 @@
                         </Label>
                     </children>
                 </AnchorPane>
-                <fx:include source="studentZiekPane.fxml" fx:id="ziekPane" />
-                <fx:include source="studentLesPane.fxml" fx:id="lesPane" />
-                <fx:include source="studentLangdurigPane.fxml" fx:id="langdurigPane" />
+                <fx:include source="studentZiekPane.fxml" fx:id="ziekPane" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <fx:include source="studentLesPane.fxml" fx:id="lesPane" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <fx:include source="studentLangdurigPane.fxml" fx:id="langdurigPane" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             </children>
         </GridPane>
     </children>
