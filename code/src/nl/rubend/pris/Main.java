@@ -16,7 +16,7 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	private void serializeDemoData() throws Exception {
+	private void serializeDemoData() throws NotFoundException {
 		School school=School.getSchool();
 		school.addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("s","","Abc Def", 4564));

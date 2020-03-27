@@ -31,7 +31,9 @@ public class Student extends Gebruiker implements Serializable {
 		for(Aanwezigheid aanwezigheid:this.aanwezigheid) {
 			if(aanwezigheid.getLes().equals(les)) return aanwezigheid;
 		}
-		return null;
+		Aanwezigheid aanwezigheid=new Aanwezigheid(les);
+		addAanwezigheid(aanwezigheid);
+		return aanwezigheid;
 	}
 	@Override
 	public boolean equals(Object o) {
