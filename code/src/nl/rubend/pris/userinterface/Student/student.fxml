@@ -63,9 +63,9 @@
                 </GridPane>
             <AnchorPane prefHeight="314.0" prefWidth="140.0">
                <children>
-                  <Button layoutY="270.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="140.0" styleClass="uitloggen-button" text="Uitloggen">
+                  <Button layoutY="270.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="140.0" styleClass="uitloggen-button" text="Uitloggen">
                      <font>
-                        <Font name="Roboto" size="15.0" />
+                        <Font name="FontAwesome" size="15.0" />
                      </font>
                   </Button>
                </children>
