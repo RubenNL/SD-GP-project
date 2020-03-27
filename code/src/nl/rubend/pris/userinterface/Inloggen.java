@@ -62,13 +62,13 @@ public class Inloggen {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		cancelButton(null);
 		IngelogdGebruiker controller = fxmlLoader.<IngelogdGebruiker>getController();
 		controller.setGebruiker(gebruiker);
 		Stage stage = new Stage();
 		stage.setTitle("PRIS");
 		scene.getStylesheets().add("nl/rubend/pris/stylesheet-pris.css");
 		stage.setScene(scene);
-		stage.show();
-		cancelButton(null);
+		stage.showAndWait();
 	}
 }
