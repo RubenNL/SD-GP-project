@@ -53,7 +53,7 @@
                 </AnchorPane>
                 <fx:include source="studentZiekPane.fxml" fx:id="ziekPane" />
                 <fx:include source="studentLesPane.fxml" fx:id="lesPane" />
-                <fx:include source="studentLangdurigPane.fxml" fx:id="studentLangdurigPane" />
+                <fx:include source="studentLangdurigPane.fxml" fx:id="langdurigPane" />
             </children>
         </GridPane>
     </children>

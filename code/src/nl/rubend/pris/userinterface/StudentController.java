@@ -54,15 +54,15 @@ public class StudentController implements Initializable, IngelogdGebruiker {
 	private Label welkomLabel;
 
 	@FXML
-	private AnchorPane ziekPane;
+	private Parent ziekPane;
 
 	@FXML
 	private Parent lesPane;
 
 	@FXML
-	private AnchorPane langdurigPane;
+	private Parent langdurigPane;
 
-	private void switchToPane(AnchorPane targetPane){
+	private void switchToPane(Parent targetPane){
 		for (Parent pane : allPanes){
 			if(pane.equals(targetPane)){
 				pane.setVisible(true);
