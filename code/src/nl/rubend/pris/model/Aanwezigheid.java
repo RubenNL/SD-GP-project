@@ -1,6 +1,8 @@
 package nl.rubend.pris.model;
 
-public class Aanwezigheid {
+import java.io.Serializable;
+
+public class Aanwezigheid implements Serializable {
 	private boolean status;
 	private Les les;
 	public Aanwezigheid(Les les) {

@@ -1,11 +1,12 @@
 package nl.rubend.pris.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Klas {
+public class Klas implements Serializable {
 	private String klasNaam;
 	private ArrayList<Cursus> cursusen = new ArrayList<Cursus>();
 	private ArrayList<Student> studenten = new ArrayList<Student>();
