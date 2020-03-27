@@ -36,7 +36,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		serializeDemoData();
+		//serializeDemoData();
 		School.deserialize();
 		DocentController.setKlas(School.getSchool().getKlasByName("TICT-SD-V1E"));
 		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
