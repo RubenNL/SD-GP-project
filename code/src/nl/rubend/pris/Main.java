@@ -9,7 +9,7 @@ import nl.rubend.pris.model.*;
 import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import nl.rubend.pris.userinterface.DocentController;
+import nl.rubend.pris.userinterface.Docent.DocentController;
 
 public class Main extends Application {
 	public static void main(String[] args) {

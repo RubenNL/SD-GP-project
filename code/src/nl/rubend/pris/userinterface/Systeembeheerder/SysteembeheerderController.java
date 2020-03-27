@@ -1,4 +1,4 @@
-package nl.rubend.pris.userinterface;
+package nl.rubend.pris.userinterface.Systeembeheerder;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,12 +9,13 @@ import javafx.stage.Stage;
 import nl.rubend.pris.model.Gebruiker;
 import nl.rubend.pris.model.Student;
 import nl.rubend.pris.model.Systeembeheerder;
+import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SysteembeheerderController implements Initializable,IngelogdGebruiker {
+public class SysteembeheerderController implements Initializable, IngelogdGebruiker {
 	@FXML private AnchorPane accountAanmakenPane;
 	@FXML private AnchorPane accountWeergevenPane;
 	private Systeembeheerder systeembeheerder;

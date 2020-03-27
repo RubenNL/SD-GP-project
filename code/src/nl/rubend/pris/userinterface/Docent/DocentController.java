@@ -1,4 +1,4 @@
-package nl.rubend.pris.userinterface;
+package nl.rubend.pris.userinterface.Docent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.scene.text.Font;
 import javafx.geometry.Insets;
+import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import javax.swing.*;
 
