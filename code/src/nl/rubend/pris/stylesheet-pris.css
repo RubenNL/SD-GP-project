@@ -84,3 +84,7 @@
 .menu-bg {
     -fx-effect:dropshadow(Gaussian, #000, 11, 0.1, -2, 0);
 }
+
+.uitloggen-button {
+
+}
