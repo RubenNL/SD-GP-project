@@ -28,7 +28,7 @@ public class Inloggen {
 	private Label errorField;
 
 	@FXML
-	void okButton(ActionEvent event) {
+	void okButton(ActionEvent event) throws IOException {
 		Gebruiker gebruiker;
 		try {
 			gebruiker = School.getSchool().getGebruikerByEmail(emailBox.getText());
@@ -52,9 +52,9 @@ public class Inloggen {
 	void cancelButton(ActionEvent event) {
 		((Stage) emailBox.getScene().getWindow()).close();
 	}
-	private void openGUI(Gebruiker gebruiker) {
+	private void openGUI(Gebruiker gebruiker) throws IOException {
 		String className=gebruiker.getClass().getSimpleName();
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(className+"/"+className.toLowerCase() + ".fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ingelogd.fxml"));
 		Scene scene = null;
 		try {
 			scene = new Scene(fxmlLoader.load());
@@ -62,8 +62,18 @@ public class Inloggen {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		IngelogdGebruiker controller = fxmlLoader.<IngelogdGebruiker>getController();
+		Ingelogd controller = fxmlLoader.<Ingelogd>getController();
 		controller.setGebruiker(gebruiker);
+		if(className.equals("Student")) {
+			controller.addButton("Ziek","Student/studentZiekPane.fxml");
+			controller.addButton("Les","Student/studentLesPane.fxml");
+			controller.addButton("Langdurig","Student/studentLangdurigPane.fxml");
+		} else if(className.equals("Docent")) {
+			controller.addButton("Presentie","Docent/docentPresentiePane.fxml");
+		} else if(className.equals("Systeembeheerder")) {
+			controller.addButton("Account maken","Systeembeheerder/accountAanmakenPane.fxml");
+			controller.addButton("Account overzicht","Systeembeheerder/accountWeergevenPane.fxml");
+		}
 		Stage stage = new Stage();
 		stage.setTitle("PRIS");
 		scene.getStylesheets().add("nl/rubend/pris/stylesheet-pris.css");
