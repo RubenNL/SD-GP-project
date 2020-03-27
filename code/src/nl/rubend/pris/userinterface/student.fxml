@@ -51,33 +51,9 @@
                         </Label>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="ziekPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <children>
-                        <Label prefHeight="54.0" prefWidth="403.0" text="Ziekmelden">
-                            <font>
-                                <Font size="36.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <AnchorPane fx:id="lesPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <children>
-                        <Label prefHeight="54.0" prefWidth="403.0" text="Les afmelden">
-                            <font>
-                                <Font size="36.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <AnchorPane fx:id="langdurigPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <children>
-                        <Label prefHeight="54.0" prefWidth="403.0" text="Langdurig">
-                            <font>
-                                <Font size="36.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
+                <fx:include source="studentZiekPane.fxml" fx:id="ziekPane" />
+                <fx:include source="studentLesPane.fxml" fx:id="lesPane" />
+                <fx:include source="studentLangdurigPane.fxml" fx:id="studentLangdurigPane" />
             </children>
         </GridPane>
     </children>

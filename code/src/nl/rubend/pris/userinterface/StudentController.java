@@ -2,6 +2,7 @@ package nl.rubend.pris.userinterface;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import nl.rubend.pris.model.Gebruiker;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class StudentController implements Initializable, IngelogdGebruiker {
 	private Student student;
-	ArrayList<AnchorPane> allPanes = new ArrayList<AnchorPane>();
+	ArrayList<Parent> allPanes = new ArrayList<Parent>();
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
@@ -56,13 +57,13 @@ public class StudentController implements Initializable, IngelogdGebruiker {
 	private AnchorPane ziekPane;
 
 	@FXML
-	private AnchorPane lesPane;
+	private Parent lesPane;
 
 	@FXML
 	private AnchorPane langdurigPane;
 
 	private void switchToPane(AnchorPane targetPane){
-		for (AnchorPane pane : allPanes){
+		for (Parent pane : allPanes){
 			if(pane.equals(targetPane)){
 				pane.setVisible(true);
 				pane.setDisable(false);
