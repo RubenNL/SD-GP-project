@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 
+import java.io.IOException;
 import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,10 +34,16 @@ public class Main extends Application {
 		};
 		School.serialize();
 	}
-
+	public static void showInloggen(Stage stage) throws IOException {
+		stage.close();
+		Parent root = FXMLLoader.load(Main.class.getResource("userinterface/inloggen.fxml"));
+		Scene scene = new Scene(root);
+		stage.setTitle("PRIS Inloggen");
+		stage.setScene(scene);
+		stage.show();
+	}
 	@Override
 	public void start(Stage stage) throws Exception {
-		//serializeDemoData();
 		try {
 			School.deserialize();
 		} catch (InvalidClassException e) {
@@ -44,13 +51,7 @@ public class Main extends Application {
 			serializeDemoData();
 			School.deserialize();
 		}
-		Parent root = FXMLLoader.load(getClass().getResource("userinterface/inloggen.fxml"));
-		Scene scene = new Scene(root);
-
-		stage.setTitle("PRIS Inloggen");
-		stage.setScene(scene);
-		stage.show();
-
+		showInloggen(stage);
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			public void run() {
 				School.serialize();
