@@ -16,7 +16,7 @@
             <children>
             <AnchorPane prefHeight="65.0" prefWidth="140.0">
                <children>
-                  <Label layoutX="34.0" layoutY="1.0" prefHeight="65.0" prefWidth="15.0" styleClass="blue-text" text="H">
+                  <Label layoutX="33.0" prefHeight="66.0" prefWidth="19.0" styleClass="blue-text" text="H">
                      <font>
                         <Font name="Roboto Medium" size="22.0" />
                      </font>
