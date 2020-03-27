@@ -53,7 +53,8 @@ public class Inloggen {
 		((Stage) emailBox.getScene().getWindow()).close();
 	}
 	private void openGUI(Gebruiker gebruiker) {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(gebruiker.getClass().getSimpleName().toLowerCase() + ".fxml"));
+		String className=gebruiker.getClass().getSimpleName();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(className+"/"+className.toLowerCase() + ".fxml"));
 		Scene scene = null;
 		try {
 			scene = new Scene(fxmlLoader.load());

@@ -1,7 +1,9 @@
-package nl.rubend.pris.userinterface;
+package nl.rubend.pris.userinterface.Student;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import nl.rubend.pris.model.Gebruiker;
@@ -10,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
 import nl.rubend.pris.model.Student;
+import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,11 +20,14 @@ import java.util.ResourceBundle;
 
 public class StudentController implements Initializable, IngelogdGebruiker {
 	private Student student;
-	ArrayList<AnchorPane> allPanes = new ArrayList<AnchorPane>();
-
+	ArrayList<Parent> allPanes = new ArrayList<Parent>();
+	ArrayList<IngelogdGebruiker> paneControllers = new ArrayList<IngelogdGebruiker>();
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		this.student=(Student) gebruiker;
+		for(IngelogdGebruiker controller:paneControllers) {
+			controller.setGebruiker(student);
+		}
 	}
 
 	@Override
@@ -30,39 +36,31 @@ public class StudentController implements Initializable, IngelogdGebruiker {
 		allPanes.add(ziekPane);
 		allPanes.add(lesPane);
 		allPanes.add(langdurigPane);
+		paneControllers.add(langdurigPaneController);
+		paneControllers.add(lesPaneController);
+		paneControllers.add(ziekPaneController);
 		switchToPane(welkomPane);
 		welkomLabel.setText("Welkom ");
 	}
 
-	@FXML
-	private Button ziekMenuButton;
+	@FXML private Button ziekMenuButton;
+	@FXML private Button lesMenuButton;
+	@FXML private Button langdurigMenuButton;
 
-	@FXML
-	private Button lesMenuButton;
+	@FXML private GridPane gridContainer;
 
-	@FXML
-	private Button langdurigMenuButton;
+	@FXML private AnchorPane welkomPane;
+	@FXML private Label welkomLabel;
 
-	@FXML
-	private GridPane gridContainer;
+	@FXML private Parent ziekPane;
+	@FXML private StudentZiekPane ziekPaneController;
+	@FXML private Parent lesPane;
+	@FXML private StudentLesPane lesPaneController;
+	@FXML private Parent langdurigPane;
+	@FXML private StudentLangdurigPane langdurigPaneController;
 
-	@FXML
-	private AnchorPane welkomPane;
-
-	@FXML
-	private Label welkomLabel;
-
-	@FXML
-	private AnchorPane ziekPane;
-
-	@FXML
-	private AnchorPane lesPane;
-
-	@FXML
-	private AnchorPane langdurigPane;
-
-	private void switchToPane(AnchorPane targetPane){
-		for (AnchorPane pane : allPanes){
+	private void switchToPane(Parent targetPane){
+		for (Parent pane : allPanes){
 			if(pane.equals(targetPane)){
 				pane.setVisible(true);
 				pane.setDisable(false);
