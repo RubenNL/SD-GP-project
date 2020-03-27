@@ -1,10 +1,11 @@
 package nl.rubend.pris.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Docent extends Gebruiker {
+public class Docent extends Gebruiker implements Serializable {
 	private int docentNummer;
 	private ArrayList<Les> lessen = new ArrayList<Les>();
 

@@ -1,8 +1,9 @@
 package nl.rubend.pris.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cursus {
+public class Cursus implements Serializable {
 	private String cursusCode;
 	private String cursusNaam;
 	private ArrayList<Klas> klassen=new ArrayList<Klas>();

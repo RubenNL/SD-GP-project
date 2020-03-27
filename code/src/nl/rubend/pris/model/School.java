@@ -1,8 +1,9 @@
 package nl.rubend.pris.model;
 
 import java.util.ArrayList;
+import java.io.*;
 
-public class School {
+public class School implements Serializable {
 	private ArrayList<Gebruiker> gebruikers=new ArrayList<Gebruiker>();
 	private ArrayList<Klas> klassen=new ArrayList<Klas>();
 	private ArrayList<Cursus> cursussen=new ArrayList<Cursus>();
@@ -35,5 +36,25 @@ public class School {
 	}
 	public static School getSchool() {
 		return school;
+	}
+	public static void serialize() {
+		try {
+			FileOutputStream fileout= new FileOutputStream("out.ser");
+			ObjectOutputStream out = new ObjectOutputStream(fileout);
+			out.writeObject(school);
+			out.close();
+			fileout.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void deserialize() throws IOException, ClassNotFoundException {
+		FileInputStream fileIn = new FileInputStream("out.ser");
+		ObjectInputStream in = new ObjectInputStream(fileIn);
+		school = (School) in.readObject();
+		in.close();
+		fileIn.close();
 	}
 }

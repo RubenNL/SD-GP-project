@@ -1,7 +1,8 @@
 package nl.rubend.pris.model;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Gebruiker {
+public class Gebruiker implements Serializable {
 	private String email;
 	private String wachtwoord;
 	private String naam;
