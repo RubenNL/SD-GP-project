@@ -154,17 +154,19 @@ public class SysteembeheerderController implements Initializable,IngelogdGebruik
 
 	@FXML
 	void handleUitloggen(ActionEvent event) {
-//		((Stage)accountAanmakenPane.getScene().getWindow()).close();
-//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("inloggen.fxml"));
-//		Scene scene = null;
-//		try {
-//			scene = new Scene(fxmlLoader.load());
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		Stage stage = new Stage();
-//		stage.setTitle("Inloggen");
+		((Stage)accountAanmakenPane.getScene().getWindow()).close();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("inloggen.fxml"));
+		Scene scene = null;
+		try {
+			scene = new Scene(fxmlLoader.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Stage stage = new Stage();
+		stage.setTitle("Inloggen");
+		scene.getStylesheets().add("nl/rubend/pris/stylesheet-pris.css");
+		stage.setScene(scene);
+		stage.show();
 
 	}
 
