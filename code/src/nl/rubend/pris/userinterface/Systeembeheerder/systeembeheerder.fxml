@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.SysteembeheerderController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.SysteembeheerderController">
    <children>
       <VBox layoutX="-2.0" prefHeight="420.0" prefWidth="158.0" style="-fx-background-color: #e9e9e9;">
          <children>
@@ -48,22 +37,28 @@
          <children>
             <AnchorPane fx:id="accountAanmakenPane" prefHeight="339.0" prefWidth="411.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ComboBox fx:id="accountTypeComboBox" layoutX="21.0" layoutY="53.0" prefHeight="26.0" prefWidth="124.0" />
-                  <Label layoutX="79.0" layoutY="113.0" text="Naam" />
-                  <Label layoutX="78.0" layoutY="167.0" text="E-mail " />
-                  <Label layoutX="57.0" layoutY="208.0" text="Wachtwoord" />
-                  <Label layoutX="73.0" layoutY="257.0" text="nummer" />
-                  <Button layoutX="312.0" layoutY="337.0" mnemonicParsing="false" onAction="#maakAccountAan" prefHeight="26.0" prefWidth="81.0" text="Ok" />
-                  <Button layoutX="309.0" layoutY="53.0" mnemonicParsing="false" onAction="#sluitScherm" prefHeight="26.0" prefWidth="81.0" text="Uitloggen" />
-                  <TextField fx:id="nieuwAccountName" layoutX="178.0" layoutY="108.0" />
+                  <ComboBox fx:id="accountTypeComboBox" layoutX="21.0" layoutY="53.0" onAction="#handlecomboBoxGebruikersType" prefHeight="26.0" prefWidth="124.0" />
+                  <VBox layoutX="58.0" layoutY="121.0" spacing="24.0">
+                     <children>
+                        <Label text="Naam" textAlignment="CENTER" />
+                        <Label text="E-mail " textAlignment="CENTER" />
+                        <Label text="Wachtwoord" textAlignment="CENTER" />
+                        <Label fx:id="nummberLabel" text="nummer" textAlignment="CENTER" />
+                        <Label fx:id="hoortBijLabel" text="" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <Button layoutX="313.0" layoutY="346.0" mnemonicParsing="false" onAction="#maakAccountAan" prefHeight="26.0" prefWidth="81.0" text="Ok" />
+                  <Button layoutX="309.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleUitloggen" prefHeight="26.0" prefWidth="81.0" text="Uitloggen" />
+                  <TextField fx:id="nieuwAccountName" layoutX="178.0" layoutY="116.0" />
                   <TextField fx:id="nieuwAccountEmail" layoutX="178.0" layoutY="154.0" />
-                  <TextField fx:id="nieuwAccountWachtwoord" layoutX="181.0" layoutY="203.0" />
-                  <TextField fx:id="nieuwAccountNummer" layoutX="178.0" layoutY="252.0" />
+                  <TextField fx:id="nieuwAccountWachtwoord" layoutX="178.0" layoutY="193.0" />
+                  <TextField fx:id="nieuwAccountNummer" layoutX="178.0" layoutY="231.0" />
                   <Text fill="#464646" layoutX="16.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account aanmaken" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
+                  <ComboBox fx:id="comboBoxGroep" disable="true" layoutX="202.0" layoutY="278.0" onAction="#handleComboBoxGroep" prefHeight="26.0" prefWidth="124.0" />
                </children></AnchorPane>
             <AnchorPane fx:id="accountWeergevenPane" prefHeight="350.0" prefWidth="410.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
@@ -79,7 +74,7 @@
                   </TableView>
                   <ScrollBar layoutX="-4.0" layoutY="340.0" prefHeight="17.0" prefWidth="395.0" />
                   <ScrollBar layoutX="386.0" layoutY="63.0" orientation="VERTICAL" prefHeight="277.0" prefWidth="17.0" />
-                  <Button fx:id="uitloggenButton" layoutX="310.0" layoutY="14.0" mnemonicParsing="false" onAction="#sluitScherm" text="Uitloggen" />
+                  <Button fx:id="uitloggenButton" layoutX="310.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleUitloggen" text="Uitloggen" />
                </children>
             </AnchorPane>
          </children>

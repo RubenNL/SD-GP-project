@@ -15,7 +15,7 @@ public class Student extends Gebruiker implements Serializable {
 	public int getStudentNummer() {
 		return studentNummer;
 	}
-	protected void addKlas(Klas klas) {
+	public void addKlas(Klas klas) {
 		this.klassen.add(klas);
 	}
 	public ArrayList<Klas> getKlassen() {
@@ -35,12 +35,20 @@ public class Student extends Gebruiker implements Serializable {
 		addAanwezigheid(aanwezigheid);
 		return aanwezigheid;
 	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
 		Student student = (Student) o;
+
 		return studentNummer == student.studentNummer;
 	}
 
+	@Override
+	public int hashCode() {
+		return studentNummer;
+	}
 }

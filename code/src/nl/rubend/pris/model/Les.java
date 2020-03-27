@@ -76,8 +76,4 @@ public class Les implements Serializable {
 				Objects.equals(lokaal, that.lokaal);
 	}
 
-
-
-
-
 }

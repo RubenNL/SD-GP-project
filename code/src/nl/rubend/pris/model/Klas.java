@@ -42,12 +42,7 @@ public class Klas implements Serializable {
 	public ArrayList<Cursus> getCursusen() {
 		return this.cursusen;
 	}
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Klas klas = (Klas) o;
-		return Objects.equals(klasNaam, klas.klasNaam);
-	}
+
+
 
 }

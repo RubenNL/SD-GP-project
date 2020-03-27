@@ -7,7 +7,8 @@ import java.util.Objects;
 
 public class Docent extends Gebruiker implements Serializable {
 	private int docentNummer;
-	private ArrayList<Les> lessen = new ArrayList<Les>();
+	private Cursus cursus;
+	private ArrayList<Les> lessen = new ArrayList<>();
 
 
 	public Docent (String email, String wachtwoord, String naam, int dN) {
@@ -19,9 +20,14 @@ public class Docent extends Gebruiker implements Serializable {
 		return docentNummer;
 	}
 
-	public void addLes(Les les) {this.lessen.add(les);}
+	public void addLes(Les les) { this.lessen.add(les); }
+	public ArrayList<Les> getLessen() {
+		return lessen;
+	}
 
-	public ArrayList<Les> getLessen() {return this.lessen;}
+	public void setCursus(Cursus cursus) {this.cursus = cursus;}
+
+	public Cursus getCursus() {return this.cursus;}
 	public ArrayList<Les> getLessenByDag(LocalDate date) {
 		ArrayList<Les> response=new ArrayList<Les>();
 		for(Les les:getLessen()) {
@@ -29,12 +35,23 @@ public class Docent extends Gebruiker implements Serializable {
 		}
 		return response;
 	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
 		Docent docent = (Docent) o;
+
 		return docentNummer == docent.docentNummer;
 	}
 
+	@Override
+	public int hashCode() {
+		return docentNummer;
+	}
+
+
 }
+
