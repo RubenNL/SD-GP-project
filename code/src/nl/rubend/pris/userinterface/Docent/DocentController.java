@@ -7,13 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import nl.rubend.pris.model.Docent;
-import nl.rubend.pris.model.Gebruiker;
+import nl.rubend.pris.model.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
-import nl.rubend.pris.model.Klas;
-import nl.rubend.pris.model.Student;
 
 import java.awt.*;
 import java.net.URL;
@@ -28,10 +25,42 @@ import javax.swing.*;
 
 
 public class DocentController implements Initializable, IngelogdGebruiker {
-	Docent docent;
+	@FXML
+	private Button presentieMenuButton;
+
+	@FXML
+	private Button lesMenuButton;
+
+	@FXML
+	private Button langdurigMenuButton;
+
+	@FXML
+	private GridPane gridContainer;
+
+	@FXML
+	private AnchorPane welkomPane;
+
+	@FXML
+	private Label welkomLabel;
+
+	@FXML
+	private AnchorPane presentiePane;
+
+	@FXML
+	private AnchorPane lesPane;
+
+	@FXML
+	private AnchorPane langdurigPane;
+
+	@FXML
+	private ListView studentAanwezigheid;
+
+
+	private Docent docent;
+
 	ArrayList<AnchorPane> allPanes = new ArrayList();
+
 	private static Klas klas;
-	@FXML private ListView studentAanwezigheid;
 
 	public static void setKlas(Klas kls) { klas = kls; }
 
@@ -58,43 +87,15 @@ public class DocentController implements Initializable, IngelogdGebruiker {
 			namen.add(label);
 			label.setFont(new Font("Arial", 12));
 			label.setPadding(new Insets(10,10,5,5));
-
-
 		}
+
 		studentAanwezigheid.setItems(FXCollections.observableList(namen));
+
 		for (int i = 1; i < namen.size(); i++) {
 
 		}
 
 	}
-
-	@FXML
-	private Button presentieMenuButton;
-
-	@FXML
-	private Button lesMenuButton;
-
-	@FXML
-	private Button langdurigMenuButton;
-
-	@FXML
-	private GridPane gridContainer;
-
-	@FXML
-	private AnchorPane welkomPane;
-
-	@FXML
-	private Label welkomLabel;
-
-	@FXML
-	private AnchorPane presentiePane;
-
-
-	@FXML
-	private AnchorPane lesPane;
-
-	@FXML
-	private AnchorPane langdurigPane;
 
 	private void switchToPane(AnchorPane targetPane){
 		allPanes.add(welkomPane);
@@ -103,16 +104,17 @@ public class DocentController implements Initializable, IngelogdGebruiker {
 		allPanes.add(langdurigPane);
 
 		for (AnchorPane pane : allPanes){
-			if(pane.equals(targetPane)){
+			if (pane.equals(targetPane)) {
 				pane.setVisible(true);
 				pane.setDisable(false);
 			}
-			else{
+			else {
 				pane.setVisible(false);
 				pane.setDisable(true);
 			}
 		}
 	}
+
 	@FXML
 	void toonScherm(ActionEvent event) {
 		Control control=(Control) event.getSource();

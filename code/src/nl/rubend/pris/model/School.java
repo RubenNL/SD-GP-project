@@ -25,6 +25,7 @@ public class School implements Serializable {
 		}
 		throw new NotFoundException("Cursus niet gevonden");
 	}
+	public ArrayList<Klas> getKlassen() { return this.klassen; }
 	public void addKlas(Klas klas) {this.klassen.add(klas);}
 	public Klas getKlasByName(String klasNaam) throws NotFoundException {
 		for(Klas klas:klassen) {

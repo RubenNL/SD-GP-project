@@ -15,7 +15,7 @@ public class Student extends Gebruiker implements Serializable {
 	public int getStudentNummer() {
 		return studentNummer;
 	}
-	protected void addKlas(Klas klas) {
+	public void addKlas(Klas klas) {
 		this.klassen.add(klas);
 	}
 	public ArrayList<Klas> getKlassen() {
