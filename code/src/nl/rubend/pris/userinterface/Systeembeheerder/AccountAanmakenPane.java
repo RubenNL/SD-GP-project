@@ -61,9 +61,15 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 					Klas klas = school.getKlasByName(groep);
 					Student newStudent = new Student(email, wachtwoord, naam, nummer);
 					try {
+						errorMeldingLabel.setText("");
 						school.addGebruiker(newStudent);
 						klas.addStudent(newStudent);
-						errorMeldingLabel.setText("");
+						toonGeregestreerdPopup("Student account geregestreerd!\n"
+								+ "Naam: " + newStudent.getNaam() + "\n"
+								+ "Email: " + newStudent.getEmail() + "\n"
+								+ "Studentnummer: " + newStudent.getStudentNummer() + "\n"
+								+ "En hij zit in : " + newStudent.getKlassen().toString()
+						);
 					} catch (Exception e) {
 						melding(e.getMessage());
 					}
@@ -76,6 +82,12 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 						school.addGebruiker(newDocent);
 						newDocent.setCursus(cursus);
 						errorMeldingLabel.setText("");
+						toonGeregestreerdPopup("Docent account geregestreerd!\n"
+								+ "Naam: " + newDocent.getNaam() + "\n"
+								+ "Email: " + newDocent.getEmail() + "\n"
+								+ "Studentnummer: " + newDocent.getDocentNummer() + "\n"
+								+ "En hij geeft lessen bij de cursus: " + newDocent.getCursus().getCursusNaam()
+						);
 					} catch (Exception e) {
 						melding(e.getMessage());
 					}
@@ -129,7 +141,16 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 		errorMeldingLabel.setText(str);
 	}
 
-
+	private void toonGeregestreerdPopup(String tekstMessage) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setResizable(true);
+		alert.onShownProperty().addListener(e -> {
+			Platform.runLater(() -> alert.setResizable(false));
+		});
+		alert.setTitle("Nieuw Account!");
+		alert.setContentText(tekstMessage);
+		alert.showAndWait();
+	}
 
 
 }
