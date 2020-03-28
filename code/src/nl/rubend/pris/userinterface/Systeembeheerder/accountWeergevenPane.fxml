@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.AccountWeergevenPane">
     <children>
-        <ComboBox fx:id="accountTypeComboBox" layoutX="5.0" layoutY="14.0" prefHeight="26.0" prefWidth="144.0" />
+        <ComboBox fx:id="accountTypeComboBox" layoutX="5.0" layoutY="14.0" onAction="#handleComboBoxViewItemsInList" prefHeight="26.0" prefWidth="144.0" />
         <TableView fx:id="tableView" layoutX="5.0" layoutY="63.0" prefHeight="305.0" prefWidth="514.0">
             <columns>
             <TableColumn fx:id="typeCol" prefWidth="121.0" text="Type" />

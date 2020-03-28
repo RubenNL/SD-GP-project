@@ -52,6 +52,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		accountTypeComboBox.setVisibleRowCount(3);
 		accountTypeComboBox.setValue("Alle Gebruikers");
 
+
 		fillDataList();
 		typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
 		numCol.setCellValueFactory(new PropertyValueFactory<>("Nummer"));
@@ -63,15 +64,9 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 
-	public void viewItemsInList(ActionEvent actionEvent) {
-		String keuze = accountTypeComboBox.getSelectionModel().getSelectedItem().toString();
-		if (keuze.equals("Studenten")) {
-			System.out.println(2);
-		} else if( keuze.equals("Docenten")) {
-			System.out.println(3);
-		}
-	}
+	public void handleComboBoxViewItemsInList(ActionEvent actionEvent) {
 
+	}
 
 	public void fillDataList() {
 		dataList = FXCollections.observableArrayList();
@@ -87,10 +82,16 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 				String wachtwoord = student.getWachtwoord();
 				datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email, wachtwoord);
 				dataList.add(datamodel);
+			} else if (gebruiker instanceof Docent) {
+				Docent docent = (Docent) gebruiker;
+				String type = "Docent";
+				String docentNummer = String.valueOf(docent.getDocentNummer());
+				String naam = docent.getNaam();
+				String email = docent.getEmail();
+				String wachtwoord = docent.getWachtwoord();
+				datamodel = new OverzichtAccountDatamodel(type, docentNummer, naam, email, wachtwoord);
+				dataList.add(datamodel);
 			}
-
 		}
-
 	}
-
 }
