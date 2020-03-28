@@ -43,6 +43,11 @@ public class School implements Serializable {
 	public static School getSchool() {
 		return school;
 	}
+
+	public ArrayList<Gebruiker> getGebruikers() {
+		return gebruikers;
+	}
+
 	public static void serialize() {
 		try {
 			FileOutputStream fileout= new FileOutputStream("out.ser");

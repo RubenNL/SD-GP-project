@@ -45,60 +45,63 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 
 	@FXML
 	void maakAccountAan(ActionEvent event) throws Exception {
+
 		String gebruikersType = accountTypeComboBox.getSelectionModel().getSelectedItem();
 		String groep = comboBoxGroep.getSelectionModel().getSelectedItem();
+		if (gebruikersType != null) {
 
-		String naam = nieuwAccountName.getText();
-		String email = nieuwAccountEmail.getText();
-
-
-		String wachtwoord = nieuwAccountWachtwoord.getText();
-//		int nummer = 0;
-		try {
-			int nummer = Integer.valueOf(nieuwAccountNummer.getText());
-			if (gebruikersType != null && groep != null) {
-				if (gebruikersType.equals("Student")) {
-					Klas klas = school.getKlasByName(groep);
-					Student newStudent = new Student(email, wachtwoord, naam, nummer);
-					try {
-						errorMeldingLabel.setText("");
-						school.addGebruiker(newStudent);
-						klas.addStudent(newStudent);
-						toonGeregestreerdPopup("Student account geregestreerd!\n"
-								+ "Naam: " + newStudent.getNaam() + "\n"
-								+ "Email: " + newStudent.getEmail() + "\n"
-								+ "Studentnummer: " + newStudent.getStudentNummer() + "\n"
-								+ "En hij zit in : " + newStudent.getKlassen().toString()
-						);
-					} catch (Exception e) {
-						melding(e.getMessage());
+			String naam = nieuwAccountName.getText();
+			String email = nieuwAccountEmail.getText();
+			String wachtwoord = nieuwAccountWachtwoord.getText();
+			try {
+				int nummer = Integer.valueOf(nieuwAccountNummer.getText());
+				if (naam != null && email != null && wachtwoord != null && groep != null) {
+					if (gebruikersType.equals("Student")) {
+						Klas klas = school.getKlasByName(groep);
+						Student newStudent = new Student(email, wachtwoord, naam, nummer);
+						try {
+							errorMeldingLabel.setText("");
+							school.addGebruiker(newStudent);
+							klas.addStudent(newStudent);
+							toonGeregestreerdPopup("Student account geregestreerd!\n"
+									+ "Naam: " + newStudent.getNaam() + "\n"
+									+ "Email: " + newStudent.getEmail() + "\n"
+									+ "Studentnummer: " + newStudent.getStudentNummer() + "\n"
+									+ "En hij zit in : " + newStudent.getKlassen().toString()
+							);
+						} catch (Exception e) {
+							melding(e.getMessage());
+						}
 					}
-
-				}
-				if (gebruikersType.equals("Docent")) {
-					Cursus cursus = school.getCursusByCode(groep);
-					Docent newDocent = new Docent(email, wachtwoord, naam, nummer);
-					try {
-						school.addGebruiker(newDocent);
-						newDocent.setCursus(cursus);
-						errorMeldingLabel.setText("");
-						toonGeregestreerdPopup("Docent account geregestreerd!\n"
-								+ "Naam: " + newDocent.getNaam() + "\n"
-								+ "Email: " + newDocent.getEmail() + "\n"
-								+ "Studentnummer: " + newDocent.getDocentNummer() + "\n"
-								+ "En hij geeft lessen bij de cursus: " + newDocent.getCursus().getCursusNaam()
-						);
-					} catch (Exception e) {
-						melding(e.getMessage());
+					if (gebruikersType.equals("Docent")) {
+						Cursus cursus = school.getCursusByCode(groep);
+						Docent newDocent = new Docent(email, wachtwoord, naam, nummer);
+						try {
+							school.addGebruiker(newDocent);
+							newDocent.setCursus(cursus);
+							errorMeldingLabel.setText("");
+							toonGeregestreerdPopup("Docent account geregestreerd!\n"
+									+ "Naam: " + newDocent.getNaam() + "\n"
+									+ "Email: " + newDocent.getEmail() + "\n"
+									+ "Studentnummer: " + newDocent.getDocentNummer() + "\n"
+									+ "En hij geeft lessen bij de cursus: " + newDocent.getCursus().getCursusNaam()
+							);
+						} catch (Exception e) {
+							melding(e.getMessage());
+						}
 					}
+				} else {
+				melding("Ongeldige invoer!");
 				}
-			} else {
-				melding("Kies de gebruikers accounttype!");
+			} catch (IllegalArgumentException iae) {
+				melding("Voer een geldige student/docent nummer in!");
 			}
-		} catch (IllegalArgumentException iae) {
-			melding("Voer een geldige student/docent nummer in!");
+		} else {
+			melding("Kies account type!");
 		}
 	}
+
+
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
