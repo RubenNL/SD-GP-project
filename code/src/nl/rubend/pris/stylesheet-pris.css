@@ -1,7 +1,3 @@
-@font-face {
-    src: url(fonts/FontAwesome5Free-Regular-400.otf);
-}
-
 .label-login {
     -fx-font-family:"Roboto";
 }
