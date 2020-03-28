@@ -32,6 +32,11 @@ public class School implements Serializable {
 	}
 	public ArrayList<Klas> getKlassen() { return this.klassen; }
 	public void addKlas(Klas klas) {this.klassen.add(klas);}
+
+	public ArrayList<Gebruiker> getGebruikers() {
+		return gebruikers;
+	}
+
 	public Klas getKlasByName(String klasNaam) throws NotFoundException {
 		for(Klas klas:klassen) {
 			if(klas.getKlasNaam().equals(klasNaam)) {

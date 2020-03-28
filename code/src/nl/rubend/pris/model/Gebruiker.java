@@ -27,4 +27,8 @@ public class Gebruiker implements Serializable {
 		return Objects.equals(email, gebruiker.email) &&
 				Objects.equals(naam, gebruiker.naam);
 	}
+
+	public String getWachtwoord() {
+		return wachtwoord;
+	}
 }
