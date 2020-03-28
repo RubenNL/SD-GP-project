@@ -72,6 +72,15 @@ public class SysteembeheerderController implements Initializable, IngelogdGebrui
 	}
 	@FXML
 	void handleUitloggen(ActionEvent event) throws IOException {
-		Main.showInloggen((Stage) accountAanmakenPane.getScene().getWindow());
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker uit gaan loggen?", ButtonType.YES, ButtonType.NO);
+		alert.setTitle("Waarschuwing!");
+		alert.showAndWait();
+		if (alert.getResult() == ButtonType.YES) {
+			Main.showInloggen((Stage) accountAanmakenPane.getScene().getWindow());
+		}
 	}
+
+
+
+
 }
