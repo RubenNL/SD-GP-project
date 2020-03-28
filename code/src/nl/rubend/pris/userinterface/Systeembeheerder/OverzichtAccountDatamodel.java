@@ -34,11 +34,9 @@ public class OverzichtAccountDatamodel {
 		return email.get();
 	}
 
-
 	public String getWachtwoord() {
 		return wachtwoord.get();
 	}
-
 
 	public void setType(String type) {
 		this.type.set(type);
@@ -52,14 +50,12 @@ public class OverzichtAccountDatamodel {
 		this.naam.set(naam);
 	}
 
-
 	public void setEmail(String email) {
 		this.email.set(email);
 	}
 
-
-	public void setWachtwoord(String password) {
-		this.wachtwoord.set(password);
+	public void setWachtwoord(String wachtwoord) {
+		this.wachtwoord.set(wachtwoord);
 	}
 
 
