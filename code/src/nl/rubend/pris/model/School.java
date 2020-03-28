@@ -8,8 +8,13 @@ public class School implements Serializable {
 	private ArrayList<Klas> klassen=new ArrayList<Klas>();
 	private ArrayList<Cursus> cursussen=new ArrayList<Cursus>();
 	private static School school=new School();
-	public void addGebruiker(Gebruiker gebruiker) {
-		gebruikers.add(gebruiker);
+	public void addGebruiker(Gebruiker gebruiker) throws Exception {
+		if (!gebruikers.contains(gebruiker)) {
+			gebruikers.add(gebruiker);
+		}
+		else {
+			throw new Exception("\"" + gebruiker.getNaam() + "\" object bestaat al!");
+		}
 	}
 	public Gebruiker getGebruikerByEmail(String email) throws NotFoundException {
 		for(Gebruiker gebruiker:gebruikers) {

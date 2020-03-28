@@ -1,12 +1,15 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
+	public Label errorMeldingLabel;
 	private Systeembeheerder systeembeheerder;
 	@FXML private TextField nieuwAccountName;
 	@FXML private TextField nieuwAccountEmail;
@@ -30,6 +34,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 	private ArrayList<Cursus> cursussen = school.getCursussen();
 	private ArrayList<String> klassenNamen = new ArrayList<>();
 	private ArrayList<String> cursussCodes = new ArrayList<>();
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		ArrayList<String> accountTypen = new ArrayList<>();
@@ -37,6 +42,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 		accountTypen.add("Docent");
 		accountTypeComboBox.setItems(FXCollections.observableArrayList(accountTypen));
 	}
+
 	@FXML
 	void maakAccountAan(ActionEvent event) throws Exception {
 		String gebruikersType = accountTypeComboBox.getSelectionModel().getSelectedItem();
@@ -44,29 +50,41 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 
 		String naam = nieuwAccountName.getText();
 		String email = nieuwAccountEmail.getText();
+
+
 		String wachtwoord = nieuwAccountWachtwoord.getText();
-		int nummer = 0;
+//		int nummer = 0;
 		try {
-			nummer = Integer.valueOf(nieuwAccountNummer.getText());
+			int nummer = Integer.valueOf(nieuwAccountNummer.getText());
+			if (gebruikersType != null && groep != null) {
+				if (gebruikersType.equals("Student")) {
+					Klas klas = school.getKlasByName(groep);
+					Student newStudent = new Student(email, wachtwoord, naam, nummer);
+					try {
+						school.addGebruiker(newStudent);
+						klas.addStudent(newStudent);
+						errorMeldingLabel.setText("");
+					} catch (Exception e) {
+						melding(e.getMessage());
+					}
+
+				}
+				if (gebruikersType.equals("Docent")) {
+					Cursus cursus = school.getCursusByCode(groep);
+					Docent newDocent = new Docent(email, wachtwoord, naam, nummer);
+					try {
+						school.addGebruiker(newDocent);
+						newDocent.setCursus(cursus);
+						errorMeldingLabel.setText("");
+					} catch (Exception e) {
+						melding(e.getMessage());
+					}
+				}
+			} else {
+				melding("Kies de gebruikers accounttype!");
+			}
 		} catch (IllegalArgumentException iae) {
-//			incorrect();
-			iae.getMessage();
-		}
-
-		if (gebruikersType != null && groep != null) {
-			if (gebruikersType.equals("Student")) {
-				Klas klas = school.getKlasByName(groep);
-				Student newStudent = new Student(email, wachtwoord, naam, nummer);
-				school.addGebruiker(newStudent);
-				klas.addStudent(newStudent);
-
-			}
-			if (gebruikersType.equals("Docent")) {
-				Cursus cursus = school.getCursusByCode(groep);
-				Docent newDocent = new Docent(email, wachtwoord, naam, nummer);
-				school.addGebruiker(newDocent);
-				newDocent.setCursus(cursus);
-			}
+			melding("Voer een geldige student/docent nummer in!");
 		}
 	}
 
@@ -104,4 +122,14 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 	}
 	@FXML void handleComboBoxGroep(ActionEvent actionEvent) {
 	}
+
+	public void melding(String str) {
+//		Het zou misschien beter met CSS gestyled kunnen
+		errorMeldingLabel.setTextFill(Color.RED);
+		errorMeldingLabel.setText(str);
+	}
+
+
+
+
 }
