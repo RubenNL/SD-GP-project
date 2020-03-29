@@ -126,7 +126,6 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public OverzichtAccountDatamodel fillDataListDocenten(Gebruiker gebruiker) {
-
 		OverzichtAccountDatamodel datamodel;
 		if (gebruiker instanceof Docent) {
 			Docent docent = (Docent) gebruiker;
@@ -151,24 +150,27 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 				OverzichtAccountDatamodel datamodel;
 				datamodel = fillDataListStudenten(gebruiker);
 				if (datamodel != null) {
-					dataList.add(fillDataListStudenten(gebruiker));
+					dataList.add(datamodel);
 				}
 			}
 		} else if (keuze.equals("Docenten")) {
 			for (Gebruiker gebruiker : gebruikers) {
 				OverzichtAccountDatamodel datamodel;
-				datamodel = fillDataListStudenten(gebruiker);
+				datamodel = fillDataListDocenten(gebruiker);
 				if (datamodel != null) {
-					dataList.add(fillDataListDocenten(gebruiker));
+					dataList.add(datamodel);
 				}
 			}
 		} else {
 			for (Gebruiker gebruiker : gebruikers) {
-				OverzichtAccountDatamodel datamodel;
-				datamodel = fillDataListStudenten(gebruiker);
-				if (datamodel != null) {
-					dataList.add(fillDataListStudenten(gebruiker));
-					dataList.add(fillDataListDocenten(gebruiker));
+				OverzichtAccountDatamodel datamodelStd, datamodelDoc;
+				datamodelStd = fillDataListStudenten(gebruiker);
+				datamodelDoc = fillDataListDocenten(gebruiker);
+				if (datamodelStd != null) {
+					dataList.add(datamodelStd);
+				}
+				if (datamodelDoc != null) {
+					dataList.add(datamodelDoc);
 				}
 			}
 		}
