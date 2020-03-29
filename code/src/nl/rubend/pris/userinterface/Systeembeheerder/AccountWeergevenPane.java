@@ -1,5 +1,6 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
@@ -69,8 +71,19 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void handleComboBoxViewItemsInList(ActionEvent actionEvent) {
-
 	}
+
+
+
+	public void handleNieuwWachtWoordOpstellen(ActionEvent actionEvent) throws Exception {
+		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+		int row = pos.getRow();
+		OverzichtAccountDatamodel item = tableView.getItems().get(row);
+		Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+		nieuwWachtwoordMelding(gebruiker);
+	}
+
+
 
 
 	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
@@ -81,6 +94,8 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		gebruikers.remove(gebruiker);
 		tableView.getItems().remove(item);
 		}
+
+
 
 
 
@@ -112,5 +127,34 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		}
 	}
 
+
+	public void nieuwWachtwoordMelding(Gebruiker gebruiker) {
+		TextInputDialog dialog = new TextInputDialog("");
+
+		dialog.setTitle("Waarschuwing!");
+		dialog.setHeaderText("Nieuw Wachtwoord Opstellen:");
+		dialog.setContentText("wachtwoord:");
+
+		Optional<String> result = dialog.showAndWait();
+
+		result.ifPresent(psswd -> {
+			gebruiker.setWachtwoord(psswd);
+			melding("Het is gelukt!");
+			dialog.close();
+		});
+
+
+	}
+
+	private void melding(String tekstMessage) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setResizable(true);
+		alert.onShownProperty().addListener(e -> {
+			Platform.runLater(() -> alert.setResizable(false));
+		});
+		alert.setTitle("Nieuw Account!");
+		alert.setContentText(tekstMessage);
+		alert.showAndWait();
+	}
 
 }
