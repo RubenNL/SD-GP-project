@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import nl.rubend.pris.Main;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
@@ -97,14 +99,21 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
-		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
-		if (pos != null) {
-			int row = pos.getRow();
-			OverzichtAccountDatamodel item = tableView.getItems().get(row);
-			Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
-			gebruikers.remove(gebruiker);
-			tableView.getItems().remove(item);
-			gebruiker = null;
+
+
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker deze account verwijderen?", ButtonType.YES, ButtonType.NO);
+		alert.setTitle("Waarschuwing!");
+		alert.showAndWait();
+		if (alert.getResult() == ButtonType.YES) {
+			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+			if (pos != null) {
+				int row = pos.getRow();
+				OverzichtAccountDatamodel item = tableView.getItems().get(row);
+				Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+				gebruikers.remove(gebruiker);
+				tableView.getItems().remove(item);
+				gebruiker = null;
+			}
 		}
 	}
 

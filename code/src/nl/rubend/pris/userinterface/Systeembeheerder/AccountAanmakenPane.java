@@ -132,8 +132,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 			}
 		}
 	}
-	@FXML void handleComboBoxGroep(ActionEvent actionEvent) {
-	}
+
 
 	public void melding(String str) {
 //		Het zou misschien beter met CSS gestyled kunnen

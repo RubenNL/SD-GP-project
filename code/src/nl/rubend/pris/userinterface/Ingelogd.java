@@ -53,7 +53,9 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 		gridContainer.getChildren().add(pane);
 		allPanes.add(pane);
 		button.setOnAction(actionEvent ->  {
+
 			switchToPane(pane);
+
 		});
 		menuPane.getChildren().add(button);
 		switchToPane(welkomPane);
