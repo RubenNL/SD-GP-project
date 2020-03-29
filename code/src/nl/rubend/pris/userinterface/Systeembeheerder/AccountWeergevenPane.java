@@ -1,5 +1,6 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
+import com.sun.glass.events.GestureEvent;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -48,6 +49,8 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		tableView.setPlaceholder(new Label("Er zijn geen accounts om weer te geven."));
+
 		ArrayList<String> keuze = new ArrayList<>();
 		keuze.add("Alle Gebruikers");
 		keuze.add("Studenten");
@@ -55,10 +58,9 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		accountTypeComboBox.setItems(FXCollections.observableArrayList(keuze));
 		accountTypeComboBox.setVisibleRowCount(3);
 		accountTypeComboBox.setValue("Alle Gebruikers");
-		tableView.setPlaceholder(new Label("Er zijn geen accounts om weer te geven."));
 
 
-		fillDataList();
+		fillDataListAll();
 		typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
 		numCol.setCellValueFactory(new PropertyValueFactory<>("Nummer"));
 		naamCol.setCellValueFactory(new PropertyValueFactory<>("Naam"));
@@ -71,16 +73,24 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void handleComboBoxViewItemsInList(ActionEvent actionEvent) {
+		fillDataListAll();
+		tableView.getItems().setAll(dataList);
+		tableView.getSelectionModel().setCellSelectionEnabled(true);
 	}
+
+
 
 
 
 	public void handleNieuwWachtWoordOpstellen(ActionEvent actionEvent) throws Exception {
 		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
-		int row = pos.getRow();
-		OverzichtAccountDatamodel item = tableView.getItems().get(row);
-		Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
-		nieuwWachtwoordMelding(gebruiker);
+		if (pos != null) {
+			int row = pos.getRow();
+			OverzichtAccountDatamodel item = tableView.getItems().get(row);
+			Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+			nieuwWachtwoordMelding(gebruiker);
+		}
+
 	}
 
 
@@ -88,41 +98,78 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
 		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
-		int row = pos.getRow();
-		OverzichtAccountDatamodel item = tableView.getItems().get(row);
-		Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
-		gebruikers.remove(gebruiker);
-		tableView.getItems().remove(item);
+		if (pos != null) {
+			int row = pos.getRow();
+			OverzichtAccountDatamodel item = tableView.getItems().get(row);
+			Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+			gebruikers.remove(gebruiker);
+			tableView.getItems().remove(item);
+			gebruiker = null;
 		}
+	}
 
 
-
-
-
-
-	public void fillDataList() {
-		dataList = FXCollections.observableArrayList();
-		for (Gebruiker gebruiker: gebruikers) {
+	public OverzichtAccountDatamodel fillDataListStudenten(Gebruiker gebruiker) {
+		if (gebruiker instanceof Student) {
 			OverzichtAccountDatamodel datamodel;
-			if (gebruiker instanceof Student) {
-				Student student = (Student) gebruiker;
-				String type = "Student";
-				String studentNummer = String.valueOf(student.getStudentNummer());
-				String naam = student.getNaam();
-				String email = student.getEmail();
-				String wachtwoord = student.getWachtwoord();
+			Student student = (Student) gebruiker;
+			String type = "Student";
+			String studentNummer = String.valueOf(student.getStudentNummer());
+			String naam = student.getNaam();
+			String email = student.getEmail();
+			String wachtwoord = student.getWachtwoord();
+			datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email, wachtwoord);
+			return datamodel;
+		}
+		return null;
+	}
 
-				datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email, wachtwoord);
-				dataList.add(datamodel);
-			} else if (gebruiker instanceof Docent) {
-				Docent docent = (Docent) gebruiker;
-				String type = "Docent";
-				String docentNummer = String.valueOf(docent.getDocentNummer());
-				String naam = docent.getNaam();
-				String email = docent.getEmail();
-				String wachtwoord = docent.getWachtwoord();
-				datamodel = new OverzichtAccountDatamodel(type, docentNummer, naam, email, wachtwoord);
-				dataList.add(datamodel);
+
+	public OverzichtAccountDatamodel fillDataListDocenten(Gebruiker gebruiker) {
+
+		OverzichtAccountDatamodel datamodel;
+		if (gebruiker instanceof Docent) {
+			Docent docent = (Docent) gebruiker;
+			String type = "Docent";
+			String docentNummer = String.valueOf(docent.getDocentNummer());
+			String naam = docent.getNaam();
+			String email = docent.getEmail();
+			String wachtwoord = docent.getWachtwoord();
+			datamodel = new OverzichtAccountDatamodel(type, docentNummer, naam, email, wachtwoord);
+			return datamodel;
+		}
+		return null;
+	}
+
+
+	public void fillDataListAll() {
+		String keuze = accountTypeComboBox.getSelectionModel().getSelectedItem().toString();
+		dataList = FXCollections.observableArrayList();
+
+		if (keuze.equals("Studenten")) {
+			for (Gebruiker gebruiker : gebruikers) {
+				OverzichtAccountDatamodel datamodel;
+				datamodel = fillDataListStudenten(gebruiker);
+				if (datamodel != null) {
+					dataList.add(fillDataListStudenten(gebruiker));
+				}
+			}
+		} else if (keuze.equals("Docenten")) {
+			for (Gebruiker gebruiker : gebruikers) {
+				OverzichtAccountDatamodel datamodel;
+				datamodel = fillDataListStudenten(gebruiker);
+				if (datamodel != null) {
+					dataList.add(fillDataListDocenten(gebruiker));
+				}
+			}
+		} else {
+			for (Gebruiker gebruiker : gebruikers) {
+				OverzichtAccountDatamodel datamodel;
+				datamodel = fillDataListStudenten(gebruiker);
+				if (datamodel != null) {
+					dataList.add(fillDataListStudenten(gebruiker));
+					dataList.add(fillDataListDocenten(gebruiker));
+				}
 			}
 		}
 	}
@@ -130,6 +177,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 	public void nieuwWachtwoordMelding(Gebruiker gebruiker) {
 		TextInputDialog dialog = new TextInputDialog("");
+
 
 		dialog.setTitle("Waarschuwing!");
 		dialog.setHeaderText("Nieuw Wachtwoord Opstellen:");
