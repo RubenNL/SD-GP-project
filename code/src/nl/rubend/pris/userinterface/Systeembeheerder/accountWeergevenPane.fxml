@@ -6,14 +6,16 @@
 <AnchorPane prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.AccountWeergevenPane">
     <children>
         <ComboBox fx:id="accountTypeComboBox" layoutX="5.0" layoutY="14.0" onAction="#handleComboBoxViewItemsInList" prefHeight="26.0" prefWidth="144.0" />
-        <TableView fx:id="tableView" layoutX="5.0" layoutY="63.0" prefHeight="305.0" prefWidth="514.0">
+        <TableView fx:id="tableView" layoutX="5.0" layoutY="63.0" prefHeight="266.0" prefWidth="594.0">
             <columns>
             <TableColumn fx:id="typeCol" prefWidth="121.0" text="Type" />
-            <TableColumn fx:id="numCol" prefWidth="120.0" text="Nummer" />
-            <TableColumn fx:id="naamCol" prefWidth="172.0" text="Naam" />
-            <TableColumn fx:id="emailCol" prefWidth="152.0" text="E-mail" />
-            <TableColumn fx:id="psswdCol" minWidth="0.0" prefWidth="0.0" text="Wachtwoord" />
+            <TableColumn fx:id="numCol" minWidth="2.0" prefWidth="108.0" text="Nummer" />
+            <TableColumn fx:id="naamCol" minWidth="0.0" prefWidth="103.0" text="Naam" />
+            <TableColumn fx:id="emailCol" prefWidth="151.0" text="E-mail" />
+            <TableColumn fx:id="psswdCol" minWidth="0.0" prefWidth="110.0" text="Wachtwoord" />
             </columns>
         </TableView>
+      <Button layoutX="149.0" layoutY="350.0" mnemonicParsing="false" text="Nieuw Wachtwoord" />
+      <Button layoutX="317.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAccountVerwijderen" text="Vewijder Account" />
     </children>
 </AnchorPane>

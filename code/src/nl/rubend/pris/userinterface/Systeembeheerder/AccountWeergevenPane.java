@@ -1,13 +1,12 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
@@ -31,9 +30,12 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	@FXML
 	TableColumn<OverzichtAccountDatamodel, String> psswdCol;
 
+
 	Systeembeheerder systeembeheerder;
 	private School school = School.getSchool();
 	private ObservableList<OverzichtAccountDatamodel> dataList;
+	ArrayList<Gebruiker> gebruikers = school.getGebruikers();
+
 
 
 	@Override
@@ -51,6 +53,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		accountTypeComboBox.setItems(FXCollections.observableArrayList(keuze));
 		accountTypeComboBox.setVisibleRowCount(3);
 		accountTypeComboBox.setValue("Alle Gebruikers");
+		tableView.setPlaceholder(new Label("Er zijn geen accounts om weer te geven."));
 
 
 		fillDataList();
@@ -60,6 +63,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
 		psswdCol.setCellValueFactory(new PropertyValueFactory<>("Wachtwoord"));
 		tableView.getItems().setAll(dataList);
+		tableView.getSelectionModel().setCellSelectionEnabled(true);
 	}
 
 
@@ -68,9 +72,21 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 	}
 
+
+	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
+		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+		int row = pos.getRow();
+		OverzichtAccountDatamodel item = tableView.getItems().get(row);
+		Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+		gebruikers.remove(gebruiker);
+		tableView.getItems().remove(item);
+		}
+
+
+
+
 	public void fillDataList() {
 		dataList = FXCollections.observableArrayList();
-		ArrayList<Gebruiker> gebruikers = school.getGebruikers();
 		for (Gebruiker gebruiker: gebruikers) {
 			OverzichtAccountDatamodel datamodel;
 			if (gebruiker instanceof Student) {
@@ -80,6 +96,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 				String naam = student.getNaam();
 				String email = student.getEmail();
 				String wachtwoord = student.getWachtwoord();
+
 				datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email, wachtwoord);
 				dataList.add(datamodel);
 			} else if (gebruiker instanceof Docent) {
@@ -94,4 +111,6 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 			}
 		}
 	}
+
+
 }

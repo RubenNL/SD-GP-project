@@ -17,7 +17,6 @@ public class OverzichtAccountDatamodel {
 		this.wachtwoord = new SimpleStringProperty(wachtwoord);
 	}
 
-
 	public String getType() {
 		return type.get();
 	}
@@ -57,6 +56,5 @@ public class OverzichtAccountDatamodel {
 	public void setWachtwoord(String wachtwoord) {
 		this.wachtwoord.set(wachtwoord);
 	}
-
-
+	
 }
