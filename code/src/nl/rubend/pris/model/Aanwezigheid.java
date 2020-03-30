@@ -7,7 +7,13 @@ public class Aanwezigheid implements Serializable {
 	private Les les;
 	private Gebruiker gebruiker;
 	public Aanwezigheid(Les les) {
+		this.status=true;
 		this.les=les;
+		try {
+			gebruiker = School.getSchool().getGebruikerByEmail("onmogelijk");
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	public Aanwezigheid(Gebruiker gebruiker,boolean status,Les les) {
 		this.les=les;
