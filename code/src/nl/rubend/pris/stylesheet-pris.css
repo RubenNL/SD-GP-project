@@ -81,14 +81,14 @@
     -fx-background-radius: 0;
 }
 
-.main-menu-button:focused {
+.active {
     -fx-background-color:#0099D3;
     -fx-text-fill: #fff;
     -fx-background-radius: 0;
 }
 
-.main-menu-button:focused:hover {
-    -fx-background-color:#0099D3;
+.active:hover {
+    -fx-background-color:#0099D3 !important;
     -fx-text-fill: #fff;
 }
 
