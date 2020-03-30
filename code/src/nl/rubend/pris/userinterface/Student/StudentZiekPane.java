@@ -35,6 +35,7 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 	@FXML
 	private Label datumMessage;
 
+
 	@FXML
 	private void toggleAfwezig(){
 		boolean toggle = dagToggle.selectedProperty().getValue();
