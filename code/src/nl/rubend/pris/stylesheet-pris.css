@@ -16,10 +16,25 @@
 
 .grey-text {
     -fx-text-fill:#6e6e6e;
+    -fx-fill:#6e6e6e;
 }
 
 .light-grey-text {
     -fx-text-fill:#efefef;
+}
+
+.h2 {
+    -fx-font-family:"Roboto";
+    -fx-font-size:36px;
+}
+.h3 {
+    -fx-font-family:"Roboto";
+    -fx-font-size: 18px;
+}
+
+.body-text {
+    -fx-line-spacing:1.5;
+    -fx-font-family: "Open Sans";
 }
 
 .root {
@@ -66,14 +81,14 @@
     -fx-background-radius: 0;
 }
 
-.main-menu-button:focused {
+.active {
     -fx-background-color:#0099D3;
     -fx-text-fill: #fff;
     -fx-background-radius: 0;
 }
 
-.main-menu-button:focused:hover {
-    -fx-background-color:#0099D3;
+.active:hover {
+    -fx-background-color:#0099D3 !important;
     -fx-text-fill: #fff;
 }
 
