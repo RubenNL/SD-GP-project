@@ -103,13 +103,18 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker deze account verwijderen?", ButtonType.YES, ButtonType.NO);
 		alert.setTitle("Waarschuwing!");
+		alert.setResizable(true);
+		alert.onShownProperty().addListener(e -> {
+			Platform.runLater(() -> alert.setResizable(false));
+		});
 		alert.showAndWait();
 		if (alert.getResult() == ButtonType.YES) {
 			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
 			if (pos != null) {
 				int row = pos.getRow();
 				OverzichtAccountDatamodel item = tableView.getItems().get(row);
-				Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+				RemovableAccount gebruiker = (RemovableAccount) school.getGebruikerByEmail(item.getEmail());
+				gebruiker.removeAccount();
 				gebruikers.remove(gebruiker);
 				tableView.getItems().remove(item);
 				gebruiker = null;
