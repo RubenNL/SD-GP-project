@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.util.Callback;
 import nl.rubend.pris.model.Gebruiker;
 import nl.rubend.pris.model.Student;
@@ -26,12 +27,31 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 	private DatePicker datePickerStudent;
 
 	@FXML
-	void valiDate(){
-		ToggleSwitch mySwitch = new ToggleSwitch();
+	private ToggleSwitch dagToggle;
+
+	@FXML
+	private Label toggleLabel;
+
+	@FXML
+	private Label datumMessage;
+
+	@FXML
+	private void toggleAfwezig(){
+		boolean toggle = dagToggle.selectedProperty().getValue();
+		if(toggle){
+			toggleLabel.setText("Ziek");
+			datePickerStudent.setValue(LocalDate.now());
+			enableTodayOnly(datePickerStudent);
+			datumMessage.setText("Ziekmelden kan alleen op huidige dag");
+		}
+		else {
+			toggleLabel.setText("Afwezig");
+			disablePastDates(datePickerStudent);
+			datumMessage.setText(null);
+		}
 	}
 
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+	private void disablePastDates(DatePicker dp){
 		Callback<DatePicker, DateCell> dayCellFactory =
 				(final DatePicker datePicker) -> new DateCell() {
 					@Override
@@ -43,6 +63,30 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 						}
 					}
 				};
-		datePickerStudent.setDayCellFactory(dayCellFactory);
+		dp.setDayCellFactory(dayCellFactory);
+	}
+
+	private void enableTodayOnly(DatePicker dp){
+		Callback<DatePicker, DateCell> dayCellFactory =
+				(final DatePicker datePicker) -> new DateCell() {
+					@Override
+					public void updateItem(LocalDate item, boolean empty) {
+						super.updateItem(item, empty);
+
+						if(item.isBefore(LocalDate.now())) {
+							setDisable(true);
+						}
+
+						if(item.isAfter(LocalDate.now())){
+							setDisable(true);
+						}
+					}
+				};
+		dp.setDayCellFactory(dayCellFactory);
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		disablePastDates(datePickerStudent);
 	}
 }

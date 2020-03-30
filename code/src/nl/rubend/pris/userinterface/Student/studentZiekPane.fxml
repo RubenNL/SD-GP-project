@@ -33,8 +33,9 @@
             <String fx:value="black-text" />
          </styleClass>
       </Label>
-      <DatePicker fx:id="datePickerStudent" layoutX="3.0" layoutY="166.0" onAction="#valiDate" />
-      <ToggleSwitch layoutX="211.0" layoutY="170.0" />
-      <Label layoutX="293.0" layoutY="171.0" prefHeight="18.0" prefWidth="66.0" text="Afwezig" />
+      <DatePicker fx:id="datePickerStudent" layoutX="3.0" layoutY="166.0" />
+      <ToggleSwitch fx:id="dagToggle" layoutX="211.0" layoutY="170.0" onMouseClicked="#toggleAfwezig" />
+      <Label fx:id="toggleLabel" layoutX="272.0" layoutY="171.0" prefHeight="18.0" prefWidth="66.0" text="Afwezig" />
+      <Label fx:id="datumMessage" layoutX="5.0" layoutY="204.0" prefHeight="18.0" prefWidth="274.0" />
     </children>
 </AnchorPane>
