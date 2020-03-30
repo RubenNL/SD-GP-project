@@ -32,8 +32,6 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	TableColumn<OverzichtAccountDatamodel, String> naamCol;
 	@FXML
 	TableColumn<OverzichtAccountDatamodel, String> emailCol;
-	@FXML
-	TableColumn<OverzichtAccountDatamodel, String> psswdCol;
 
 
 	Systeembeheerder systeembeheerder;
@@ -67,7 +65,6 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		numCol.setCellValueFactory(new PropertyValueFactory<>("Nummer"));
 		naamCol.setCellValueFactory(new PropertyValueFactory<>("Naam"));
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
-		psswdCol.setCellValueFactory(new PropertyValueFactory<>("Wachtwoord"));
 		tableView.getItems().setAll(dataList);
 		tableView.getSelectionModel().setCellSelectionEnabled(true);
 	}
@@ -102,14 +99,23 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker deze account verwijderen?", ButtonType.YES, ButtonType.NO);
+		alert.setResizable(true);
+		alert.onShownProperty().addListener(e -> {
+			Platform.runLater(() -> alert.setResizable(false));
+		});
 		alert.setTitle("Waarschuwing!");
+		alert.setResizable(true);
+		alert.onShownProperty().addListener(e -> {
+			Platform.runLater(() -> alert.setResizable(false));
+		});
 		alert.showAndWait();
 		if (alert.getResult() == ButtonType.YES) {
 			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
 			if (pos != null) {
 				int row = pos.getRow();
 				OverzichtAccountDatamodel item = tableView.getItems().get(row);
-				Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+				RemovableAccount gebruiker = (RemovableAccount) school.getGebruikerByEmail(item.getEmail());
+				gebruiker.removeAccount();
 				gebruikers.remove(gebruiker);
 				tableView.getItems().remove(item);
 				gebruiker = null;
@@ -126,8 +132,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 			String studentNummer = String.valueOf(student.getStudentNummer());
 			String naam = student.getNaam();
 			String email = student.getEmail();
-			String wachtwoord = student.getWachtwoord();
-			datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email, wachtwoord);
+			datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email);
 			return datamodel;
 		}
 		return null;
@@ -142,8 +147,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 			String docentNummer = String.valueOf(docent.getDocentNummer());
 			String naam = docent.getNaam();
 			String email = docent.getEmail();
-			String wachtwoord = docent.getWachtwoord();
-			datamodel = new OverzichtAccountDatamodel(type, docentNummer, naam, email, wachtwoord);
+			datamodel = new OverzichtAccountDatamodel(type, docentNummer, naam, email);
 			return datamodel;
 		}
 		return null;

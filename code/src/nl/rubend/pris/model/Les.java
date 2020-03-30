@@ -30,6 +30,9 @@ public class Les implements Serializable {
 		docenten.add(docent);
 		docent.addLes(this);
 	}
+	public void removeDocent(Docent docent) {
+		docenten.remove(docent);
+	}
 	public ArrayList<Student> getStudenten() {
 		ArrayList<Student> response=new ArrayList<Student>();
 		for(Klas klas:klassen) {

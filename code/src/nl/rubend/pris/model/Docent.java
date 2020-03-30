@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Docent extends Gebruiker implements Serializable {
+public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	private int docentNummer;
 	private Cursus cursus;
 	private ArrayList<Les> lessen = new ArrayList<>();
-
+	private ArrayList<Aanwezigheid> aanwezigheidsmeldingen = new ArrayList<Aanwezigheid>();
 
 	public Docent (String email, String wachtwoord, String naam, int dN) {
 		super(email, wachtwoord, naam);
@@ -19,7 +19,12 @@ public class Docent extends Gebruiker implements Serializable {
 	public int getDocentNummer() {
 		return docentNummer;
 	}
-
+	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
+		this.aanwezigheidsmeldingen.add(aanwezigheid);
+	}
+	public void removeAanwezigheid(Aanwezigheid aanwezigheid) {
+		this.aanwezigheidsmeldingen.remove(aanwezigheid);
+	}
 	public void addLes(Les les) { this.lessen.add(les); }
 	public ArrayList<Les> getLessen() {
 		return lessen;
@@ -53,5 +58,19 @@ public class Docent extends Gebruiker implements Serializable {
 	}
 
 
+	@Override
+	public void removeAccount() {
+		for(Les les:this.lessen) {
+			les.removeDocent(this);
+		}
+		for(Aanwezigheid aanwezigheid:this.aanwezigheidsmeldingen) {
+			aanwezigheid.removeGebruiker(false);
+		}
+		aanwezigheidsmeldingen.removeAll(aanwezigheidsmeldingen);
+		lessen.removeAll(lessen);
+	}
+	public void removeLes(Les les) {
+		this.lessen.remove(les);
+	}
 }
 

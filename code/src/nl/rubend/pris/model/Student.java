@@ -3,7 +3,7 @@ package nl.rubend.pris.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student extends Gebruiker implements Serializable {
+public class Student extends Gebruiker implements Serializable,RemovableAccount {
 	private int studentNummer;
 	private boolean langdurigAfwezig;
 	private ArrayList<Klas> klassen=new ArrayList<Klas>();
@@ -45,7 +45,17 @@ public class Student extends Gebruiker implements Serializable {
 		addAanwezigheid(aanwezigheid);
 		return aanwezigheid;
 	}
-
+	@Override
+	public void removeAccount() {
+		for(Klas klas:getKlassen()) {
+			klas.removeStudent(this);
+		}
+		klassen.removeAll(klassen);
+		for(Aanwezigheid melding:aanwezigheid) {
+			melding.removeGebruiker(true);
+			melding.removeLes();
+		}
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
