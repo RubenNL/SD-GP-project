@@ -99,6 +99,10 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker deze account verwijderen?", ButtonType.YES, ButtonType.NO);
+		alert.setResizable(true);
+		alert.onShownProperty().addListener(e -> {
+			Platform.runLater(() -> alert.setResizable(false));
+		});
 		alert.setTitle("Waarschuwing!");
 		alert.showAndWait();
 		if (alert.getResult() == ButtonType.YES) {
