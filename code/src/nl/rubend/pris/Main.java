@@ -21,6 +21,7 @@ public class Main extends Application {
 		school.addGebruiker(new Docent("d","","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("s","","Abc Def", 4564));
 		school.addGebruiker(new Systeembeheerder("b","","sysBeheerNaam"));
+		school.addGebruiker(new Systeembeheerder("onmogelijk","joadsijfadsofnlasdfhahsdof","Systeem"));
 		school.addKlas(new Klas("TICT-SD-V1E"));
 		school.addCursus(new Cursus("TCIF-V1GP-19_2019","SD-GroupProject"));
 		school.getKlasByName("TICT-SD-V1E").addCursus(school.getCursusByCode("TCIF-V1GP-19_2019"));
@@ -28,10 +29,9 @@ public class Main extends Application {
 		Les les=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203");
 		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les.addDocent((Docent) school.getGebruikerByEmail("d"));
-		((Student)school.getGebruikerByEmail("s")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("d"),true,les));
-		for(Les outles:((Docent)school.getSchool().getGebruikerByEmail("d")).getLessenByDag(LocalDate.of(2020,3,26))) {
-			System.out.println(outles.getAanwezigheid().get((Student) school.getGebruikerByEmail("s")).getStatus());
-		};
+		Les les2=new Les(LocalTime.of(12,30),LocalTime.of(15,30), LocalDate.of(2020,4,3),"HL15-1.203");
+		les2.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les2.addDocent((Docent) school.getGebruikerByEmail("d"));
 		School.serialize();
 	}
 	public static void showInloggen(Stage stage) throws IOException {
@@ -46,7 +46,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		try {
 			School.deserialize();
-		} catch (InvalidClassException e) {
+		} catch (Exception e) {
 			System.out.println("Data is afkomstig van oude versie van model. Default data wordt geimporteert.");
 			serializeDemoData();
 			School.deserialize();

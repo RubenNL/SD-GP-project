@@ -7,14 +7,12 @@ public class OverzichtAccountDatamodel {
 	public SimpleStringProperty nummer;
 	public SimpleStringProperty naam;
 	public SimpleStringProperty email;
-	public SimpleStringProperty wachtwoord;
 
-	public OverzichtAccountDatamodel(String type, String nummer, String naam,  String email, String wachtwoord) {
+	public OverzichtAccountDatamodel(String type, String nummer, String naam,  String email) {
 		this.type = new SimpleStringProperty(type);
 		this.nummer = new SimpleStringProperty(nummer);
 		this.naam = new SimpleStringProperty(naam);
 		this.email = new SimpleStringProperty(email);
-		this.wachtwoord = new SimpleStringProperty(wachtwoord);
 	}
 
 	public String getType() {
@@ -33,10 +31,6 @@ public class OverzichtAccountDatamodel {
 		return email.get();
 	}
 
-	public String getWachtwoord() {
-		return wachtwoord.get();
-	}
-
 	public void setType(String type) {
 		this.type.set(type);
 	}
@@ -51,10 +45,6 @@ public class OverzichtAccountDatamodel {
 
 	public void setEmail(String email) {
 		this.email.set(email);
-	}
-
-	public void setWachtwoord(String wachtwoord) {
-		this.wachtwoord.set(wachtwoord);
 	}
 	
 }
