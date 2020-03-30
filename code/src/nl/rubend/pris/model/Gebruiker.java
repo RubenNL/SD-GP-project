@@ -20,7 +20,6 @@ public class Gebruiker implements Serializable {
 	public boolean checkWachtwoord(String wachtwoord) {return this.wachtwoord.equals(wachtwoord);}
 	public String getEmail() {return this.email;}
 	public void setNaam(String naam) {this.naam=naam;}
-	public String getWachtwoord() { return wachtwoord; }
 	public void setWachtwoord(String wachtwoord) {this.wachtwoord=wachtwoord;}
 	public void setEmail(String email) {this.email=email;}
 

@@ -12,7 +12,6 @@
             <TableColumn fx:id="numCol" minWidth="2.0" prefWidth="108.0" text="Nummer" />
             <TableColumn fx:id="naamCol" minWidth="0.0" prefWidth="103.0" text="Naam" />
             <TableColumn fx:id="emailCol" prefWidth="151.0" text="E-mail" />
-            <TableColumn fx:id="psswdCol" minWidth="0.0" prefWidth="110.0" text="Wachtwoord" />
             </columns>
         </TableView>
       <Button layoutX="149.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleNieuwWachtWoordOpstellen" text="Nieuw Wachtwoord" />

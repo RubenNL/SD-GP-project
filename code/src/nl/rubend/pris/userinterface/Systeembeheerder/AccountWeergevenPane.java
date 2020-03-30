@@ -67,7 +67,6 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		numCol.setCellValueFactory(new PropertyValueFactory<>("Nummer"));
 		naamCol.setCellValueFactory(new PropertyValueFactory<>("Naam"));
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
-		psswdCol.setCellValueFactory(new PropertyValueFactory<>("Wachtwoord"));
 		tableView.getItems().setAll(dataList);
 		tableView.getSelectionModel().setCellSelectionEnabled(true);
 	}
@@ -126,8 +125,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 			String studentNummer = String.valueOf(student.getStudentNummer());
 			String naam = student.getNaam();
 			String email = student.getEmail();
-			String wachtwoord = student.getWachtwoord();
-			datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email, wachtwoord);
+			datamodel = new OverzichtAccountDatamodel(type, studentNummer, naam, email);
 			return datamodel;
 		}
 		return null;
@@ -142,8 +140,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 			String docentNummer = String.valueOf(docent.getDocentNummer());
 			String naam = docent.getNaam();
 			String email = docent.getEmail();
-			String wachtwoord = docent.getWachtwoord();
-			datamodel = new OverzichtAccountDatamodel(type, docentNummer, naam, email, wachtwoord);
+			datamodel = new OverzichtAccountDatamodel(type, docentNummer, naam, email);
 			return datamodel;
 		}
 		return null;
