@@ -40,8 +40,14 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 				melding("Afmelding gelukt!", 2);
 				buttonBevestiging.setDisable(true);
 				buttonAnnuleren.setDisable(true);
+				controlleCheckBox.setDisable(true);
+				toggleLDAfwezig.setDisable(true);
 			}
 				melding("Je bent al langdurig afgemeld!", 1);
+				controlleCheckBox.setDisable(true);
+				toggleLDAfwezig.setDisable(true);
+				buttonBevestiging.setDisable(true);
+				buttonAnnuleren.setDisable(true);
 
 		} else {
 			melding("Afmelding niet gelukt!", 1);
