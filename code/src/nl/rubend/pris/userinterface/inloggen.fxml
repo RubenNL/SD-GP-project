@@ -24,11 +24,11 @@
           <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="18.0" prefWidth="74.0" text="E-mail">
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="18.0" prefWidth="82.0" text="E-mail">
                <font>
                   <Font name="Roboto" size="12.0" />
                </font></Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="71.0" text="Wachtwoord" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="85.0" text="Wachtwoord" GridPane.rowIndex="1">
                <font>
                   <Font name="Roboto" size="12.0" />
                </font></Label>
@@ -41,8 +41,11 @@
             <Image url="@hogeschool-utrecht-logo-klein.png" />
          </image>
       </ImageView>
-      <Label fx:id="errorField" layoutX="87.0" layoutY="142.0" />
-      <Button layoutX="195.0" layoutY="251.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="26.0" prefWidth="82.0" styleClass="cancel-button" text="Annuleren" />
-      <Button layoutX="289.0" layoutY="251.0" mnemonicParsing="false" onAction="#okButton" prefHeight="22.0" prefWidth="82.0" styleClass="confirm-button" text="Inloggen" />
+      <Label fx:id="errorField" layoutX="130.0" layoutY="126.0" prefHeight="18.0" prefWidth="242.0" />
+      <Button layoutX="177.0" layoutY="251.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="26.0" prefWidth="92.0" styleClass="cancel-button" text="Annuleren">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font></Button>
+      <Button layoutX="279.0" layoutY="251.0" mnemonicParsing="false" onAction="#okButton" prefHeight="26.0" prefWidth="92.0" styleClass="confirm-button" text="Inloggen" />
    </children>
 </AnchorPane>
