@@ -32,8 +32,6 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	TableColumn<OverzichtAccountDatamodel, String> naamCol;
 	@FXML
 	TableColumn<OverzichtAccountDatamodel, String> emailCol;
-	@FXML
-	TableColumn<OverzichtAccountDatamodel, String> psswdCol;
 
 
 	Systeembeheerder systeembeheerder;
