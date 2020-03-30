@@ -11,10 +11,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Docent.DocentPresentiePane">
    <children>
-      <GridPane layoutX="23.0" layoutY="22.0" prefHeight="72.0" prefWidth="227.0">
+      <GridPane layoutX="14.0" layoutY="51.0" prefHeight="74.0" prefWidth="175.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="47.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="128.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,17 +23,17 @@
          <children>
             <Label text="Datum" />
             <Label text="Les" GridPane.rowIndex="1" />
-            <DatePicker fx:id="dateBox" onAction="#selectDate" GridPane.columnIndex="1" />
+            <DatePicker fx:id="dateBox" onAction="#selectDate" prefWidth="146.0" GridPane.columnIndex="1" />
             <ComboBox fx:id="lesBox" onAction="#selectLes" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="251.0" layoutY="22.0" prefHeight="354.0" prefWidth="308.0" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" layoutX="198.0" layoutY="14.0" prefHeight="368.0" prefWidth="364.0" vbarPolicy="ALWAYS">
          <content>
-            <GridPane fx:id="table" gridLinesVisible="true" prefWidth="300.0">
+            <GridPane fx:id="table" gridLinesVisible="true" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="364.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="137.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="138.0" />
               </columnConstraints>
             </GridPane>
          </content>

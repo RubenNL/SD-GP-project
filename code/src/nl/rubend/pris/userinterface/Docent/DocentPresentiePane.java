@@ -1,13 +1,9 @@
 package nl.rubend.pris.userinterface.Docent;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxTableCell;
-import javafx.scene.control.cell.ComboBoxTreeTableCell;
 import javafx.scene.layout.GridPane;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
@@ -40,6 +36,7 @@ public class DocentPresentiePane implements IngelogdGebruiker, Initializable {
 	@FXML void selectLes() {
 		les=lessen.get(lesBox.getItems().indexOf(lesBox.getValue()));
 		table.getChildren().removeAll(table.getChildren());
+		table.addRow(0,new Label("Naam student"),new Label("Aanwezig"),new Label("Laatst bewerkt door"));;
 		for(Student student:les.getStudenten()) {
 			ComboBox<String> comboBox=new ComboBox<String>();
 			comboBox.getItems().addAll(options);
