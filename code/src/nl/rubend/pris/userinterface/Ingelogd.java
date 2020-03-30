@@ -1,12 +1,15 @@
 package nl.rubend.pris.userinterface;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.DepthTest;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -51,15 +54,28 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 		gridContainer.getChildren().add(pane);
 		allPanes.add(pane);
 		button.setOnAction(actionEvent ->  {
+
 			switchToPane(pane);
+
 		});
 		menuPane.getChildren().add(button);
 		switchToPane(welkomPane);
 	}
+
 	@FXML
 	void handleUitloggen(ActionEvent event) throws IOException {
-		Main.showInloggen((Stage) menuPane.getScene().getWindow());
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker uit gaan loggen?", ButtonType.YES, ButtonType.NO);
+		alert.setResizable(true);
+		alert.onShownProperty().addListener(e -> {//overgenomen van stackoverflow, popups werken niet goed in Linux zonder dit.
+			Platform.runLater(() -> alert.setResizable(false));
+		});
+		alert.setTitle("Waarschuwing!");
+		alert.showAndWait();
+		if (alert.getResult() == ButtonType.YES) {
+			Main.showInloggen((Stage) menuPane.getScene().getWindow());
+		}
 	}
+
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {

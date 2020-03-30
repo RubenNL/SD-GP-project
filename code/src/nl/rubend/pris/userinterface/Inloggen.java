@@ -15,6 +15,9 @@ import nl.rubend.pris.model.Gebruiker;
 import nl.rubend.pris.model.School;
 
 import java.io.IOException;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class Inloggen {
 
@@ -27,8 +30,9 @@ public class Inloggen {
 	@FXML
 	private Label errorField;
 
-	@FXML
-	void okButton(ActionEvent event) throws IOException {
+
+
+	private void logIn() throws IOException {
 		Gebruiker gebruiker;
 		try {
 			gebruiker = School.getSchool().getGebruikerByEmail(emailBox.getText());
@@ -42,6 +46,19 @@ public class Inloggen {
 			incorrect();
 		}
 	}
+
+	@FXML
+	public void enterInloggen(ActionEvent actionEvent) throws IOException {
+		logIn();
+	}
+
+	@FXML
+	void okButton(ActionEvent event) throws IOException {
+		logIn();
+	}
+
+
+
 	private void incorrect() {
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
 		pause.setOnFinished(f -> errorField.setText(""));
@@ -81,4 +98,6 @@ public class Inloggen {
 		stage.show();
 		cancelButton(null);
 	}
+
+
 }
