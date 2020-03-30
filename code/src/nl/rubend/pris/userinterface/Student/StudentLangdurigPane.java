@@ -68,7 +68,7 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 		for (Aanwezigheid anw: aanweziheidPerLes) {
 			// Zet "Afwezigheid" voor elk les als false vanaf de dag dat er afgemeld wordt
 			if (anw.getLes().getDatum().compareTo(LocalDate.now()) >= 0) {
-				anw.setStatus(false);
+				anw.setStatus(student,false);
 			}
 		}
 	}
