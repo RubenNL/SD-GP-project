@@ -35,10 +35,14 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 
 	public void handleBevestigen(ActionEvent actionEvent) {
 		if (controlleCheckBox.isSelected() && toggleLDAfwezig.isSelected()) {
-			melding("Afmelding gelukt!", 2);
-			zetLangdurigAfwezig();
-			buttonBevestiging.setDisable(true);
-			buttonAnnuleren.setDisable(true);
+			if (student.isLangdurigAfwezig() == false) {
+				zetLangdurigAfwezig();
+				melding("Afmelding gelukt!", 2);
+				buttonBevestiging.setDisable(true);
+				buttonAnnuleren.setDisable(true);
+			}
+				melding("Je bent al langdurig afgemeld!");
+
 		} else {
 			melding("Afmelding niet gelukt!", 1);
 		}
@@ -54,6 +58,7 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 
 	public void zetLangdurigAfwezig() {
 		aanweziheidPerLes = student.getAanwezigheidList();
+		student.setLangdurigAfwezig(true);
 		for (Aanwezigheid anw: aanweziheidPerLes) {
 			// Zet "Afwezigheid" voor elk les als false vanaf de dag dat er afgemeld wordt
 			if (anw.getLes().getDatum().compareTo(LocalDate.now()) >= 0) {
