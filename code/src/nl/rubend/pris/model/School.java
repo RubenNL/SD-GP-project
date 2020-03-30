@@ -62,7 +62,7 @@ public class School implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	public static void deserialize() throws IOException, ClassNotFoundException {
+	public static void deserialize() throws IOException, ClassNotFoundException,FileNotFoundException {
 		FileInputStream fileIn = new FileInputStream("out.ser");
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		school = (School) in.readObject();

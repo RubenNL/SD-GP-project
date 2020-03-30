@@ -46,7 +46,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		try {
 			School.deserialize();
-		} catch (InvalidClassException e) {
+		} catch (Exception e) {
 			System.out.println("Data is afkomstig van oude versie van model. Default data wordt geimporteert.");
 			serializeDemoData();
 			School.deserialize();
