@@ -43,6 +43,7 @@ public class Klas implements Serializable {
 		return this.cursusen;
 	}
 
-
-
+	public String toString() {
+		return "klas: " + this.klasNaam;
+	}
 }
