@@ -44,6 +44,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		systeembeheerder=(Systeembeheerder) gebruiker;
+		fillDataListAll();
 	}
 
 
