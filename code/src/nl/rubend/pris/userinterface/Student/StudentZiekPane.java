@@ -8,10 +8,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.util.Callback;
-import nl.rubend.pris.model.Gebruiker;
-import nl.rubend.pris.model.Les;
-import nl.rubend.pris.model.NotFoundException;
-import nl.rubend.pris.model.Student;
+import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import org.controlsfx.control.ToggleSwitch;
 
@@ -62,10 +59,10 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 		String status = null;
 
 		if (toggle){
-			status = "Ziek";
+			status = Aanwezigheid.ZIEK;
 		}
 		else {
-			status = "Afwezig";
+			status = Aanwezigheid.AFWEZIG;
 		}
 
 		for (Les les : targetLessen){
