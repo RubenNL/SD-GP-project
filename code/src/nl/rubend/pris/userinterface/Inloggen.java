@@ -87,8 +87,10 @@ public class Inloggen {
 		stage.setTitle("PRIS");
 		scene.getStylesheets().add("nl/rubend/pris/stylesheet-pris.css");
 		stage.setScene(scene);
-		stage.setResizable(false);
 		stage.show();
+		stage.setResizable(false);
+		stage.setHeight(530);
+		stage.setWidth(700);
 		cancelButton(null);
 	}
 }
