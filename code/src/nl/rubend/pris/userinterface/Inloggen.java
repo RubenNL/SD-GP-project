@@ -4,7 +4,6 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -15,9 +14,6 @@ import nl.rubend.pris.model.Gebruiker;
 import nl.rubend.pris.model.School;
 
 import java.io.IOException;
-import java.util.List;
-
-import static java.util.Arrays.asList;
 
 public class Inloggen {
 
@@ -29,8 +25,6 @@ public class Inloggen {
 
 	@FXML
 	private Label errorField;
-
-
 
 	private void logIn() throws IOException {
 		Gebruiker gebruiker;
@@ -56,8 +50,6 @@ public class Inloggen {
 	void okButton(ActionEvent event) throws IOException {
 		logIn();
 	}
-
-
 
 	private void incorrect() {
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
@@ -95,9 +87,8 @@ public class Inloggen {
 		stage.setTitle("PRIS");
 		scene.getStylesheets().add("nl/rubend/pris/stylesheet-pris.css");
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 		cancelButton(null);
 	}
-
-
 }

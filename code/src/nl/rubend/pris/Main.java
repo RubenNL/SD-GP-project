@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 
 import java.io.IOException;
-import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -40,6 +39,7 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		stage.setTitle("PRIS Inloggen");
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 	}
 	@Override
