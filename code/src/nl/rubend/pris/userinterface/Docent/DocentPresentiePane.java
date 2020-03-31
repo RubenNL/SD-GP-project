@@ -12,14 +12,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DocentPresentiePane implements IngelogdGebruiker, Initializable {
+public class DocentPresentiePane implements IngelogdGebruiker {
 	@FXML GridPane table;
 	@FXML DatePicker dateBox;
 	@FXML ComboBox lesBox;;
 	private Docent docent;
 	private ArrayList<Les> lessen;
 	private Les les;
-	private ArrayList<String> options=new ArrayList<String>();
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		this.docent=(Docent) gebruiker;
@@ -39,22 +38,20 @@ public class DocentPresentiePane implements IngelogdGebruiker, Initializable {
 		table.addRow(0,new Label("Naam student"),new Label("Aanwezig"),new Label("Laatst bewerkt door"));;
 		for(Student student:les.getStudenten()) {
 			ComboBox<String> comboBox=new ComboBox<String>();
-			comboBox.getItems().addAll(options);
+			comboBox.getItems().addAll(Aanwezigheid.getOptions());
 			Aanwezigheid aanwezigheid=student.getAanwezigheidBijLes(les);
-			comboBox.setValue(aanwezigheid.getStatus()?options.get(1):options.get(0));
+			comboBox.setValue(aanwezigheid.getStatus());
 			Label changedBy=new Label(aanwezigheid.getGebruiker().getNaam());
 			table.addRow(table.getRowCount()+1,new Label(student.getNaam()),comboBox,changedBy);
 			comboBox.setOnAction(actionEvent ->  {
-				aanwezigheid.setStatus(docent,options.indexOf(comboBox.getValue())==0?false:true);
+				try {
+					aanwezigheid.setStatus(docent,comboBox.getValue());
+				} catch (NotFoundException e) {
+					e.printStackTrace();
+				}
 				changedBy.setText(aanwezigheid.getGebruiker().getNaam());
 			});
 		}
-	}
-
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		options.add("Nee");
-		options.add( "Ja");
 	}
 }
 
