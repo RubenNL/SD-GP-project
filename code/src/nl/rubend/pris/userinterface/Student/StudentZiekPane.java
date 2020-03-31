@@ -44,6 +44,9 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 	private Button ziekAfmeldenButton;
 
 	@FXML
+	private Label ziekMessage;
+
+	@FXML
 	void resetAllFields(ActionEvent event) {
 		datePickerStudent.setValue(null);
 		disablePastDates(datePickerStudent);
@@ -65,8 +68,32 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 			status = Aanwezigheid.AFWEZIG;
 		}
 
-		for (Les les : targetLessen){
-			student.getAanwezigheidBijLes(les).setStatus(student, status);
+		if(targetLessen.size() > 0){
+			for (Les les : targetLessen){
+				student.getAanwezigheidBijLes(les).setStatus(student, status);
+			}
+
+			ArrayList<Boolean> lesCheckList = new ArrayList();
+			for (Les les : targetLessen){
+				if(student.getAanwezigheidBijLes(les).getStatus().equals(status)){
+					lesCheckList.add(true);
+				}
+				else{
+					lesCheckList.add(false);
+				}
+			}
+			if(lesCheckList.contains(false)){
+				ziekMessage.setText("Afmelding niet gelukt");
+				ziekMessage.getStyleClass().add("red-text");
+			}
+			else{
+				ziekMessage.setText("Afmelding is gelukt");
+				ziekMessage.getStyleClass().add("green-text");
+			}
+		}
+		else{
+			ziekMessage.setText("Geen lessen gevonden op die dag");
+			ziekMessage.getStyleClass().add("black-text");
 		}
 	}
 
