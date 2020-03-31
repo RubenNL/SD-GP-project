@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import nl.rubend.pris.Main;
 import nl.rubend.pris.model.*;
+import nl.rubend.pris.Utils;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
@@ -97,20 +98,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
-
-
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker deze account verwijderen?", ButtonType.YES, ButtonType.NO);
-		alert.setResizable(true);
-		alert.onShownProperty().addListener(e -> {
-			Platform.runLater(() -> alert.setResizable(false));
-		});
-		alert.setTitle("Waarschuwing!");
-		alert.setResizable(true);
-		alert.onShownProperty().addListener(e -> {
-			Platform.runLater(() -> alert.setResizable(false));
-		});
-		alert.showAndWait();
-		if (alert.getResult() == ButtonType.YES) {
+		if(Utils.yesNo("Wilt u zeker dit account verwijderen?")) {
 			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
 			if (pos != null) {
 				int row = pos.getRow();
@@ -203,22 +191,10 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 		result.ifPresent(psswd -> {
 			gebruiker.setWachtwoord(psswd);
-			melding("Het is gelukt!");
+			Utils.melding("Het is gelukt!");
 			dialog.close();
 		});
 
 
 	}
-
-	private void melding(String tekstMessage) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setResizable(true);
-		alert.onShownProperty().addListener(e -> {
-			Platform.runLater(() -> alert.setResizable(false));
-		});
-		alert.setTitle("Nieuw Account!");
-		alert.setContentText(tekstMessage);
-		alert.showAndWait();
-	}
-
 }
