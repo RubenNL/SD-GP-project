@@ -4,10 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.util.Callback;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import org.controlsfx.control.ToggleSwitch;
@@ -49,7 +47,7 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 	@FXML
 	void resetAllFields(ActionEvent event) {
 		datePickerStudent.setValue(null);
-		disablePastDates(datePickerStudent);
+		Utils.disablePastDates(datePickerStudent);
 		dagToggle.selectedProperty().setValue(false);
 		toggleLabel.setText("Afwezig");
 		datumMessage.setText(null);
@@ -104,52 +102,18 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 		if(toggle){
 			toggleLabel.setText("Ziek");
 			datePickerStudent.setValue(LocalDate.now());
-			enableTodayOnly(datePickerStudent);
+			Utils.enableTodayOnly(datePickerStudent);
 			datumMessage.setText("Ziekmelden kan alleen op huidige dag");
 		}
 		else {
 			toggleLabel.setText("Afwezig");
-			disablePastDates(datePickerStudent);
+			Utils.disablePastDates(datePickerStudent);
 			datumMessage.setText(null);
 		}
 	}
 
-	private void disablePastDates(DatePicker dp){
-		Callback<DatePicker, DateCell> dayCellFactory =
-				(final DatePicker datePicker) -> new DateCell() {
-					@Override
-					public void updateItem(LocalDate item, boolean empty) {
-						super.updateItem(item, empty);
-
-						if(item.isBefore(LocalDate.now())) {
-							setDisable(true);
-						}
-					}
-				};
-		dp.setDayCellFactory(dayCellFactory);
-	}
-
-	private void enableTodayOnly(DatePicker dp){
-		Callback<DatePicker, DateCell> dayCellFactory =
-				(final DatePicker datePicker) -> new DateCell() {
-					@Override
-					public void updateItem(LocalDate item, boolean empty) {
-						super.updateItem(item, empty);
-
-						if(item.isBefore(LocalDate.now())) {
-							setDisable(true);
-						}
-
-						if(item.isAfter(LocalDate.now())){
-							setDisable(true);
-						}
-					}
-				};
-		dp.setDayCellFactory(dayCellFactory);
-	}
-
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		disablePastDates(datePickerStudent);
+		Utils.disablePastDates(datePickerStudent);
 	}
 }
