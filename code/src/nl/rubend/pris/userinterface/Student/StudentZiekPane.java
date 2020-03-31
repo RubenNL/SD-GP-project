@@ -9,12 +9,15 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.util.Callback;
 import nl.rubend.pris.model.Gebruiker;
+import nl.rubend.pris.model.Les;
+import nl.rubend.pris.model.NotFoundException;
 import nl.rubend.pris.model.Student;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import org.controlsfx.control.ToggleSwitch;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StudentZiekPane implements IngelogdGebruiker,Initializable {
@@ -53,8 +56,21 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 	}
 
 	@FXML
-	void meldAf(){
-		System.out.println(student.getLessenOpDag(datePickerStudent.getValue()));;
+	void meldAf() throws NotFoundException {
+		ArrayList<Les> targetLessen = student.getLessenOpDag(datePickerStudent.getValue());
+		boolean toggle = dagToggle.selectedProperty().getValue();
+		String status = null;
+
+		if (toggle){
+			status = "Ziek";
+		}
+		else {
+			status = "Afwezig";
+		}
+
+		for (Les les : targetLessen){
+			student.getAanwezigheidBijLes(les).setStatus(student, status);
+		}
 	}
 
 	@FXML
