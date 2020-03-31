@@ -40,8 +40,6 @@ public class Main extends Application {
 		stage.setTitle("PRIS Inloggen");
 		stage.setScene(scene);
 		stage.setResizable(false);
-		stage.setHeight(339);
-		stage.setWidth(423);
 		stage.show();
 	}
 	@Override
