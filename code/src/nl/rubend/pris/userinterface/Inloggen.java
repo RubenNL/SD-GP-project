@@ -85,6 +85,7 @@ public class Inloggen {
 			controller.addButton("Ziek","Student/studentZiekPane.fxml");
 			controller.addButton("Les","Student/studentLesPane.fxml");
 			controller.addButton("Langdurig","Student/studentLangdurigPane.fxml");
+			controller.addButton("Presentie","Student/studentPresentiePane.fxml");
 		} else if(className.equals("Docent")) {
 			controller.addButton("Presentie","Docent/docentPresentiePane.fxml");
 		} else if(className.equals("Systeembeheerder")) {
