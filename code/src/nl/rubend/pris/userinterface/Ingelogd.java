@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.rubend.pris.Main;
+import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.Gebruiker;
 
 import java.io.IOException;
@@ -70,16 +71,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 
 	@FXML
 	void handleUitloggen(ActionEvent event) throws IOException {
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Weet u zeker dat u wilt uitloggen?", ButtonType.YES, ButtonType.NO);
-		alert.setResizable(true);
-		alert.onShownProperty().addListener(e -> {//overgenomen van stackoverflow, popups werken niet goed in Linux zonder dit.
-			Platform.runLater(() -> alert.setResizable(false));
-		});
-		alert.setTitle("Waarschuwing!");
-		alert.showAndWait();
-		if (alert.getResult() == ButtonType.YES) {
-			Main.showInloggen((Stage) menuPane.getScene().getWindow());
-		}
+		if(Utils.yesNo("Weet zeker dat u wilt uitloggen?")) Main.showInloggen((Stage) menuPane.getScene().getWindow());
 	}
 
 
