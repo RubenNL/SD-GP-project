@@ -59,6 +59,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 			for(Node disableButton:menuPane.getChildren()) {
 				disableButton.getStyleClass().remove("active");
 			}
+			controller.setGebruiker(gebruiker);
 			button.getStyleClass().add("active");
 			switchToPane(pane);
 		});
@@ -69,7 +70,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 
 	@FXML
 	void handleUitloggen(ActionEvent event) throws IOException {
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wilt u zeker uit gaan loggen?", ButtonType.YES, ButtonType.NO);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Weet u zeker dat u wilt uitloggen?", ButtonType.YES, ButtonType.NO);
 		alert.setResizable(true);
 		alert.onShownProperty().addListener(e -> {//overgenomen van stackoverflow, popups werken niet goed in Linux zonder dit.
 			Platform.runLater(() -> alert.setResizable(false));
