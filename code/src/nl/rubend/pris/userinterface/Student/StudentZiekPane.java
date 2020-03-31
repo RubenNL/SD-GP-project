@@ -53,6 +53,7 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 		dagToggle.selectedProperty().setValue(false);
 		toggleLabel.setText("Afwezig");
 		datumMessage.setText(null);
+		ziekMessage.setText(null);
 	}
 
 	@FXML
