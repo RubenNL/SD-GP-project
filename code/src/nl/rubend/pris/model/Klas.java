@@ -1,6 +1,7 @@
 package nl.rubend.pris.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,13 @@ public class Klas implements Serializable {
 	public void addCursus(Cursus cursus) {
 		this.cursusen.add(cursus);
 		cursus.addKlas(this);
+	}
+	public ArrayList<Les> getLessenOpDag(LocalDate date) {
+		ArrayList<Les> response=new ArrayList<Les>();
+		for(Les les:lessen) {
+			if(les.getDatum().equals(date)) response.add(les);
+		}
+		return response;
 	}
 	public ArrayList<Cursus> getCursusen() {
 		return this.cursusen;
