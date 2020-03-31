@@ -23,10 +23,9 @@ public class Aanwezigheid implements Serializable {
 	private Les les;
 	private Gebruiker gebruiker;
 	public Aanwezigheid(Les les) {
-		this.status=true;
 		this.les=les;
 		try {
-			gebruiker = School.getSchool().getGebruikerByEmail("onmogelijk");
+			setStatus(School.getSchool().getGebruikerByEmail("onmogelijk"),AANWEZIG);
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 		}

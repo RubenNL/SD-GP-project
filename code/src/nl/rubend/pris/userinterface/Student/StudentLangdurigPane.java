@@ -8,10 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Color;
-import nl.rubend.pris.model.Aanwezigheid;
-import nl.rubend.pris.model.Docent;
-import nl.rubend.pris.model.Gebruiker;
-import nl.rubend.pris.model.Student;
+import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
@@ -80,8 +77,12 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 		student.setLangdurigAfwezig(true);
 		for (Aanwezigheid anw: aanweziheidPerLes) {
 			// Zet "Afwezigheid" voor elk les als false vanaf de dag dat er afgemeld wordt
-			if (anw.getLes().getDatum().compareTo(LocalDate.now()) >= 0) {
-				anw.setStatus(student,false);
+			if (anw.getLes().getDatum().compareTo(LocalDate.now()) >= 0 && anw.getStatus()==Aanwezigheid.AANWEZIG) {
+				try {
+					anw.setStatus(student,Aanwezigheid.LANGDURIG);
+				} catch (NotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -92,8 +93,12 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 		student.setLangdurigAfwezig(false);
 		for (Aanwezigheid anw: aanweziheidPerLes) {
 			// Zet "Afwezigheid" voor elk les als true vanaf de dag dat er afgemeld wordt
-			if (anw.getLes().getDatum().compareTo(LocalDate.now()) >= 0) {
-				anw.setStatus(student,true);
+			if (anw.getLes().getDatum().compareTo(LocalDate.now()) >= 0 && anw.getStatus()==Aanwezigheid.LANGDURIG) {
+				try {
+					anw.setStatus(student,Aanwezigheid.AANWEZIG);
+				} catch (NotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
