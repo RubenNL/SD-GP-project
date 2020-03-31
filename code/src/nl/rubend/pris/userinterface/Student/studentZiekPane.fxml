@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../stylesheet-pris.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="533.0" stylesheets="@../../stylesheet-pris.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
     <children>
         <Label fx:id="labelId" prefHeight="54.0" prefWidth="600.0" text="Dag afmelden">
             <font>
@@ -37,5 +38,7 @@
       <ToggleSwitch fx:id="dagToggle" layoutX="209.0" layoutY="170.0" onMouseClicked="#toggleAfwezig" />
       <Label fx:id="toggleLabel" layoutX="270.0" layoutY="171.0" prefHeight="18.0" prefWidth="66.0" text="Afwezig" />
       <Label fx:id="datumMessage" layoutX="5.0" layoutY="204.0" prefHeight="18.0" prefWidth="274.0" />
+      <Button layoutX="328.0" layoutY="423.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" styleClass="cancel-button" text="Annuleren" />
+      <Button layoutX="431.0" layoutY="423.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" styleClass="confirm-button" text="Afmelden" />
     </children>
 </AnchorPane>

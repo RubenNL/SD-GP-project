@@ -1,7 +1,9 @@
 package nl.rubend.pris.userinterface.Student;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -34,6 +36,14 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 
 	@FXML
 	private Label datumMessage;
+
+	@FXML
+	private Button cancelZiekButton;
+
+	@FXML
+	void resetAllFields(ActionEvent event) {
+		datePickerStudent.setValue(null);
+	}
 
 
 	@FXML
