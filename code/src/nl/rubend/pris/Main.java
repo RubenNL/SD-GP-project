@@ -10,10 +10,12 @@ import java.io.IOException;
 import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
+		Locale.setDefault(new Locale("nl", "NL"));
 	}
 
 	private void serializeDemoData() throws Exception {
