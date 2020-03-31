@@ -28,9 +28,9 @@ public class Main extends Application {
 		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les.addDocent((Docent) school.getGebruikerByEmail("d"));
 		((Student)school.getGebruikerByEmail("s")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("d"),Aanwezigheid.AFWEZIG,les));
-		for(Les outles:((Docent)school.getSchool().getGebruikerByEmail("d")).getLessenByDag(LocalDate.of(2020,3,26))) {
-			System.out.println(outles.getAanwezigheid().get((Student) school.getGebruikerByEmail("s")).getStatus());
-		};
+		Les les2=new Les(LocalTime.of(12,30),LocalTime.of(15,30), LocalDate.of(2020,4,3),"HL15-1.203");
+		les2.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les2.addDocent((Docent) school.getGebruikerByEmail("d"));
 		School.serialize();
 	}
 	public static void showInloggen(Stage stage) throws IOException {
