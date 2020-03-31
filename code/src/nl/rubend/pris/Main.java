@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 
 import java.io.IOException;
-import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -28,7 +27,7 @@ public class Main extends Application {
 		Les les=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203");
 		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les.addDocent((Docent) school.getGebruikerByEmail("d"));
-		((Student)school.getGebruikerByEmail("s")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("d"),true,les));
+		((Student)school.getGebruikerByEmail("s")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("d"),Aanwezigheid.AFWEZIG,les));
 		for(Les outles:((Docent)school.getSchool().getGebruikerByEmail("d")).getLessenByDag(LocalDate.of(2020,3,26))) {
 			System.out.println(outles.getAanwezigheid().get((Student) school.getGebruikerByEmail("s")).getStatus());
 		};
@@ -40,6 +39,9 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		stage.setTitle("PRIS Inloggen");
 		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setHeight(339);
+		stage.setWidth(423);
 		stage.show();
 	}
 	@Override

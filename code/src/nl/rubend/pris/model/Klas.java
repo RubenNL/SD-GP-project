@@ -26,6 +26,9 @@ public class Klas implements Serializable {
 		this.studenten.add(student);
 		student.addKlas(this);
 	}
+	public void removeStudent(Student student) {
+		this.studenten.remove(student);
+	}
 	public Map<Student,Aanwezigheid> getAanwezigheidBijLes(Les les) {
 		Map<Student,Aanwezigheid> response=new HashMap<Student,Aanwezigheid>();
 		for(Student student:getStudenten()) {

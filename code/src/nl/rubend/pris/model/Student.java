@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Student extends Gebruiker implements Serializable {
+public class Student extends Gebruiker implements Serializable,RemovableAccount {
 	private int studentNummer;
 	private ArrayList<Klas> klassen=new ArrayList<Klas>();
 	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<Aanwezigheid>();
@@ -40,6 +40,17 @@ public class Student extends Gebruiker implements Serializable {
 		Aanwezigheid aanwezigheid=new Aanwezigheid(les);
 		addAanwezigheid(aanwezigheid);
 		return aanwezigheid;
+	}
+	@Override
+	public void removeAccount() {
+		for(Klas klas:getKlassen()) {
+			klas.removeStudent(this);
+		}
+		klassen.removeAll(klassen);
+		for(Aanwezigheid melding:aanwezigheid) {
+			melding.removeGebruiker(true);
+			melding.removeLes();
+		}
 	}
 	@Override
 	public boolean equals(Object o) {
