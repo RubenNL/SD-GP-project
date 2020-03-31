@@ -41,10 +41,21 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 	private Button cancelZiekButton;
 
 	@FXML
+	private Button ziekAfmeldenButton;
+
+	@FXML
 	void resetAllFields(ActionEvent event) {
 		datePickerStudent.setValue(null);
+		disablePastDates(datePickerStudent);
+		dagToggle.selectedProperty().setValue(false);
+		toggleLabel.setText("Afwezig");
+		datumMessage.setText(null);
 	}
 
+	@FXML
+	void meldAf(){
+		System.out.println(student.getLessenOpDag(datePickerStudent.getValue()));;
+	}
 
 	@FXML
 	private void toggleAfwezig(){
