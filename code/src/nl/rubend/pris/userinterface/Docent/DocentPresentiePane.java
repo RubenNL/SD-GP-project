@@ -43,9 +43,6 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 			comboBox.getItems().addAll(Aanwezigheid.getOptions());
 			Aanwezigheid aanwezigheid=student.getAanwezigheidBijLes(les);
 			comboBox.setValue(aanwezigheid.getStatus());
-			Label changedBy=new Label(aanwezigheid.getGebruiker().getNaam());
-			Label label = new Label("Contact SLB'r");
-			table.addRow(table.getRowCount()+1,new Label(student.getNaam()),comboBox, label); //changedBy, label);
 			comboBox.setOnAction(actionEvent ->  {
 				try {
 					aanwezigheid.setStatus(docent,comboBox.getValue());
