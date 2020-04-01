@@ -34,14 +34,13 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	private ArrayList<Gebruiker> gebruikers = school.getGebruikers();
 	private FilteredList<OverzichtAccountDatamodel> filteredData = new FilteredList<>(FXCollections.observableArrayList(),	p -> true);
 
-
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		systeembeheerder=(Systeembeheerder) gebruiker;
 		fillDataList();
 	}
 
-	private void updateTable() {
+	@FXML private void updateTable() {
 		String newValue=filterField.getText();
 		filteredData.setPredicate(t -> {
 			String lowerCaseFilter = newValue.toLowerCase();
@@ -65,75 +64,65 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		accountTypeComboBox.setVisibleRowCount(keuze.size());
 		accountTypeComboBox.setValue(ALL_USERS);
 
-		fillDataList();
 		typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
 		numCol.setCellValueFactory(new PropertyValueFactory<>("Nummer"));
 		naamCol.setCellValueFactory(new PropertyValueFactory<>("Naam"));
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
 		tableView.getItems().setAll(dataList);
 		tableView.getSelectionModel().setCellSelectionEnabled(true);
-		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-			updateTable();
-		});
-		accountTypeComboBox.setOnAction((update) -> {
-			updateTable();
-		});
-		Refresh();
+		filteredData = new FilteredList(dataList);
+		SortedList<OverzichtAccountDatamodel> sortedData = new SortedList<OverzichtAccountDatamodel>(filteredData);
+		sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+		tableView.setItems(sortedData);
 	}
 
-	public void Refresh() {
-		try {
-			filteredData = new FilteredList<>(FXCollections.observableArrayList(dataList),	p -> true);
-			SortedList<OverzichtAccountDatamodel> sortedData = new SortedList<>(filteredData);
-			sortedData.comparatorProperty().bind(tableView.comparatorProperty());
-			tableView.setItems(sortedData);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
+	public void handleNieuwWachtWoordOpstellen(ActionEvent actionEvent) {
 
-	public void handleNieuwWachtWoordOpstellen(ActionEvent actionEvent) throws Exception {
-		try {
-			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
-			if (pos != null) {
-				int row = pos.getRow();
-				OverzichtAccountDatamodel item = tableView.getItems().get(row);
-				Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
-				nieuwWachtwoordMelding(gebruiker);
+		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+		if (pos != null) {
+			int row = pos.getRow();
+			OverzichtAccountDatamodel item = tableView.getItems().get(row);
+			Gebruiker gebruiker = null;
+			try {
+				gebruiker = school.getGebruikerByEmail(item.getEmail());
+			} catch (NotFoundException e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e){
-			System.out.println(e.getMessage());
+			nieuwWachtwoordMelding(gebruiker);
 		}
-
 	}
 
 
-	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
+	public void handleAccountVerwijderen(ActionEvent actionEvent) {
 		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
 		if (pos != null) {
 			if (Utils.yesNo("Wilt u zeker dit account verwijderen?")) {
 				int row = pos.getRow();
 				OverzichtAccountDatamodel item = tableView.getItems().get(row);
-				Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
-				((RemovableAccount) gebruiker).removeAccount();
-				gebruikers.remove(gebruiker);
-				tableView.getItems().remove(row);
-				fillDataList();
+				try {
+					Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+					((RemovableAccount) gebruiker).removeAccount();
+					gebruikers.remove(gebruiker);
+				} catch (NotFoundException e) {
+					e.printStackTrace();
+				}
+				dataList.remove(item);
 			}
 		}
 	}
 
 	public OverzichtAccountDatamodel getDataModel(Gebruiker gebruiker) {
-		int nummer = 0;
-		if (gebruiker instanceof Student) nummer = ((Student) gebruiker).getStudentNummer();
-		else if (gebruiker instanceof Docent) nummer = ((Docent) gebruiker).getDocentNummer();
+		String nummer = "";
+		if (gebruiker instanceof Student) nummer = String.valueOf(((Student) gebruiker).getStudentNummer());
+		else if (gebruiker instanceof Docent) nummer = String.valueOf(((Docent) gebruiker).getDocentNummer());
+		else if (gebruiker instanceof Systeembeheerder && gebruiker.getNaam().equals("Systeem")) return null;
 		OverzichtAccountDatamodel datamodel;
 		String type = gebruiker.getClass().getSimpleName();
 		String selection = (String) accountTypeComboBox.getValue();
 		if (selection.equals(type) | selection.equals(ALL_USERS)) {
 			String naam = gebruiker.getNaam();
 			String email = gebruiker.getEmail();
-			datamodel = new OverzichtAccountDatamodel(type, String.valueOf(nummer), naam, email);
+			datamodel = new OverzichtAccountDatamodel(type, nummer, naam, email);
 			return datamodel;
 		} else return null;
 	}
