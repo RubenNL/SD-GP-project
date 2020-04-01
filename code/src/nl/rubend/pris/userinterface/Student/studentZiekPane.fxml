@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../stylesheet-pris.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
     <children>
-        <Label fx:id="labelId" prefHeight="54.0" prefWidth="600.0" text="Dag afmelden">
+        <Label prefHeight="54.0" prefWidth="294.0" text="Dag afmelden">
             <font>
                 <Font name="Roboto" size="36.0" />
             </font>

@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import nl.rubend.pris.model.*;
 import nl.rubend.pris.Utils;
+import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import org.controlsfx.control.ToggleSwitch;
 
