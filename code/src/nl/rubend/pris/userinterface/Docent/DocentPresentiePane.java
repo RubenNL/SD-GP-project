@@ -15,9 +15,12 @@ import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -62,9 +65,19 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 			});
 		}
 	}
-
+	private String encodeValue(String value) {
+		try {
+			return new URI(null, null, value, null).getRawPath();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	private void sendMail(String adres, String subject,String body) {
+		getHostServices().showDocument("mailto:"+adres+"?subject="+encodeValue(subject)+"&body="+encodeValue(body));
+	}
 	public void contactOpnemen(ActionEvent actionEvent) {
-		getHostServices().showDocument("mailto:john@example.com?subject=Hello%20World");
+		sendMail("john@example.com","Hello World","This is the body");
 	}
 
 	@Override
