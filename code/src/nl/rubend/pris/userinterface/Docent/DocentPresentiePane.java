@@ -1,5 +1,6 @@
 package nl.rubend.pris.userinterface.Docent;
 
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
@@ -19,7 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DocentPresentiePane implements IngelogdGebruiker {
+public class DocentPresentiePane extends Application implements IngelogdGebruiker  {
 	@FXML GridPane table;
 	@FXML DatePicker dateBox;
 	@FXML ComboBox lesBox;;
@@ -61,14 +63,13 @@ public class DocentPresentiePane implements IngelogdGebruiker {
 		}
 	}
 
-	public void contactOpnemen(ActionEvent actionEvent) throws URISyntaxException, IOException {Desktop desktop;
-		if (Desktop.isDesktopSupported()
-				&& (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
-			URI mailto = new URI("mailto:john@example.com?subject=Hello%20World");
-			desktop.mail(mailto);
-		} else {
-			throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
-		}
+	public void contactOpnemen(ActionEvent actionEvent) {
+		getHostServices().showDocument("mailto:john@example.com?subject=Hello%20World");
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+
 	}
 }
 
