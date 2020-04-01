@@ -22,6 +22,24 @@ public class Aanwezigheid implements Serializable {
 	}
 	private Les les;
 	private Gebruiker gebruiker;
+
+
+
+
+
+	private String afwezigheidReden;
+
+	public String getAfwezigheidReden() {
+		return afwezigheidReden;
+	}
+
+	public void setAfwezigheidReden(String afwezigheidReden) {
+		this.afwezigheidReden = afwezigheidReden;
+	}
+
+
+
+
 	public Aanwezigheid(Les les) {
 		this.les=les;
 	}
