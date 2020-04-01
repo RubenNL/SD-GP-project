@@ -69,7 +69,7 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 				uitzetLangdurigAfwezig();
 				melding("Uitzetten gelukt!", 2);
 				controlleCheckBox.setSelected(false);
-				controlleCheckBox.setDisable(true);
+				controlleCheckBox.setDisable(false);
 			}
 		} else {
 			melding("Afmelding niet gelukt!", 1);
@@ -109,6 +109,7 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 			if (anw.getLes().getDatum().compareTo(LocalDate.now()) >= 0 && anw.getStatus()==Aanwezigheid.LANGDURIG) {
 				try {
 					anw.setStatus(student,Aanwezigheid.AANWEZIG);
+
 				} catch (NotFoundException e) {
 					e.printStackTrace();
 				}
