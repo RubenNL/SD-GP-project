@@ -1,6 +1,7 @@
 package nl.rubend.pris.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Student extends Gebruiker implements Serializable,RemovableAccount {
@@ -20,6 +21,11 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 	public ArrayList<Klas> getKlassen() {
 		return this.klassen;
+	}
+	public ArrayList<Les> getLessenOpDag(LocalDate dag) {
+		ArrayList<Les> response=new ArrayList<Les>();
+		for(Klas klas:klassen) response.addAll(klas.getLessenOpDag(dag));
+		return response;
 	}
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
 		this.aanwezigheid.add(aanwezigheid);

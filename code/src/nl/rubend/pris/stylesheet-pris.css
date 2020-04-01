@@ -10,6 +10,14 @@
     -fx-text-fill:#0099D3;
 }
 
+.green-text {
+    -fx-text-fill:#01b901;
+}
+
+.red-text {
+    -fx-text-fill:#e41e13;
+}
+
 .black-text {
     -fx-text-fill:#414141;
 }

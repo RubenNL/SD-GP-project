@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
@@ -63,7 +64,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 							errorMeldingLabel.setText("");
 							school.addGebruiker(newStudent);
 							klas.addStudent(newStudent);
-							toonGeregestreerdPopup("Student account geregestreerd!\n"
+							Utils.melding("Student account geregestreerd!\n"
 									+ "Naam: " + newStudent.getNaam() + "\n"
 									+ "Email: " + newStudent.getEmail() + "\n"
 									+ "Studentnummer: " + newStudent.getStudentNummer() + "\n"
@@ -80,7 +81,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 							school.addGebruiker(newDocent);
 							newDocent.setCursus(cursus);
 							errorMeldingLabel.setText("");
-							toonGeregestreerdPopup("Docent account geregestreerd!\n"
+							Utils.melding("Docent account geregestreerd!\n"
 									+ "Naam: " + newDocent.getNaam() + "\n"
 									+ "Email: " + newDocent.getEmail() + "\n"
 									+ "Studentnummer: " + newDocent.getDocentNummer() + "\n"
@@ -142,17 +143,4 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 		errorMeldingLabel.setTextFill(Color.RED);
 		errorMeldingLabel.setText(str);
 	}
-
-	private void toonGeregestreerdPopup(String tekstMessage) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setResizable(true);
-		alert.onShownProperty().addListener(e -> {
-			Platform.runLater(() -> alert.setResizable(false));
-		});
-		alert.setTitle("Nieuw Account!");
-		alert.setContentText(tekstMessage);
-		alert.showAndWait();
-	}
-
-
 }
