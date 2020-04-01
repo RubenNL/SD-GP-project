@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="466.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.AccountWeergevenPane">
+<AnchorPane prefHeight="466.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.AccountWeergevenPane">
     <children>
         <ComboBox fx:id="accountTypeComboBox" layoutX="14.0" layoutY="21.0" onAction="#handleComboBoxViewItemsInList" prefHeight="26.0" prefWidth="154.0" />
         <TableView fx:id="tableView" layoutX="5.0" layoutY="63.0" prefHeight="322.0" prefWidth="502.0">
@@ -19,5 +16,7 @@
         </TableView>
       <Button layoutX="103.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleNieuwWachtWoordOpstellen" text="Nieuw Wachtwoord" />
       <Button layoutX="308.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleAccountVerwijderen" text="Vewijder Account" />
+      <TextField fx:id="filterField" layoutX="329.0" layoutY="21.0" prefHeight="26.0" prefWidth="172.0" />
+      <Label layoutX="256.0" layoutY="26.0" text="Opzoeken" />
     </children>
 </AnchorPane>

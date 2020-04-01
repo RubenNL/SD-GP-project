@@ -2,14 +2,20 @@ package nl.rubend.pris.userinterface.Systeembeheerder;
 
 import com.sun.glass.events.GestureEvent;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nl.rubend.pris.Main;
 import nl.rubend.pris.model.*;
@@ -18,6 +24,7 @@ import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -25,7 +32,8 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	public ComboBox accountTypeComboBox;
 	@FXML
 	public TableView<OverzichtAccountDatamodel> tableView;
-	@FXML
+    public TextField filterField;
+    @FXML
 	TableColumn<OverzichtAccountDatamodel, String> typeCol;
 	@FXML
 	TableColumn<OverzichtAccountDatamodel, String> numCol;
@@ -39,7 +47,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	private School school = School.getSchool();
 	private ObservableList<OverzichtAccountDatamodel> dataList;
 	ArrayList<Gebruiker> gebruikers = school.getGebruikers();
-
+	private FilteredList<OverzichtAccountDatamodel> filteredData = new FilteredList<>(FXCollections.observableArrayList(),	p -> true);
 
 
 	@Override
@@ -69,6 +77,42 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
 		tableView.getItems().setAll(dataList);
 		tableView.getSelectionModel().setCellSelectionEnabled(true);
+
+
+
+		filterField.textProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					filteredData.setPredicate(t -> {
+
+						if (newValue == null || newValue.isEmpty()) {
+							return true;
+						}
+
+						String lowerCaseFilter = newValue.toLowerCase();
+						String objectvalues = t.getNaam()
+								+ t.getNummer();
+
+						if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
+							return true;
+						}
+
+						return false;
+					});
+				});
+
+		Refresh();
+	}
+
+	public void Refresh() {
+		try {
+//			List<OverzichtAccountDatamodel> list = loginData.getAll();
+			filteredData = new FilteredList<>(FXCollections.observableArrayList(dataList),	p -> true);
+			SortedList<OverzichtAccountDatamodel> sortedData = new SortedList<>(filteredData);
+			sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+			tableView.setItems(sortedData);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 
@@ -197,4 +241,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	}
+
+
+
 }
