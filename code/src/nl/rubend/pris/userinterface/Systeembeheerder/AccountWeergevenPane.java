@@ -115,40 +115,32 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void handleNieuwWachtWoordOpstellen(ActionEvent actionEvent) throws Exception {
-		try {
-			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
-			if (pos != null) {
-				int row = pos.getRow();
-				OverzichtAccountDatamodel item = tableView.getItems().get(row);
-				Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
-				nieuwWachtwoordMelding(gebruiker);
-			}
-		} catch (Exception e){
-			System.out.println(e.getMessage());
+		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+		if (pos != null) {
+			int row = pos.getRow();
+			OverzichtAccountDatamodel item = tableView.getItems().get(row);
+			Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+			nieuwWachtwoordMelding(gebruiker);
 		}
 
 	}
 
 
+
+
 	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
-		try {
+		if(Utils.yesNo("Wilt u zeker dit account verwijderen?")) {
 			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
 			if (pos != null) {
-				if (Utils.yesNo("Wilt u zeker dit account verwijderen?")) {
-					int row = pos.getRow();
-					OverzichtAccountDatamodel item = tableView.getItems().get(row);
-					RemovableAccount gebruiker = (RemovableAccount) school.getGebruikerByEmail(item.getEmail());
-					gebruiker.removeAccount();
-					gebruikers.remove(gebruiker);
-					tableView.getItems().remove(item);
-				}
+				int row = pos.getRow();
+				OverzichtAccountDatamodel item = tableView.getItems().get(row);
+				RemovableAccount gebruiker = (RemovableAccount) school.getGebruikerByEmail(item.getEmail());
+				gebruiker.removeAccount();
+				gebruikers.remove(gebruiker);
+				tableView.getItems().remove(item);
+				gebruiker = null;
 			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
 		}
-
-
-
 	}
 
 
