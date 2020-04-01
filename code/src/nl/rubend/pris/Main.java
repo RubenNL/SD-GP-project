@@ -20,6 +20,7 @@ public class Main extends Application {
 
 	private void serializeDemoData() throws Exception {
 		School school=School.getSchool();
+		school.addGebruiker(new Systeembeheerder("onmogelijk","joadsijfadsofnlasdfhahsdof","Systeem"));
 		school.addGebruiker(new Docent("martijn@hu.nl","martijn","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("eduward@student.hu.nl","eduward","Eduward", 4564));
 		school.addGebruiker(new Systeembeheerder("jos@hu.nl","jos","Jos"));

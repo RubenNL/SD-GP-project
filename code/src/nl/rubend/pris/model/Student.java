@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Student extends Gebruiker implements Serializable,RemovableAccount {
 	private int studentNummer;
+	private boolean langdurigAfwezig;
 	private ArrayList<Klas> klassen=new ArrayList<Klas>();
 	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<Aanwezigheid>();
 	public Student(String email, String wachtwoord, String naam, int sN) {
@@ -33,6 +34,15 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public ArrayList<Aanwezigheid> getAanwezigheidList() {
 		return aanwezigheid;
 	}
+
+	public boolean isLangdurigAfwezig() {
+		return langdurigAfwezig;
+	}
+
+	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
+		this.langdurigAfwezig = langdurigAfwezig;
+	}
+
 	public Aanwezigheid getAanwezigheidBijLes(Les les) {
 		for(Aanwezigheid aanwezigheid:this.aanwezigheid) {
 			if(aanwezigheid.getLes().equals(les)) return aanwezigheid;
