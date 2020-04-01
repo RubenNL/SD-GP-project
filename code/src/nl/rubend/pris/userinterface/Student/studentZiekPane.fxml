@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../stylesheet-pris.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="533.0" stylesheets="@../../stylesheet-pris.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
     <children>
         <Label prefHeight="54.0" prefWidth="294.0" text="Dag afmelden">
             <font>
@@ -32,12 +32,12 @@
             <String fx:value="black-text" />
          </styleClass>
       </Label>
-      <DatePicker fx:id="datePickerStudent" layoutX="3.0" layoutY="166.0" onAction="#valiDate" />
-      <ToggleSwitch layoutX="211.0" layoutY="170.0" />
-      <Label layoutX="293.0" layoutY="171.0" prefHeight="18.0" prefWidth="66.0" text="Afwezig" />
-      <Label fx:id="labelId" layoutX="402.0" layoutY="27.0" prefHeight="42.0" prefWidth="164.0" text="Label-ID" textAlignment="CENTER">
-         <font>
-            <Font size="27.0" />
-         </font></Label>
+      <DatePicker fx:id="datePickerStudent" layoutX="3.0" layoutY="166.0" />
+      <ToggleSwitch fx:id="dagToggle" layoutX="209.0" layoutY="170.0" onMouseClicked="#toggleAfwezig" />
+      <Label fx:id="toggleLabel" layoutX="270.0" layoutY="171.0" prefHeight="18.0" prefWidth="66.0" text="Afwezig" />
+      <Label fx:id="datumMessage" layoutX="5.0" layoutY="204.0" prefHeight="18.0" prefWidth="274.0" />
+      <Button fx:id="cancelZiekButton" layoutX="328.0" layoutY="423.0" mnemonicParsing="false" onAction="#resetAllFields" prefHeight="26.0" prefWidth="91.0" styleClass="cancel-button" text="Annuleren" />
+      <Button fx:id="ziekAfmeldenButton" layoutX="431.0" layoutY="423.0" mnemonicParsing="false" onAction="#meldAf" prefHeight="26.0" prefWidth="91.0" styleClass="confirm-button" text="Afmelden" />
+      <Label fx:id="ziekMessage" alignment="CENTER_RIGHT" layoutX="247.0" layoutY="394.0" prefHeight="18.0" prefWidth="274.0" />
     </children>
 </AnchorPane>

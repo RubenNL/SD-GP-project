@@ -2,19 +2,16 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentLesPane">
-        <children>
-            <Label prefHeight="54.0" prefWidth="403.0" text="Les afmelden">
-                <font>
-                    <Font size="36.0" />
-                </font>
-            </Label>
-      <Label fx:id="labelId" layoutX="414.0" layoutY="10.0" prefHeight="54.0" prefWidth="161.0" text="Label-ID" textAlignment="CENTER">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-        </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentLesPane">
+    <children>
+        <DatePicker fx:id="dateBox" layoutX="31.0" layoutY="115.0" onAction="#dateSelect"/>
+        <VBox fx:id="lessenMenu" layoutX="294.0" layoutY="66.0" prefHeight="200.0" prefWidth="288.0"/>
+    </children>
 </AnchorPane>

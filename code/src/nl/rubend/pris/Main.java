@@ -7,12 +7,15 @@ import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
+		Locale.setDefault(new Locale("nl", "NL"));
 	}
 
 	private void serializeDemoData() throws Exception {
@@ -25,10 +28,11 @@ public class Main extends Application {
 		school.addCursus(new Cursus("TCIF-V1GP-19_2019","SD-GroupProject"));
 		school.getKlasByName("TICT-SD-V1E").addCursus(school.getCursusByCode("TCIF-V1GP-19_2019"));
 		school.getKlasByName("TICT-SD-V1E").addStudent((Student)school.getGebruikerByEmail("s"));
-		Les les=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203");
+		Les les=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les.addDocent((Docent) school.getGebruikerByEmail("d"));
-		Les les2=new Les(LocalTime.of(12,30),LocalTime.of(15,30), LocalDate.of(2020,4,3),"HL15-1.203");
+		((Student)school.getGebruikerByEmail("s")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("d"),Aanwezigheid.AFWEZIG,les));
+		Les les2=new Les(LocalTime.of(12,30),LocalTime.of(15,30), LocalDate.of(2020,4,3),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les2.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les2.addDocent((Docent) school.getGebruikerByEmail("d"));
 		School.serialize();
@@ -39,7 +43,6 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		stage.setTitle("PRIS Inloggen");
 		stage.setScene(scene);
-		stage.setResizable(false);
 		stage.show();
 	}
 	@Override
