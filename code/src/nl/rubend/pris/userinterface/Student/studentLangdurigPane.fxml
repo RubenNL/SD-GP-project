@@ -28,7 +28,7 @@
       <Label fx:id="uitslagLabel" layoutX="362.0" layoutY="346.0" prefHeight="26.0" prefWidth="244.0" textAlignment="CENTER" />
       <Button fx:id="buttonBevestiging" layoutX="523.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleBevestigen" prefHeight="33.0" prefWidth="91.0" text="Bevestigen" />
       <Button fx:id="buttonAnnuleren" layoutX="409.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleAnnuleren" prefHeight="33.0" prefWidth="91.0" text="Annuleren" />
-      <Label fx:id="labelId" layoutX="454.0" layoutY="24.0" prefHeight="34.0" prefWidth="115.0" text="label-ID" textAlignment="CENTER">
+      <Label fx:id="labelId" layoutX="435.0" layoutY="24.0" prefHeight="34.0" prefWidth="193.0" text="label-ID" textAlignment="CENTER">
          <font>
             <Font size="27.0" />
          </font>

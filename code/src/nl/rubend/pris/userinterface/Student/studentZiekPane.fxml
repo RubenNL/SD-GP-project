@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.ToggleSwitch?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../stylesheet-pris.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../stylesheet-pris.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Student.StudentZiekPane">
     <children>
-        <Label fx:id="labelId" prefHeight="54.0" prefWidth="600.0" text="Dag afmelden">
+        <Label prefHeight="54.0" prefWidth="294.0" text="Dag afmelden">
             <font>
                 <Font name="Roboto" size="36.0" />
             </font>
@@ -36,5 +35,9 @@
       <DatePicker fx:id="datePickerStudent" layoutX="3.0" layoutY="166.0" onAction="#valiDate" />
       <ToggleSwitch layoutX="211.0" layoutY="170.0" />
       <Label layoutX="293.0" layoutY="171.0" prefHeight="18.0" prefWidth="66.0" text="Afwezig" />
+      <Label fx:id="labelId" layoutX="402.0" layoutY="27.0" prefHeight="42.0" prefWidth="164.0" text="Label-ID" textAlignment="CENTER">
+         <font>
+            <Font size="27.0" />
+         </font></Label>
     </children>
 </AnchorPane>
