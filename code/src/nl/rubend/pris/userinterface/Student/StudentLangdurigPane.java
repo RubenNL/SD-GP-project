@@ -29,14 +29,11 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 	@FXML
 	private ToggleSwitch toggleLDAfwezig;
 
-
-
 	private ArrayList<Aanwezigheid> aanweziheidPerLes;
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		this.student=(Student) gebruiker;
-		labelId.setText(student.getNaam());
 		start();
 	}
 
@@ -76,7 +73,6 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 
 	}
 
-
 	public void zetLangdurigAfwezig() {
 		aanweziheidPerLes = student.getAanwezigheidList();
 		student.setLangdurigAfwezig(true);
@@ -91,7 +87,6 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 			}
 		}
 	}
-
 
 	public void uitzetLangdurigAfwezig() {
 		aanweziheidPerLes = student.getAanwezigheidList();
