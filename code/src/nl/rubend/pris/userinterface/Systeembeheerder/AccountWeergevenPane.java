@@ -53,10 +53,11 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 		ArrayList<String> keuze = new ArrayList<>();
 		keuze.add("Alle Gebruikers");
-		keuze.add("Studenten");
-		keuze.add("Docenten");
+		for(Class gebruikerClass:Gebruiker.gebruikerTypes) {
+			keuze.add(gebruikerClass.getSimpleName());
+		}
 		accountTypeComboBox.setItems(FXCollections.observableArrayList(keuze));
-		accountTypeComboBox.setVisibleRowCount(3);
+		accountTypeComboBox.setVisibleRowCount(keuze.size());
 		accountTypeComboBox.setValue("Alle Gebruikers");
 
 
