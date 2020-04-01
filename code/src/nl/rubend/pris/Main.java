@@ -20,10 +20,10 @@ public class Main extends Application {
 
 	private void serializeDemoData() throws Exception {
 		School school=School.getSchool();
+		school.addGebruiker(new Systeembeheerder("onmogelijk","joadsijfadsofnlasdfhahsdof","Systeem"));
 		school.addGebruiker(new Docent("martijn@hu.nl","martijn","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("eduward@student.hu.nl","eduward","Eduward", 4564));
 		school.addGebruiker(new Systeembeheerder("jos@hu.nl","jos","Jos"));
-		school.addGebruiker(new Systeembeheerder("onmogelijk","joadsijfadsofnlasdfhahsdof","Systeem"));
 		school.addKlas(new Klas("TICT-SD-V1E"));
 		school.addCursus(new Cursus("TCIF-V1GP-19_2019","SD-GroupProject"));
 		school.getKlasByName("TICT-SD-V1E").addCursus(school.getCursusByCode("TCIF-V1GP-19_2019"));
