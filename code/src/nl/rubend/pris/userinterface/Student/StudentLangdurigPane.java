@@ -10,6 +10,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Color;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
+import org.controlsfx.control.ToggleSwitch;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -18,12 +19,16 @@ import java.util.ResourceBundle;
 
 public class StudentLangdurigPane implements IngelogdGebruiker {
 	public CheckBox controlleCheckBox;
-	public ToggleButton toggleLDAfwezig;
+//	public ToggleButton toggleLDAfwezig;
 	public Label uitslagLabel;
 	public Button buttonBevestiging;
 	public Button buttonAnnuleren;
 	private Student student;
 	@FXML private Label labelId;
+
+	@FXML
+	private ToggleSwitch toggleLDAfwezig;
+
 
 
 	private ArrayList<Aanwezigheid> aanweziheidPerLes;
