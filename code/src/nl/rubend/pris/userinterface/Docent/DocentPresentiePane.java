@@ -1,13 +1,20 @@
 package nl.rubend.pris.userinterface.Docent;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -53,5 +60,16 @@ public class DocentPresentiePane implements IngelogdGebruiker {
 			});
 		}
 	}
+
+	public void contactOpnemen(ActionEvent actionEvent) throws URISyntaxException, IOException {Desktop desktop;
+		if (Desktop.isDesktopSupported()
+				&& (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+			URI mailto = new URI("mailto:john@example.com?subject=Hello%20World");
+			desktop.mail(mailto);
+		} else {
+			throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
+		}
+	}
 }
+
 
