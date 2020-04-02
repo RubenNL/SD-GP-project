@@ -9,6 +9,7 @@ import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -40,7 +41,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 	}
 
 	@FXML
-	void maakAccountAan(ActionEvent event) throws Exception {
+	void maakAccountAan(ActionEvent event) throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException, NotFoundException {
 		if (accountTypeComboBox.getValue().equals("")) {
 			melding("geen accounttype geselecteerd!");
 			return;
