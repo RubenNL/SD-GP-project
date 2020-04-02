@@ -1,18 +1,30 @@
 package nl.rubend.pris.userinterface.Docent;
 
+import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DocentPresentiePane implements IngelogdGebruiker {
+public class DocentPresentiePane extends Application implements IngelogdGebruiker  {
 	@FXML GridPane table;
 	@FXML DatePicker dateBox;
 	@FXML ComboBox lesBox;;
@@ -59,5 +71,25 @@ public class DocentPresentiePane implements IngelogdGebruiker {
 			});
 		}
 	}
+	private String encodeValue(String value) {
+		try {
+			return new URI(null, null, value, null).getRawPath();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	private void sendMail(String adres, String subject,String body) {
+		getHostServices().showDocument("mailto:"+adres+"?subject="+encodeValue(subject)+"&body="+encodeValue(body));
+	}
+	public void contactOpnemen(ActionEvent actionEvent) {
+		sendMail("john@example.com","Hello World","This is the body");
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+
+	}
 }
+
 
