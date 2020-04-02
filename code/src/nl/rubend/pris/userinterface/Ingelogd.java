@@ -22,6 +22,7 @@ import nl.rubend.pris.model.Gebruiker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Ingelogd implements Initializable,IngelogdGebruiker {
@@ -77,6 +78,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		Locale.setDefault(new Locale("nl", "NL"));
 		allPanes.add(welkomPane);
 	}
 

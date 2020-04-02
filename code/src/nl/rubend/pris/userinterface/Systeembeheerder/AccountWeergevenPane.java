@@ -1,21 +1,18 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
-import com.sun.glass.events.GestureEvent;
-import javafx.application.Platform;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import nl.rubend.pris.Main;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.Utils;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -25,7 +22,8 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	public ComboBox accountTypeComboBox;
 	@FXML
 	public TableView<OverzichtAccountDatamodel> tableView;
-	@FXML
+    public TextField filterField;
+    @FXML
 	TableColumn<OverzichtAccountDatamodel, String> typeCol;
 	@FXML
 	TableColumn<OverzichtAccountDatamodel, String> numCol;
@@ -39,7 +37,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	private School school = School.getSchool();
 	private ObservableList<OverzichtAccountDatamodel> dataList;
 	ArrayList<Gebruiker> gebruikers = school.getGebruikers();
-
+	private FilteredList<OverzichtAccountDatamodel> filteredData = new FilteredList<>(FXCollections.observableArrayList(),	p -> true);
 
 
 	@Override
@@ -69,6 +67,39 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
 		tableView.getItems().setAll(dataList);
 		tableView.getSelectionModel().setCellSelectionEnabled(true);
+
+
+
+		filterField.textProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					filteredData.setPredicate(t -> {
+
+						if (newValue == null || newValue.isEmpty()) {
+							return true;
+						}
+						String lowerCaseFilter = newValue.toLowerCase();
+						String objectvalues = t.getNaam()
+								+ t.getNummer();
+
+						if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
+							return true;
+						}
+						return false;
+					});
+				});
+
+		Refresh();
+	}
+
+	public void Refresh() {
+		try {
+			filteredData = new FilteredList<>(FXCollections.observableArrayList(dataList),	p -> true);
+			SortedList<OverzichtAccountDatamodel> sortedData = new SortedList<>(filteredData);
+			sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+			tableView.setItems(sortedData);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 
@@ -84,34 +115,38 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void handleNieuwWachtWoordOpstellen(ActionEvent actionEvent) throws Exception {
-		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
-		if (pos != null) {
-			int row = pos.getRow();
-			OverzichtAccountDatamodel item = tableView.getItems().get(row);
-			Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
-			nieuwWachtwoordMelding(gebruiker);
-		}
-
-	}
-
-
-
-
-	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
-		if(Utils.yesNo("Wilt u zeker dit account verwijderen?")) {
+		try {
 			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
 			if (pos != null) {
 				int row = pos.getRow();
 				OverzichtAccountDatamodel item = tableView.getItems().get(row);
-				RemovableAccount gebruiker = (RemovableAccount) school.getGebruikerByEmail(item.getEmail());
-				gebruiker.removeAccount();
-				gebruikers.remove(gebruiker);
-				tableView.getItems().remove(item);
-				gebruiker = null;
+				Gebruiker gebruiker = school.getGebruikerByEmail(item.getEmail());
+				nieuwWachtwoordMelding(gebruiker);
 			}
+		} catch (Exception e){
+			System.out.println(e.getMessage());
 		}
+
 	}
 
+
+	public void handleAccountVerwijderen(ActionEvent actionEvent) throws Exception {
+		try {
+			TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+			if (pos != null) {
+				if (Utils.yesNo("Wilt u zeker dit account verwijderen?")) {
+					int row = pos.getRow();
+					OverzichtAccountDatamodel item = tableView.getItems().get(row);
+					RemovableAccount gebruiker = (RemovableAccount) school.getGebruikerByEmail(item.getEmail());
+					gebruiker.removeAccount();
+					gebruikers.remove(gebruiker);
+					tableView.getItems().remove(item);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	public OverzichtAccountDatamodel fillDataListStudenten(Gebruiker gebruiker) {
 		if (gebruiker instanceof Student) {
@@ -197,4 +232,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	}
+
+
+
 }

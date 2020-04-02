@@ -15,16 +15,20 @@ public class Les implements Serializable {
 	private String lokaal;
 	private ArrayList<Klas> klassen = new ArrayList<Klas>();
 	private ArrayList<Docent> docenten = new ArrayList<Docent>();
-
-	public Les(LocalTime bTijd, LocalTime eTijd, LocalDate dtm, String lokaalk) {
+	private Cursus cursus;
+	public Les(LocalTime bTijd, LocalTime eTijd, LocalDate dtm, String lokaalk, Cursus cursus) {
 		this.beginTijd = bTijd;
 		this.eindTijd = eTijd;
 		this.datum = dtm;
 		this.lokaal = lokaalk;
+		this.cursus=cursus;
 	}
 	public void addKlas(Klas klas) {
 		klassen.add(klas);
 		klas.addLes(this);
+	}
+	public Cursus getCursus() {
+		return this.cursus;
 	}
 	public void addDocent(Docent docent) {
 		docenten.add(docent);
