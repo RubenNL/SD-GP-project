@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.AccountAanmakenPane">
     <children>
@@ -35,6 +36,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="Naam" textAlignment="CENTER" />
@@ -46,7 +48,9 @@
                 <Label fx:id="nummberLabel" text="nummer" textAlignment="CENTER" GridPane.rowIndex="3" />
                 <Spinner fx:id="nieuwAccountNummer" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Label fx:id="hoortBijLabel" text="" textAlignment="CENTER" GridPane.rowIndex="4" />
-                <ComboBox fx:id="comboBoxGroep" prefHeight="26.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <SearchableComboBox fx:id="comboBoxGroep" prefHeight="26.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label fx:id="slbLabel" text="SLBer" GridPane.rowIndex="5" />
+                <SearchableComboBox fx:id="slber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
         </GridPane>
       <Label fx:id="errorMeldingLabel" layoutX="190.0" layoutY="79.0" />

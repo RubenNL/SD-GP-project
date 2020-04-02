@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -22,9 +23,11 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 	@FXML private TextField nieuwAccountWachtwoord;
 	@FXML private Spinner nieuwAccountNummer;
 	@FXML private ComboBox<String> accountTypeComboBox;
-	@FXML private ComboBox<String> comboBoxGroep;
+	@FXML private SearchableComboBox<String> comboBoxGroep;
 	@FXML private Label nummberLabel;
 	@FXML private Label hoortBijLabel;
+	@FXML private SearchableComboBox<String> slber;
+	@FXML private Label slbLabel;
 
 	private School school=School.getSchool();
 	private ArrayList<Klas> klassen = school.getKlassen();
@@ -57,9 +60,18 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 			else {
 				int nummer = (Integer) nieuwAccountNummer.getValue();
 				if (nummer != 0 && !groep.equals("")) {
-					gebruiker = gebruikerType.getDeclaredConstructor(String.class,String.class,String.class,int.class).newInstance(email, wachtwoord, naam, nummer);
-					if (gebruikerType.equals(Student.class)) ((Student) gebruiker).addKlas(school.getKlasByName(groep));
-					else if (gebruikerType.equals(Docent.class)) ((Docent) gebruiker).setCursus(school.getCursusByCode(groep));
+
+					if (gebruikerType.equals(Student.class) && !slber.getValue().equals("")) {
+						Docent slberClass= (Docent) school.getGebruikerByEmail(slber.getValue());
+						gebruiker = gebruikerType.getDeclaredConstructor(String.class,String.class,String.class,int.class,Docent.class).newInstance(email, wachtwoord, naam, nummer,slberClass);
+						((Student) gebruiker).addKlas(school.getKlasByName(groep));
+					} else if (gebruikerType.equals(Docent.class)) {
+						gebruiker = gebruikerType.getDeclaredConstructor(String.class,String.class,String.class,int.class).newInstance(email, wachtwoord, naam, nummer);
+						((Docent) gebruiker).setCursus(school.getCursusByCode(groep));
+					} else {
+						melding("Niet alle gegevens ingevoerd.");
+						return;
+					}
 				} else {
 					melding("Niet alle gegevens ingevoerd.");
 					return;
@@ -88,10 +100,16 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 		hoortBijLabel.setVisible(true);
 		nieuwAccountNummer.setVisible(true);
 		comboBoxGroep.setVisible(true);
+		slbLabel.setVisible(false);
+		slber.setVisible(false);
 		if(gebruikersType.equals("Student")) {
 			nummberLabel.setText("Studentnummer");
 			hoortBijLabel.setText("Klas");
+			slbLabel.setVisible(true);
+			slber.setVisible(true);
 			for(Klas klas:school.getKlassen()) comboBoxGroep.getItems().add(klas.getKlasNaam());
+			slber.getItems().removeAll(slber.getItems());
+			for(Gebruiker gebruiker:school.getGebruikers()) if(gebruiker instanceof Docent) slber.getItems().add(gebruiker.getEmail());
 		} else if (gebruikersType.equals("Docent")) {
 			nummberLabel.setText("Docentnummer");
 			hoortBijLabel.setText("Cursus Code");
