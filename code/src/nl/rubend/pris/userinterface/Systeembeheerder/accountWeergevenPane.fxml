@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.AccountWeergevenPane">
     <children>
-        <ComboBox fx:id="accountTypeComboBox" layoutX="14.0" layoutY="21.0" onAction="#handleComboBoxViewItemsInList" prefHeight="26.0" prefWidth="154.0" />
+        <ComboBox fx:id="accountTypeComboBox" layoutX="14.0" layoutY="21.0" onAction="#updateTable" prefHeight="26.0" prefWidth="154.0" />
         <TableView fx:id="tableView" layoutX="5.0" layoutY="63.0" prefHeight="285.0" prefWidth="594.0">
             <columns>
             <TableColumn fx:id="typeCol" prefWidth="121.0" text="Type" />
@@ -21,7 +21,7 @@
         </TableView>
       <Button layoutX="99.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleNieuwWachtWoordOpstellen" text="Nieuw Wachtwoord" />
       <Button layoutX="287.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleAccountVerwijderen" text="Verwijder account" />
-      <TextField fx:id="filterField" layoutX="329.0" layoutY="21.0" prefHeight="26.0" prefWidth="172.0" />
+      <TextField fx:id="filterField" layoutX="329.0" layoutY="21.0" onAction="#updateTable" prefHeight="26.0" prefWidth="172.0" />
       <Label layoutX="256.0" layoutY="26.0" text="Opzoeken" />
     </children>
 </AnchorPane>
