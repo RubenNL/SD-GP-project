@@ -41,7 +41,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 	}
 
 	@FXML
-	void maakAccountAan(ActionEvent event) throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException, NotFoundException {
+	void maakAccountAan(ActionEvent event) throws NotFoundException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 		if (accountTypeComboBox.getValue().equals("")) {
 			melding("geen accounttype geselecteerd!");
 			return;
