@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Objects;
 
@@ -15,6 +16,11 @@ public class Gebruiker implements Serializable {
 	private String saltString;
 	private String hashedPassword;
 	private static SecureRandom random = new SecureRandom();
+	public final static ArrayList<Class> gebruikerTypes=new ArrayList<Class>() {{
+		add(Student.class);
+		add(Docent.class);
+		add(Systeembeheerder.class);
+	}};
 	public Gebruiker(String email, String wachtwoord, String naam) {
 		setEmail(email);
 		setWachtwoord(wachtwoord);
