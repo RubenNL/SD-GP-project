@@ -19,7 +19,7 @@ public class Main extends Application {
 		Locale.setDefault(new Locale("nl", "NL"));
 	}
 
-	private void serializeDemoData() throws Exception {
+	private void serializeDemoData() throws NotFoundException {
 		School school=School.getSchool();
 		school.addGebruiker(new Systeembeheerder("onmogelijk","joadsijfadsofnlasdfhahsdof","Systeem"));
 		school.addGebruiker(new Docent("martijn@hu.nl","martijn","Martijn Jansen", 1234));
