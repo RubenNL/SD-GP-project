@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -41,11 +42,11 @@
                 <Label text="E-mail " textAlignment="CENTER" GridPane.rowIndex="1" />
                 <TextField fx:id="nieuwAccountEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label text="Wachtwoord" textAlignment="CENTER" GridPane.rowIndex="2" />
-            <PasswordField fx:id="nieuwAccountWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <PasswordField fx:id="nieuwAccountWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label fx:id="nummberLabel" text="nummer" textAlignment="CENTER" GridPane.rowIndex="3" />
-                <TextField fx:id="nieuwAccountNummer" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <ComboBox fx:id="comboBoxGroep" disable="true" prefHeight="26.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Spinner fx:id="nieuwAccountNummer" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Label fx:id="hoortBijLabel" text="" textAlignment="CENTER" GridPane.rowIndex="4" />
+                <ComboBox fx:id="comboBoxGroep" prefHeight="26.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
       <Label fx:id="errorMeldingLabel" layoutX="190.0" layoutY="79.0" />
