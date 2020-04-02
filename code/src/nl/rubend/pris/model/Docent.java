@@ -9,30 +9,25 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	private int docentNummer;
 	private Cursus cursus;
 	private ArrayList<Les> lessen = new ArrayList<>();
-	private ArrayList<Aanwezigheid> aanwezigheidsmeldingen = new ArrayList<Aanwezigheid>();
+	private ArrayList<Aanwezigheid> aanwezigheidsmeldingen = new ArrayList<>();
 
 	public Docent (String email, String wachtwoord, String naam, int dN) {
 		super(email, wachtwoord, naam);
 		this.docentNummer = dN;
 	}
 
+	// Getters
+
 	public int getDocentNummer() {
 		return docentNummer;
 	}
-	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		this.aanwezigheidsmeldingen.add(aanwezigheid);
-	}
-	public void removeAanwezigheid(Aanwezigheid aanwezigheid) {
-		this.aanwezigheidsmeldingen.remove(aanwezigheid);
-	}
-	public void addLes(Les les) { this.lessen.add(les); }
+
+	public Cursus getCursus() { return this.cursus; }
+
 	public ArrayList<Les> getLessen() {
 		return lessen;
 	}
 
-	public void setCursus(Cursus cursus) {this.cursus = cursus;}
-
-	public Cursus getCursus() {return this.cursus;}
 	public ArrayList<Les> getLessenByDag(LocalDate date) {
 		ArrayList<Les> response=new ArrayList<Les>();
 		for(Les les:getLessen()) {
@@ -41,6 +36,34 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		return response;
 	}
 
+
+	// Adders en Setters
+	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
+		this.aanwezigheidsmeldingen.add(aanwezigheid);
+	}
+	public void removeAanwezigheid(Aanwezigheid aanwezigheid) {
+		this.aanwezigheidsmeldingen.remove(aanwezigheid);
+	}
+	public void addLes(Les les) { this.lessen.add(les); }
+	public void setCursus(Cursus cursus) {this.cursus = cursus;}
+	public void removeLes(Les les) {
+		this.lessen.remove(les);
+	}
+
+
+	@Override
+	public void removeAccount() {
+		for(Les les:this.lessen) {
+			les.removeDocent(this);
+		}
+		for(Aanwezigheid aanwezigheid:this.aanwezigheidsmeldingen) {
+			aanwezigheid.removeGebruiker(false);
+		}
+		aanwezigheidsmeldingen.removeAll(aanwezigheidsmeldingen);
+		lessen.removeAll(lessen);
+	}
+
+	// Equals
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -58,19 +81,5 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	}
 
 
-	@Override
-	public void removeAccount() {
-		for(Les les:this.lessen) {
-			les.removeDocent(this);
-		}
-		for(Aanwezigheid aanwezigheid:this.aanwezigheidsmeldingen) {
-			aanwezigheid.removeGebruiker(false);
-		}
-		aanwezigheidsmeldingen.removeAll(aanwezigheidsmeldingen);
-		lessen.removeAll(lessen);
-	}
-	public void removeLes(Les les) {
-		this.lessen.remove(les);
-	}
 }
 
