@@ -8,14 +8,12 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class LanguageFilter {
-
+//  Een main functie | Staat om de klasse te kunnen testen
 //	public static void main(String[] arg) throws IOException {
 //		System.out.println(isGeschikt(""));
 //	}
 
-
 	private static String bronbestand = "scheldwoorden.txt";
-
 
 	private static ArrayList setScheldwoorden() throws IOException {
 		ArrayList<String> scheldwoorden = new ArrayList<>();

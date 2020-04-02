@@ -7,19 +7,23 @@ import java.util.ArrayList;
 public class Student extends Gebruiker implements Serializable,RemovableAccount {
 	private int studentNummer;
 	private boolean langdurigAfwezig;
-	private ArrayList<Klas> klassen=new ArrayList<Klas>();
-	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<Aanwezigheid>();
+	private ArrayList<Klas> klassen=new ArrayList<>();
+	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<>();
+
 	public Student(String email, String wachtwoord, String naam, int sN) {
 		super(email, wachtwoord, naam);
 		this.studentNummer = sN;
 	}
 
+	// Getters
 	public int getStudentNummer() {
 		return studentNummer;
 	}
-	public void addKlas(Klas klas) {
-		this.klassen.add(klas);
+
+	public ArrayList<Aanwezigheid> getAanwezigheidList() {
+		return aanwezigheid;
 	}
+
 	public ArrayList<Klas> getKlassen() {
 		return this.klassen;
 	}
@@ -27,20 +31,6 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		ArrayList<Les> response=new ArrayList<Les>();
 		for(Klas klas:klassen) response.addAll(klas.getLessenOpDag(dag));
 		return response;
-	}
-	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		this.aanwezigheid.add(aanwezigheid);
-	}
-	public ArrayList<Aanwezigheid> getAanwezigheidList() {
-		return aanwezigheid;
-	}
-
-	public boolean isLangdurigAfwezig() {
-		return langdurigAfwezig;
-	}
-
-	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
-		this.langdurigAfwezig = langdurigAfwezig;
 	}
 
 	public Aanwezigheid getAanwezigheidBijLes(Les les) {
@@ -50,6 +40,22 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		Aanwezigheid aanwezigheid=new Aanwezigheid(les);
 		addAanwezigheid(aanwezigheid);
 		return aanwezigheid;
+	}
+
+	public boolean isLangdurigAfwezig() {
+		return langdurigAfwezig;
+	}
+
+
+	// Setters en Adders
+	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
+		this.langdurigAfwezig = langdurigAfwezig;
+	}
+	public void addKlas(Klas klas) {
+		this.klassen.add(klas);
+	}
+	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
+		this.aanwezigheid.add(aanwezigheid);
 	}
 	@Override
 	public void removeAccount() {
@@ -62,6 +68,8 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 			melding.removeLes();
 		}
 	}
+
+	//Equals
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
