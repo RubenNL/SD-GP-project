@@ -16,16 +16,23 @@ public class Gebruiker implements Serializable {
 	private String saltString;
 	private String hashedPassword;
 	private static SecureRandom random = new SecureRandom();
-	public final static ArrayList<Class> gebruikerTypes=new ArrayList<Class>() {{
+	public final static ArrayList<Class> gebruikerTypes=new ArrayList<>() {{
 		add(Student.class);
 		add(Docent.class);
 		add(Systeembeheerder.class);
 	}};
+
 	public Gebruiker(String email, String wachtwoord, String naam) {
 		setEmail(email);
 		setWachtwoord(wachtwoord);
 		this.naam=naam;
 	}
+
+	// Getters
+	public String getNaam() {return this.naam;}
+
+	public String getEmail() {return this.email;}
+
 	public static String hash(String password, String saltString) {
 		byte[] salt = Base64.getUrlDecoder().decode(saltString);
 		KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
@@ -39,6 +46,16 @@ public class Gebruiker implements Serializable {
 		}
 		return null;
 	}
+
+	public boolean checkWachtwoord(String wachtwoord) {
+		return hash(wachtwoord,this.saltString).equals(hashedPassword);
+	}
+
+
+	// Setters
+	public void setNaam(String naam) {this.naam=naam;}
+	public void setEmail(String email) {this.email=email;}
+
 	public void setWachtwoord(String password)  {
 		byte[] salt = new byte[16];
 		random.nextBytes(salt);
@@ -46,15 +63,10 @@ public class Gebruiker implements Serializable {
 		this.saltString=enc.encodeToString(salt);
 		this.hashedPassword=hash(password,this.saltString);
 	}
-	public String getNaam() {return this.naam;}
-	public boolean checkWachtwoord(String wachtwoord) {
-		return hash(wachtwoord,this.saltString).equals(hashedPassword);
-	}
-	public String getEmail() {return this.email;}
-	public void setNaam(String naam) {this.naam=naam;}
-	public void setEmail(String email) {this.email=email;}
 
 
+
+	// Equals
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
