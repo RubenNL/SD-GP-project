@@ -40,6 +40,5 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Button layoutX="472.0" layoutY="23.0" mnemonicParsing="false" onAction="#contactOpnemen" text="SLBr" />
    </children>
 </AnchorPane>
