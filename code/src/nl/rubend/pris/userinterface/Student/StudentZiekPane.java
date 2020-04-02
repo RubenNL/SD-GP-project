@@ -84,15 +84,18 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 			}
 			if(lesCheckList.contains(false)){
 				ziekMessage.setText("Afmelding niet gelukt");
+				ziekMessage.getStyleClass().clear();
 				ziekMessage.getStyleClass().add("red-text");
 			}
 			else{
 				ziekMessage.setText("Afmelding is gelukt");
+				ziekMessage.getStyleClass().clear();
 				ziekMessage.getStyleClass().add("green-text");
 			}
 		}
 		else{
 			ziekMessage.setText("Geen lessen gevonden op die dag");
+			ziekMessage.getStyleClass().clear();
 			ziekMessage.getStyleClass().add("black-text");
 		}
 	}

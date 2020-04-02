@@ -11,12 +11,12 @@ public class School implements Serializable {
 
 	private static School school=new School();
 
-
 	// Getters (returnen een object)
 	public ArrayList<Klas> getKlassen() { return this.klassen; }
 	public ArrayList<Gebruiker> getGebruikers() {
 		return gebruikers;
-	}
+  }
+
 	public ArrayList<Cursus> getCursussen() { return this.cursussen; }
 
 	public static School getSchool() {
