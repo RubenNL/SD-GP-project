@@ -82,7 +82,7 @@ public class Inloggen {
 		Ingelogd controller = fxmlLoader.<Ingelogd>getController();
 		controller.setGebruiker(gebruiker);
 		if(className.equals("Student")) {
-			controller.addButton("Ziek","Student/studentZiekPane.fxml");
+			controller.addButton("Dag","Student/studentZiekPane.fxml");
 			controller.addButton("Les","Student/studentLesPane.fxml");
 			controller.addButton("Langdurig","Student/studentLangdurigPane.fxml");
 		} else if(className.equals("Docent")) {

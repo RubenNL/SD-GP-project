@@ -72,7 +72,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 
 	@FXML
 	void handleUitloggen(ActionEvent event) throws IOException {
-		if(Utils.yesNo("Weet zeker dat u wilt uitloggen?")) Main.showInloggen((Stage) menuPane.getScene().getWindow());
+		if(Utils.yesNo("Weet u het zeker dat u wilt uitloggen?")) Main.showInloggen((Stage) menuPane.getScene().getWindow());
 	}
 
 

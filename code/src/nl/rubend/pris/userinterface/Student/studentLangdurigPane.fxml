@@ -26,7 +26,7 @@
       </Label>
       <Label fx:id="uitslagLabel" layoutX="530.0" layoutY="344.0" prefHeight="26.0" prefWidth="77.0" />
       <CheckBox fx:id="controlleCheckBox" layoutX="8.0" layoutY="230.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="544.0" styleClass="grey-text" text="Ik begrijp en aanvaard de mogelijke gevolgen van het langdurig afwezig zijn." wrapText="true" />
-      <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="61.0" prefHeight="54.0" prefWidth="379.0" text="Meld jezelf hier ziek of afwezig voor één dag. Gebruik de toggle knop om aan te geven of je ziek of afwezig bent." wrapText="true">
+      <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="61.0" prefHeight="54.0" prefWidth="379.0" text="Hieronder kun je jezelf langdurig afwezig melden. Gebruik de knop hieronder om jezelf ook weer aanwezig te melden. " wrapText="true">
          <styleClass>
             <String fx:value="body-text" />
             <String fx:value="grey-text" />
