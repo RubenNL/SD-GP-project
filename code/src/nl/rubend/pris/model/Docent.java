@@ -10,6 +10,7 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	private Cursus cursus;
 	private ArrayList<Les> lessen = new ArrayList<>();
 	private ArrayList<Aanwezigheid> aanwezigheidsmeldingen = new ArrayList<>();
+	private ArrayList<Student> slbStudenten=new ArrayList<>();
 
 	public Docent (String email, String wachtwoord, String naam, int dN) {
 		super(email, wachtwoord, naam);
@@ -49,17 +50,20 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	public void removeLes(Les les) {
 		this.lessen.remove(les);
 	}
-
+	public void removeSlbStudent(Student student) {
+		this.slbStudenten.remove(student);
+	}
+	public void addSlbStudent(Student student) {
+		this.slbStudenten.add(student);
+	}
 
 	@Override
 	public void removeAccount() {
-		for(Les les:this.lessen) {
-			les.removeDocent(this);
-		}
-		for(Aanwezigheid aanwezigheid:this.aanwezigheidsmeldingen) {
-			aanwezigheid.removeGebruiker(false);
-		}
+		for(Les les:this.lessen) les.removeDocent(this);
+		for(Aanwezigheid aanwezigheid:this.aanwezigheidsmeldingen) aanwezigheid.removeGebruiker(false);
+		for(Student student:slbStudenten) student.removeSlber();
 		aanwezigheidsmeldingen.removeAll(aanwezigheidsmeldingen);
+		slbStudenten.removeAll(slbStudenten);
 		lessen.removeAll(lessen);
 	}
 

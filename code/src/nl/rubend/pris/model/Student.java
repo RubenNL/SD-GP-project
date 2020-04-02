@@ -14,7 +14,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) {
 		super(email, wachtwoord, naam);
 		this.studentNummer = sN;
-		this.slber=slber;
+		setSlber(slber);
 	}
 
 	// Getters
@@ -51,6 +51,14 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public Docent getSlber() {
 		return this.slber;
 	}
+	public void removeSlber() {
+		this.slber=null;
+	}
+	public void setSlber(Docent slber) {
+		if(this.slber instanceof Docent) this.slber.removeSlbStudent(this);
+		this.slber=slber;
+		this.slber.addSlbStudent(this);
+	}
 
 	// Setters en Adders
 	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
@@ -72,6 +80,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 			melding.removeGebruiker(true);
 			melding.removeLes();
 		}
+		slber.removeSlbStudent(this);
 	}
 
 	//Equals

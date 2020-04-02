@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -47,20 +48,24 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 	@FXML void selectLes() {
 		les=lessen.get(lesBox.getItems().indexOf(lesBox.getValue()));
 		table.getChildren().removeAll(table.getChildren());
-		table.addRow(0,new Label("Naam student"),new Label("Aanwezig"),new Label("Laatst bewerkt door"));;
+		table.addRow(0,new Label("Naam student"),new Label("Aanwezig"),new Label("Laatst bewerkt door"));
 		for(Student student:les.getStudenten()) {
 			ComboBox<String> comboBox=new ComboBox<String>();
 			comboBox.getItems().addAll(Aanwezigheid.getOptions());
 			Aanwezigheid aanwezigheid=student.getAanwezigheidBijLes(les);
 			comboBox.setValue(aanwezigheid.getStatus());
 			Label changedBy=new Label();
+			Button slbButton=new Button("E-mail SLBer");
+			slbButton.setOnAction(actionEvent -> {
+				sendMail(student.getSlber().getEmail(),"Student "+student.getNaam()+" is veel afwezig","");
+			});
 			try {
 				changedBy.setText(aanwezigheid.getGebruiker().getNaam());
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Dit moet nog een betere melding worden");
 			}
-			table.addRow(table.getRowCount()+1,new Label(student.getNaam()),comboBox,changedBy);
+			table.addRow(table.getRowCount()+1,new Label(student.getNaam()),comboBox,changedBy,slbButton);
 			comboBox.setOnAction(actionEvent ->  {
 				try {
 					aanwezigheid.setStatus(docent,comboBox.getValue());

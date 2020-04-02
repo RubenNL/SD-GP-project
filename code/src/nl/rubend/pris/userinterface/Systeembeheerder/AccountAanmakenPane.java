@@ -23,7 +23,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 	@FXML private TextField nieuwAccountWachtwoord;
 	@FXML private Spinner nieuwAccountNummer;
 	@FXML private ComboBox<String> accountTypeComboBox;
-	@FXML private ComboBox<String> comboBoxGroep;
+	@FXML private SearchableComboBox<String> comboBoxGroep;
 	@FXML private Label nummberLabel;
 	@FXML private Label hoortBijLabel;
 	@FXML private SearchableComboBox<String> slber;

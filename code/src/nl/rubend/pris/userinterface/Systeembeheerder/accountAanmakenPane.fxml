@@ -48,9 +48,9 @@
                 <Label fx:id="nummberLabel" text="nummer" textAlignment="CENTER" GridPane.rowIndex="3" />
                 <Spinner fx:id="nieuwAccountNummer" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Label fx:id="hoortBijLabel" text="" textAlignment="CENTER" GridPane.rowIndex="4" />
-                <ComboBox fx:id="comboBoxGroep" prefHeight="26.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="slbLabel" text="SLBer" GridPane.rowIndex="5" />
-            <SearchableComboBox fx:id="slber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <SearchableComboBox fx:id="comboBoxGroep" prefHeight="26.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label fx:id="slbLabel" text="SLBer" GridPane.rowIndex="5" />
+                <SearchableComboBox fx:id="slber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
         </GridPane>
       <Label fx:id="errorMeldingLabel" layoutX="190.0" layoutY="79.0" />
