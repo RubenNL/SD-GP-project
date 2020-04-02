@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import nl.rubend.pris.model.Gebruiker;
@@ -95,6 +96,7 @@ public class Inloggen {
 		stage.setTitle("PRIS");
 		scene.getStylesheets().add("nl/rubend/pris/stylesheet-pris.css");
 		stage.setScene(scene);
+		stage.getIcons().add(new Image("file:icon.png"));
 		stage.show();
 		cancelButton(null);
 	}

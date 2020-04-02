@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import nl.rubend.pris.model.*;
 
@@ -46,10 +47,11 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		stage.setTitle("PRIS Inloggen");
 		stage.setScene(scene);
+		stage.getIcons().add(new Image("file:icon.png"));
 		stage.show();
 	}
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) throws IOException, ClassNotFoundException, NotFoundException {
 		try {
 			School.deserialize();
 		} catch (Exception e) {
