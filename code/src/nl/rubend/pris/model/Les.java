@@ -13,9 +13,10 @@ public class Les implements Serializable {
 	private LocalTime eindTijd;
 	private LocalDate datum;
 	private String lokaal;
-	private ArrayList<Klas> klassen = new ArrayList<Klas>();
-	private ArrayList<Docent> docenten = new ArrayList<Docent>();
 	private Cursus cursus;
+	private ArrayList<Klas> klassen = new ArrayList<>();
+	private ArrayList<Docent> docenten = new ArrayList<>();
+
 	public Les(LocalTime bTijd, LocalTime eTijd, LocalDate dtm, String lokaalk, Cursus cursus) {
 		this.beginTijd = bTijd;
 		this.eindTijd = eTijd;
@@ -23,20 +24,20 @@ public class Les implements Serializable {
 		this.lokaal = lokaalk;
 		this.cursus=cursus;
 	}
-	public void addKlas(Klas klas) {
-		klassen.add(klas);
-		klas.addLes(this);
+
+	// Getters
+	public LocalTime getBeginTijd() {
+		return beginTijd;
 	}
+	public LocalTime getEindTijd() {
+		return eindTijd;
+	}
+	public LocalDate getDatum() { return datum; }
 	public Cursus getCursus() {
 		return this.cursus;
 	}
-	public void addDocent(Docent docent) {
-		docenten.add(docent);
-		docent.addLes(this);
-	}
-	public void removeDocent(Docent docent) {
-		docenten.remove(docent);
-	}
+	public String getLokaal() { return lokaal; }
+
 	public ArrayList<Student> getStudenten() {
 		ArrayList<Student> response=new ArrayList<Student>();
 		for(Klas klas:klassen) {
@@ -44,6 +45,7 @@ public class Les implements Serializable {
 		}
 		return response;
 	}
+
 	public Map<Student,Aanwezigheid> getAanwezigheid() {
 		Map<Student,Aanwezigheid> response=new HashMap<Student,Aanwezigheid>();
 		for(Klas klas:klassen) {
@@ -51,27 +53,26 @@ public class Les implements Serializable {
 		}
 		return response;
 	}
-	public LocalDate getDatum() {
-		return datum;
-	}
 
-	public LocalTime getBeginTijd() {
-		return beginTijd;
-	}
 
-	public LocalTime getEindTijd() {
-		return eindTijd;
-	}
-
-	public String getLokaal() {
-		return lokaal;
-	}
-
+	// Adders en Setters
 	public void setLokaal(String lokaal) {
 		this.lokaal = lokaal;
 	}
+	public void addDocent(Docent docent) {
+		docenten.add(docent);
+		docent.addLes(this);
+	}
+	public void addKlas(Klas klas) {
+		klassen.add(klas);
+		klas.addLes(this);
+	}
+	public void removeDocent(Docent docent) {
+		docenten.remove(docent);
+	}
 
 
+	// Equals
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
