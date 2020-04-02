@@ -16,6 +16,10 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 
 	// Getters
+	public int getStudentNummer() {
+		return studentNummer;
+	}
+
 	public ArrayList<Aanwezigheid> getAanwezigheidList() {
 		return aanwezigheid;
 	}
@@ -28,7 +32,6 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		for(Klas klas:klassen) response.addAll(klas.getLessenOpDag(dag));
 		return response;
 	}
-
 
 	public Aanwezigheid getAanwezigheidBijLes(Les les) {
 		for(Aanwezigheid aanwezigheid:this.aanwezigheid) {
@@ -43,9 +46,6 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		return langdurigAfwezig;
 	}
 
-	public int getStudentNummer() {
-		return studentNummer;
-	}
 
 	// Setters en Adders
 	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
