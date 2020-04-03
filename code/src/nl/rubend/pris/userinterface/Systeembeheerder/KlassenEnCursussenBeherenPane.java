@@ -63,7 +63,6 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
             school.addKlas(newKlas);
             klassenList.add(newKlas);
             alleKlassenList.setItems(klassenList);
-            System.out.println(school.getKlassen());
             melding(klasLabel, "Klas maken gelukt!", true);
             klasNaamTextField.setText("");
         } else {
@@ -80,7 +79,6 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
             school.addCursus(newCursus);
             cursusenList.add(newCursus);
             alleCursussenList.setItems(cursusenList);
-            System.out.println(school.getCursussen());
             melding(cursusLabel, "Curus maken gelukt!", true);
             cursusNaamTextField.setText("");
         } else {
