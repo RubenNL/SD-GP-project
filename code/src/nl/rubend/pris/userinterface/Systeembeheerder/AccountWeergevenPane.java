@@ -46,7 +46,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 			String lowerCaseFilter = newValue.toLowerCase();
 			String currentType= (String) accountTypeComboBox.getValue();
 			if(!currentType.equals(t.getType()) && !currentType.equals(ALL_USERS)) return false;
-			String objectvalues = t.getNaam() + t.getNummer();
+			String objectvalues = t.getNaam() + t.getNummer() + t.getEmail();
 			if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) == -1 && newValue.length()>0) return false;
 			return true;
 		});
