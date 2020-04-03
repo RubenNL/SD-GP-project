@@ -59,7 +59,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 			if (gebruikerType.equals(Systeembeheerder.class)) gebruiker = (Gebruiker) gebruikerType.getDeclaredConstructor(String.class,String.class,String.class).newInstance(email, wachtwoord, naam);
 			else {
 				int nummer = (Integer) nieuwAccountNummer.getValue();
-				if (nummer != 0 && !groep.equals("")) {
+				if (nummer != 0 && groep!=null) {
 
 					if (gebruikerType.equals(Student.class) && !slber.getValue().equals("")) {
 						Docent slberClass= (Docent) school.getGebruikerByEmail(slber.getValue());
@@ -113,7 +113,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 		} else if (gebruikersType.equals("Docent")) {
 			nummberLabel.setText("Docentnummer");
 			hoortBijLabel.setText("Cursus Code");
-			for(Cursus cursus:school.getCursussen()) comboBoxGroep.getItems().add(cursus.getCursusCode());
+			for(Cursus cursus:school.getCursussen()) if(!cursus.getCursusCode().equals("deleted")) comboBoxGroep.getItems().add(cursus.getCursusCode());
 		} else if (gebruikersType.equals("Systeembeheerder")) {
 			nummberLabel.setVisible(false);
 			hoortBijLabel.setVisible(false);

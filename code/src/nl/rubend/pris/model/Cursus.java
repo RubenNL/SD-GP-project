@@ -7,7 +7,7 @@ public class Cursus implements Serializable {
 	private String cursusCode;
 	private String cursusNaam;
 	private ArrayList<Klas> klassen=new ArrayList<Klas>();
-
+	private ArrayList<Les> lessen=new ArrayList<>();
 	public Cursus(String cursusCode, String cursusNaam) {
 		this.cursusCode = cursusCode;
 		this.cursusNaam = cursusNaam;
@@ -20,20 +20,16 @@ public class Cursus implements Serializable {
 		return cursusCode;
 	}
 
+	public void addLes(Les les) {this.lessen.add(les);}
 	protected void addKlas(Klas klas) {this.klassen.add(klas);}
-
 	public void removeKlas(Klas klas) { this.klassen.remove(klas); }
-//
-//	@Override
-//	public void removeGroup() {
-//		// Moet nog ontzettend veel gewijzigd aan Domein Klassen wordt om
-//		// volledig Klassen te kunnen verwijderen geloof ik....
-//
-//
-//
-//
-//	}
-
+	public void removeCursus() {
+		for(Klas klas:klassen) klas.removeCursus(this);
+		for(Les les:lessen) les.unsetCursus();
+		klassen.removeAll(klassen);
+		lessen.removeAll(lessen);
+		School.getSchool().removeCursus(this);
+	}
 	public String toString() {
 		return this.cursusCode;
 	}

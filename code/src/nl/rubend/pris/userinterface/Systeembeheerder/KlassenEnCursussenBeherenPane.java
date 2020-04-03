@@ -28,24 +28,28 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 
 	private Systeembeheerder systeembeheerder;
 	private School school = School.getSchool();
-	private ArrayList<Klas> klassen = school.getKlassen();
-	private ArrayList<Cursus> cursusen = school.getCursussen();
 	private ObservableList<Klas> klassenList = FXCollections.observableArrayList();
 	private ObservableList<Cursus> cursusenList = FXCollections.observableArrayList();
-
+	private ArrayList<Klas> klassen;
+	private ArrayList<Cursus> cursusen;
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		systeembeheerder = (Systeembeheerder) gebruiker;
+		ArrayList<Klas> klassen = school.getKlassen();
+		ArrayList<Cursus> cursusen = new ArrayList<>();
+		for(Cursus cursus:school.getCursussen()) {
+			if(!cursus.getCursusCode().equals("deleted")) cursusen.add(cursus);
+		}
+		klassenList.setAll(klassen);
+		cursusenList.setAll(cursusen);
+		alleKlassenList.setItems(klassenList);
+		alleCursussenList.setItems(cursusenList);
 	}
 
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		klassenList.addAll(klassen);
-		cursusenList.addAll(cursusen);
-		alleKlassenList.setItems(klassenList);
-		alleCursussenList.setItems(cursusenList);
 	}
 
 	@FXML
@@ -85,14 +89,22 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 	public void handleRemoveKlas(ActionEvent actionEvent) {
 		final int selectedIdx = alleKlassenList.getSelectionModel().getSelectedIndex();
 		if (selectedIdx != -1) {
-			if (Utils.yesNo("Wil je zeker deze klas verwijderen?")) alleKlassenList.getItems().remove(selectedIdx);
+			if (Utils.yesNo("Wil je zeker deze klas verwijderen?")) {
+				Klas klas=klassenList.get(selectedIdx);
+				klas.removeKlas();
+				alleKlassenList.getItems().remove(selectedIdx);
+			}
 		} else melding(klasLabel, "Selecteer eerst een klas!", false);
 	}
 
 	public void handleRemoveCursus(ActionEvent actionEvent) {
 		final int selectedIdx = alleCursussenList.getSelectionModel().getSelectedIndex();
 		if (selectedIdx != -1) {
-			if (Utils.yesNo("Wil je zeker deze cursus verwijderen?")) alleCursussenList.getItems().remove(selectedIdx);
+			if (Utils.yesNo("Wil je zeker deze cursus verwijderen?")) {
+				Cursus cursus=cursusenList.get(selectedIdx);
+				cursus.removeCursus();
+				alleCursussenList.getItems().remove(selectedIdx);
+			}
 		} else melding(cursusLabel, "Selecteer eerst een cursus!", false);
 	}
 }
