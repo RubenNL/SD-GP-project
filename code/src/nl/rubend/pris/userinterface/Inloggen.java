@@ -85,8 +85,8 @@ public class Inloggen {
 			controller.addButton("Presentie","Docent/docentPresentiePane.fxml");
 		} else if(className.equals("Systeembeheerder")) {
 			controller.addButton("Account maken","Systeembeheerder/accountAanmakenPane.fxml");
-			controller.addButton("Account overzicht","Systeembeheerder/accountWeergevenPane.fxml");
-			controller.addButton("Klassen/Cursussun\nbeheren", "Systeembeheerder/klassenBeherenPane.fxml");
+			controller.addButton("Account\noverzicht","Systeembeheerder/accountWeergevenPane.fxml");
+			controller.addButton("Klassen en\nCursussen", "Systeembeheerder/klassenBeherenPane.fxml");
 		}
 		Stage stage = new Stage();
 		stage.setTitle("PRIS");
