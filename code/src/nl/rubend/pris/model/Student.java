@@ -88,7 +88,9 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		}
 		slber.removeSlbStudent(this);
 	}
-
+	public void removeKlas(Klas klas) {
+		this.klassen.remove(klas);
+	}
 	//Equals
 	@Override
 	public boolean equals(Object o) {

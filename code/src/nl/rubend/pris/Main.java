@@ -22,6 +22,7 @@ public class Main extends Application {
 	private void serializeDemoData() throws NotFoundException {
 		School school=School.getSchool();
 		school.addGebruiker(new Systeembeheerder("onmogelijk@example.com","joadsijfadsofnlasdfhahsdof","Systeem"));
+		school.addCursus(new Cursus("deleted","Verwijderde cursus"));
 		school.addGebruiker(new Docent("martijn@hu.nl","martijn","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("eduward@student.hu.nl","eduward","Eduward", 4564, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
 		school.addGebruiker(new Systeembeheerder("jos@hu.nl","jos","Jos"));
@@ -45,15 +46,15 @@ public class Main extends Application {
 		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.AFWEZIG,les));
 
-		Les les2=new Les(LocalTime.of(12,30),LocalTime.of(14,15), LocalDate.of(2020,4,3),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
+		Les les2=new Les(LocalTime.of(12,30),LocalTime.of(14,15), LocalDate.of(2020,4,10),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les2.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les2.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 
-		Les les3 = new Les(LocalTime.of(14,30),LocalTime.of(15,30), LocalDate.of(2020,4,3),"HL15-1.203",school.getCursusByCode("TCIF-V1OOP-19_2019"));
+		Les les3 = new Les(LocalTime.of(14,30),LocalTime.of(15,30), LocalDate.of(2020,4,10),"HL15-1.203",school.getCursusByCode("TCIF-V1OOP-19_2019"));
 		les3.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les3.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 
-		Les les4 = new Les(LocalTime.of(15,45),LocalTime.of(17,00), LocalDate.of(2020,4,3),"HL15-1.203",school.getCursusByCode("TCIF-V1OOAD-19_2019"));
+		Les les4 = new Les(LocalTime.of(15,45),LocalTime.of(17,00), LocalDate.of(2020,4,10),"HL15-1.203",school.getCursusByCode("TCIF-V1OOAD-19_2019"));
 		les4.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les4.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 
