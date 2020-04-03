@@ -4,10 +4,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.KlassenBeherenPane">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.KlassenEnCursussenBeherenPane">
    <children>
-      <ListView fx:id="alleKlassenList" layoutX="373.0" layoutY="37.0" prefHeight="139.0" prefWidth="200.0" />
-      <ListView fx:id="alleCursussenList" layoutX="373.0" layoutY="244.0" prefHeight="139.0" prefWidth="200.0" />
+      <ListView fx:id="alleKlassenList" layoutX="373.0" layoutY="32.0" prefHeight="139.0" prefWidth="200.0" />
+      <ListView fx:id="alleCursussenList" layoutX="373.0" layoutY="217.0" prefHeight="139.0" prefWidth="200.0" />
       <TextField fx:id="klasNaamTextField" layoutX="129.0" layoutY="80.0" />
       <TextField fx:id="cursusNaamTextField" layoutX="130.0" layoutY="265.0" />
       <TextField fx:id="cursusCodeTextField" layoutX="130.0" layoutY="313.0" />
@@ -28,5 +28,7 @@
       </Label>
       <Label fx:id="klasLabel" layoutX="198.0" layoutY="28.0" prefHeight="26.0" prefWidth="130.0" />
       <Label fx:id="cursusLabel" layoutX="191.0" layoutY="214.0" prefHeight="26.0" prefWidth="130.0" />
+      <Button layoutX="493.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleRemoveKlas" text="Verwijder" />
+      <Button layoutX="493.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleRemoveCursus" text="Verwijder" />
    </children>
 </AnchorPane>

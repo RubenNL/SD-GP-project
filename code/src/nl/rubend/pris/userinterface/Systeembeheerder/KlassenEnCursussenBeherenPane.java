@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
@@ -16,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class KlassenBeherenPane implements Initializable, IngelogdGebruiker {
+public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGebruiker {
     @FXML
     private ListView alleKlassenList;
     @FXML
@@ -48,6 +49,8 @@ public class KlassenBeherenPane implements Initializable, IngelogdGebruiker {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        klassenList.addAll(klassen);
+        cursusenList.addAll(cursusen);
         alleKlassenList.setItems(klassenList);
         alleCursussenList.setItems(cursusenList);
     }
@@ -60,8 +63,11 @@ public class KlassenBeherenPane implements Initializable, IngelogdGebruiker {
             school.addKlas(newKlas);
             klassenList.add(newKlas);
             alleKlassenList.setItems(klassenList);
+            System.out.println(school.getKlassen());
+            melding(klasLabel, "Klas maken gelukt!", true);
+            klasNaamTextField.setText("");
         } else {
-            melding(cursusLabel, "Ongeldige invoer!", false);        }
+            melding(klasLabel, "Ongeldige invoer!", false);        }
 
     }
 
@@ -74,6 +80,10 @@ public class KlassenBeherenPane implements Initializable, IngelogdGebruiker {
             school.addCursus(newCursus);
             cursusenList.add(newCursus);
             alleCursussenList.setItems(cursusenList);
+            System.out.println(school.getCursussen());
+            melding(cursusLabel, "Curus maken gelukt!", true);
+            cursusNaamTextField.setText("");
+        } else {
             melding(cursusLabel, "Ongeldige invoer!", false);
         }
     }
@@ -88,4 +98,25 @@ public class KlassenBeherenPane implements Initializable, IngelogdGebruiker {
     }
 
 
+    public void handleRemoveKlas(ActionEvent actionEvent) {
+        final int selectedIdx = alleKlassenList.getSelectionModel().getSelectedIndex();
+        if (selectedIdx != -1) {
+            if (Utils.yesNo("Wil je zeker deze klas verwijderen?")) {
+                alleKlassenList.getItems().remove(selectedIdx);
+            }
+        } else {
+            melding(klasLabel, "Selecteer eerst een klas!", false);
+        }
+    }
+
+    public void handleRemoveCursus(ActionEvent actionEvent) {
+        final int selectedIdx = alleCursussenList.getSelectionModel().getSelectedIndex();
+        if (selectedIdx != -1) {
+            if (Utils.yesNo("Wil je zeker deze cursus verwijderen?")) {
+                alleCursussenList.getItems().remove(selectedIdx);
+            }
+        } else {
+            melding(cursusLabel, "Selecteer eerst een cursus!", false);
+        }
+    }
 }
