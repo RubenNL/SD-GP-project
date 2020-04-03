@@ -1,6 +1,8 @@
 package nl.rubend.pris.model;
 
 
+import nl.rubend.pris.Utils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,16 +17,21 @@ public class LanguageFilter {
 
 	private static String bronbestand = "scheldwoorden.txt";
 
-	private static ArrayList setScheldwoorden() throws IOException {
+	private static ArrayList setScheldwoorden() {
 		ArrayList<String> scheldwoorden = new ArrayList<>();
 		Path path = Path.of(bronbestand);
-		BufferedReader br = Files.newBufferedReader(path);
-		String regel = br.readLine();
-		while (regel != null) {
-			scheldwoorden.add(regel);
-			regel = br.readLine();
+		try {
+			BufferedReader br = Files.newBufferedReader(path);
+			String regel = br.readLine();
+			while (regel != null) {
+				scheldwoorden.add(regel);
+				regel = br.readLine();
+			}
+			br.close();
+		} catch (IOException ioe) {
+			Utils.melding("IO Exception | bestand is niet te vinden!");
 		}
-		br.close();
+
 
 		return scheldwoorden;
 	}
@@ -41,5 +48,4 @@ public class LanguageFilter {
 		}
 		return true;
 	}
-
 }
