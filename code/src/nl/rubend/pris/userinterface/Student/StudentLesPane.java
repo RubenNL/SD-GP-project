@@ -24,6 +24,7 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 	@FXML DatePicker dateBox;
 	@FXML VBox lessenMenu;
 	@FXML Button lesConfirmButton;
+	@FXML Label lesMessage;
 
 	ArrayList<ArrayList> checkboxData = new ArrayList();
 
@@ -56,11 +57,9 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 					if (checkbox.isSelected()){
 						lesData.set(1, "Checked");
-						System.out.println(checkboxData);
 					}
 					else{
 						lesData.set(1, "Unchecked");
-						System.out.println(checkboxData);
 					}
 				}
 			});
@@ -75,6 +74,10 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 			try{
 				if (lesData.get(1).equals("Checked")){
 					student.getAanwezigheidBijLes(les).setStatus(student, Aanwezigheid.GEPLAND);
+				}
+
+				if (lesData.get(1).equals("Unchecked")){
+					student.getAanwezigheidBijLes(les).setStatus(student, Aanwezigheid.AANWEZIG);
 				}
 			}
 			catch (NotFoundException nietGevonden){
