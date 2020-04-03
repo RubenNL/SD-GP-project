@@ -14,14 +14,14 @@
         <TableView fx:id="tableView" layoutX="5.0" layoutY="63.0" prefHeight="285.0" prefWidth="594.0">
             <columns>
             <TableColumn fx:id="typeCol" prefWidth="121.0" text="Type" />
-            <TableColumn fx:id="numCol" minWidth="2.0" prefWidth="108.0" text="Nummer" />
-            <TableColumn fx:id="naamCol" minWidth="0.0" prefWidth="131.0" text="Naam" />
-            <TableColumn fx:id="emailCol" prefWidth="141.0" text="E-mail" />
+            <TableColumn fx:id="numCol" minWidth="2.0" prefWidth="149.0" text="Nummer" />
+            <TableColumn fx:id="naamCol" minWidth="0.0" prefWidth="161.0" text="Naam" />
+            <TableColumn fx:id="emailCol" prefWidth="162.0" text="E-mail" />
             </columns>
         </TableView>
       <Button layoutX="99.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleNieuwWachtWoordOpstellen" text="Nieuw Wachtwoord" />
       <Button layoutX="287.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleAccountVerwijderen" text="Verwijder account" />
-      <TextField fx:id="filterField" layoutX="329.0" layoutY="21.0" onKeyPressed="#updateTable" onAction="#updateTable" prefHeight="26.0" prefWidth="172.0" />
+      <TextField fx:id="filterField" layoutX="329.0" layoutY="21.0" onAction="#updateTable" prefHeight="26.0" prefWidth="172.0" />
       <Label layoutX="256.0" layoutY="26.0" text="Opzoeken" />
     </children>
 </AnchorPane>
