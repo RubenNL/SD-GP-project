@@ -74,7 +74,7 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 			Les les = (Les) lesData.get(0);
 			try{
 				if (les.equals("Checked")){
-					student.getAanwezigheidBijLes(les).setStatus(student, "Afwezig");
+					student.getAanwezigheidBijLes(les).setStatus(student, Aanwezigheid.GEPLAND);
 				}
 			}
 			catch (NotFoundException nietGevonden){
