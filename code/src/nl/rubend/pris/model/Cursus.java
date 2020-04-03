@@ -21,4 +21,22 @@ public class Cursus implements Serializable {
 	}
 
 	protected void addKlas(Klas klas) {this.klassen.add(klas);}
+
+	public void removeKlas(Klas klas) { this.klassen.remove(klas); }
+//
+//	@Override
+//	public void removeGroup() {
+//		// Moet nog ontzettend veel gewijzigd aan Domein Klassen wordt om
+//		// volledig Klassen te kunnen verwijderen geloof ik....
+//
+//
+//
+//
+//	}
+
+	public String toString() {
+		return this.cursusCode;
+	}
+
+
 }

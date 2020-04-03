@@ -64,6 +64,22 @@ public class Klas implements Serializable {
 
 	// To String
 	public String toString() {
-		return "klas: " + this.klasNaam;
+//		het was eerder zo:
+//		return "klas: " + this.klasNaam;
+		return this.klasNaam;
 	}
+
+//	public void removeGroup() {
+//		// Moet nog ontzettend veel gewijzigd aan Domein Klassen wordt om
+//		// volledig Klassen te kunnen verwijderen geloof ik....
+//		for (Cursus cursus: cursusen) {
+//			cursus.removeKlas(this);
+//		}
+//
+//		studenten.removeAll(studenten);
+//		cursusen.removeAll(cursusen);
+//		lessen.removeAll(lessen);
+//	}
+
+
 }
