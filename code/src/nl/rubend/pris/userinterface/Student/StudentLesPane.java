@@ -55,11 +55,11 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 					if (checkbox.isSelected()){
-						lesData.add(1, "Checked");
+						lesData.set(1, "Checked");
 						System.out.println(checkboxData);
 					}
 					else{
-						lesData.add(1, "Unchecked");
+						lesData.set(1, "Unchecked");
 						System.out.println(checkboxData);
 					}
 				}
@@ -73,7 +73,7 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 		for (ArrayList lesData : checkboxData){
 			Les les = (Les) lesData.get(0);
 			try{
-				if (les.equals("Checked")){
+				if (lesData.get(1).equals("Checked")){
 					student.getAanwezigheidBijLes(les).setStatus(student, Aanwezigheid.GEPLAND);
 				}
 			}
