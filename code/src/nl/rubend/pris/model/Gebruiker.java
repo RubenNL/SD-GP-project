@@ -1,4 +1,6 @@
 package nl.rubend.pris.model;
+import nl.rubend.pris.Utils;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.io.Serializable;
@@ -53,15 +55,25 @@ public class Gebruiker implements Serializable {
 
 
 	// Setters
-	public void setNaam(String naam) {this.naam=naam;}
-	public void setEmail(String email) {this.email=email;}
+	public void setNaam(String naam) {
+		if (naam != null && Utils.isAlpha(naam)) {
+			this.naam=naam;
+		}
+	}
+	public void setEmail(String email) {
+		if (email != null && email.contains("@")) {
+			this.email = email;
+		}
+	}
 
 	public void setWachtwoord(String password)  {
-		byte[] salt = new byte[16];
-		random.nextBytes(salt);
-		Base64.Encoder enc = Base64.getUrlEncoder().withoutPadding();
-		this.saltString=enc.encodeToString(salt);
-		this.hashedPassword=hash(password,this.saltString);
+		if (password != null) {
+			byte[] salt = new byte[16];
+			random.nextBytes(salt);
+			Base64.Encoder enc = Base64.getUrlEncoder().withoutPadding();
+			this.saltString = enc.encodeToString(salt);
+			this.hashedPassword = hash(password, this.saltString);
+		}
 	}
 
 
