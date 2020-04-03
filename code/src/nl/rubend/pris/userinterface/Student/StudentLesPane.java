@@ -32,11 +32,6 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 		createCheckBoxes();
 	}
 
-	@FXML
-	private void lesConfirm(){
-
-	}
-
 	private void createCheckBoxes(){
 		for(Les les:student.getLessenOpDag(dateBox.getValue())) {
 			Aanwezigheid aanwezigheid=student.getAanwezigheidBijLes(les);
@@ -47,13 +42,44 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 
 			ArrayList lesData = new ArrayList();
 			checkboxData.add(lesData);
+			lesData.add(0, les);
+
+			if(checked){
+				lesData.add(1, "Checked");
+			}
+			else{
+				lesData.add(1, "Unchecked");
+			}
+
 			checkbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-					System.out.println(checkboxData);
+					if (checkbox.isSelected()){
+						lesData.add(1, "Checked");
+						System.out.println(checkboxData);
+					}
+					else{
+						lesData.add(1, "Unchecked");
+						System.out.println(checkboxData);
+					}
 				}
 			});
 			lessenMenu.getChildren().add(checkbox);
+		}
+	}
+
+	@FXML
+	private void lesConfirm() throws NotFoundException {
+		for (ArrayList lesData : checkboxData){
+			Les les = (Les) lesData.get(0);
+			try{
+				if (les.equals("Checked")){
+					student.getAanwezigheidBijLes(les).setStatus(student, "Afwezig");
+				}
+			}
+			catch (NotFoundException nietGevonden){
+				System.out.println(nietGevonden.getMessage());
+			}
 		}
 	}
 
