@@ -57,15 +57,21 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		this.langdurigAfwezig = langdurigAfwezig;
 	}
 	public void addKlas(Klas klas) {
-		this.klassen.add(klas);
+		if (klas != null) {
+			this.klassen.add(klas);
+		}
 	}
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		this.aanwezigheid.add(aanwezigheid);
+		if (aanwezigheid != null) {
+			this.aanwezigheid.add(aanwezigheid);
+		}
 	}
 	public void setSlber(Docent slber) {
-		if(this.slber instanceof Docent) this.slber.removeSlbStudent(this);
-		this.slber=slber;
-		this.slber.addSlbStudent(this);
+		if (slber != null) {
+			if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
+			this.slber = slber;
+			this.slber.addSlbStudent(this);
+		}
 	}
 	public void removeSlber() {
 		this.slber=null;
