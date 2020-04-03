@@ -69,6 +69,8 @@ public class School implements Serializable {
 		}
 	}
 
+	public void removeKlas(Klas klas) {this.klassen.remove(klas);}
+	public void removeCursus(Cursus cursus) {this.cursussen.remove(cursus);}
 	public static void serialize() {
 		try {
 			FileOutputStream fileout= new FileOutputStream("out.ser");

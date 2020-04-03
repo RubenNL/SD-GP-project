@@ -23,6 +23,7 @@ public class Les implements Serializable {
 		this.datum = dtm;
 		this.lokaal = lokaalk;
 		this.cursus=cursus;
+		cursus.addLes(this);
 	}
 
 	// Getters
@@ -76,8 +77,14 @@ public class Les implements Serializable {
 	public void removeDocent(Docent docent) {
 		docenten.remove(docent);
 	}
-
-
+	public void removeKlas(Klas klas) {klassen.remove(klas);}
+	public void unsetCursus() {
+		try {
+			this.cursus=School.getSchool().getCursusByCode("deleted");
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	// Equals
 	@Override
 	public boolean equals(Object o) {

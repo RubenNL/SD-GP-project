@@ -45,7 +45,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(location));
 		Parent pane=fxmlLoader.load();
 		IngelogdGebruiker controller = fxmlLoader.<IngelogdGebruiker>getController();
-		controller.setGebruiker(gebruiker);
+		//controller.setGebruiker(gebruiker);
 		button.setDepthTest(DepthTest.DISABLE);
 		button.setMnemonicParsing(false);
 		button.setPrefHeight(48.0);

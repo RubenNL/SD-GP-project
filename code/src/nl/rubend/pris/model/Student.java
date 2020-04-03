@@ -11,7 +11,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<>();
 	private Docent slber;
 
-	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) {
+	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) throws IllegalArgumentException {
 		super(email, wachtwoord, naam);
 		this.studentNummer = sN;
 		setSlber(slber);
@@ -88,7 +88,9 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		}
 		slber.removeSlbStudent(this);
 	}
-
+	public void removeKlas(Klas klas) {
+		this.klassen.remove(klas);
+	}
 	//Equals
 	@Override
 	public boolean equals(Object o) {

@@ -12,7 +12,7 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	private ArrayList<Aanwezigheid> aanwezigheidsmeldingen = new ArrayList<>();
 	private ArrayList<Student> slbStudenten=new ArrayList<>();
 
-	public Docent (String email, String wachtwoord, String naam, int dN) {
+	public Docent (String email, String wachtwoord, String naam, int dN) throws IllegalArgumentException {
 		super(email, wachtwoord, naam);
 		this.docentNummer = dN;
 	}
