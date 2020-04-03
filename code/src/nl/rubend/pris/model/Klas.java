@@ -60,10 +60,26 @@ public class Klas implements Serializable {
 	public void removeStudent(Student student) {
 		this.studenten.remove(student);
 	}
-
+	public void removeLes(Les les) {this.lessen.remove(les);}
 
 	// To String
 	public String toString() {
-		return "klas: " + this.klasNaam;
+//		het was eerder zo:
+//		return "klas: " + this.klasNaam;
+		return this.klasNaam;
 	}
+
+	public void removeKlas() {
+		for (Cursus cursus: cursusen) cursus.removeKlas(this);
+		for (Student student:studenten) student.removeKlas(this);
+		for(Les les:lessen) les.removeKlas(this);
+		studenten.removeAll(studenten);
+		cursusen.removeAll(cursusen);
+		lessen.removeAll(lessen);
+		School.getSchool().removeKlas(this);
+	}
+	public void removeCursus(Cursus cursus) {
+		this.cursusen.remove(cursus);
+	}
+
 }

@@ -30,7 +30,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 	@FXML private GridPane gridContainer;
 	@FXML private Parent welkomPane;
 	private int rowCount=0;
-	private ArrayList<Parent> allPanes = new ArrayList<Parent>();
+	private ArrayList<Parent> allPanes = new ArrayList<>();
 	private Gebruiker gebruiker;
 	private void switchToPane(Parent targetPane) {
 		for (Parent pane : allPanes) {
@@ -45,7 +45,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(location));
 		Parent pane=fxmlLoader.load();
 		IngelogdGebruiker controller = fxmlLoader.<IngelogdGebruiker>getController();
-		controller.setGebruiker(gebruiker);
+		//controller.setGebruiker(gebruiker);
 		button.setDepthTest(DepthTest.DISABLE);
 		button.setMnemonicParsing(false);
 		button.setPrefHeight(48.0);

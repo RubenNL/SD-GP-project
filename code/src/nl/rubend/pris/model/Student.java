@@ -51,14 +51,6 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public Docent getSlber() {
 		return this.slber;
 	}
-	public void removeSlber() {
-		this.slber=null;
-	}
-	public void setSlber(Docent slber) {
-		if(this.slber instanceof Docent) this.slber.removeSlbStudent(this);
-		this.slber=slber;
-		this.slber.addSlbStudent(this);
-	}
 
 	// Setters en Adders
 	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
@@ -69,6 +61,14 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
 		this.aanwezigheid.add(aanwezigheid);
+	}
+	public void setSlber(Docent slber) {
+		if(this.slber instanceof Docent) this.slber.removeSlbStudent(this);
+		this.slber=slber;
+		this.slber.addSlbStudent(this);
+	}
+	public void removeSlber() {
+		this.slber=null;
 	}
 	@Override
 	public void removeAccount() {
@@ -82,7 +82,9 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		}
 		slber.removeSlbStudent(this);
 	}
-
+	public void removeKlas(Klas klas) {
+		this.klassen.remove(klas);
+	}
 	//Equals
 	@Override
 	public boolean equals(Object o) {
