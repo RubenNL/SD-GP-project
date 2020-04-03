@@ -30,7 +30,7 @@ public class Ingelogd implements Initializable,IngelogdGebruiker {
 	@FXML private GridPane gridContainer;
 	@FXML private Parent welkomPane;
 	private int rowCount=0;
-	private ArrayList<Parent> allPanes = new ArrayList<Parent>();
+	private ArrayList<Parent> allPanes = new ArrayList<>();
 	private Gebruiker gebruiker;
 	private void switchToPane(Parent targetPane) {
 		for (Parent pane : allPanes) {
