@@ -20,7 +20,11 @@ public class Cursus implements Serializable {
 		return cursusCode;
 	}
 
-	protected void addKlas(Klas klas) {this.klassen.add(klas);}
+	protected void addKlas(Klas klas) {
+		if (klas != null) {
+			this.klassen.add(klas);
+		}
+	}
 
 	public void removeKlas(Klas klas) { this.klassen.remove(klas); }
 //
