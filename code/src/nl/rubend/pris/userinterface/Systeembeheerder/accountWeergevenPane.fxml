@@ -21,7 +21,7 @@
         </TableView>
       <Button layoutX="99.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleNieuwWachtWoordOpstellen" text="Nieuw Wachtwoord" />
       <Button layoutX="287.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleAccountVerwijderen" text="Verwijder account" />
-      <TextField fx:id="filterField" layoutX="329.0" layoutY="21.0" onAction="#updateTable" prefHeight="26.0" prefWidth="172.0" />
+      <TextField fx:id="filterField" layoutX="329.0" layoutY="21.0" onKeyPressed="#updateTable" onAction="#updateTable" prefHeight="26.0" prefWidth="172.0" />
       <Label layoutX="256.0" layoutY="26.0" text="Opzoeken" />
     </children>
 </AnchorPane>
