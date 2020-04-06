@@ -48,28 +48,28 @@ public class School implements Serializable {
 
 
 	// Adders (returnen void)
-	public void addGebruiker(Gebruiker gebruiker) throws NotFoundException {
+	public void addGebruiker(Gebruiker gebruiker)  {
 		if (gebruiker != null && (!gebruikers.contains(gebruiker))) {
 			gebruikers.add(gebruiker);
 		}
 		else {
-			throw new NotFoundException("\"" + gebruiker.getNaam() + "\" object bestaat al!");
+			throw new IllegalArgumentException("Onjuiste waarde");
 		}
 	}
 
-	public void addCursus(Cursus cursus) throws NotFoundException {
+	public void addCursus(Cursus cursus) {
 		if (cursus != null && (!cursussen.contains(cursus))) {
 			this.cursussen.add(cursus);
 		} 		else {
-			throw new NotFoundException("\"" + cursus.getCursusCode() + "\" object bestaat al!");
+			throw new IllegalArgumentException("Onjuiste waarde");
 		}
 	}
 
-	public void addKlas(Klas klas) throws NotFoundException {
+	public void addKlas(Klas klas) {
 		if (klas != null && (!klassen.contains(klas))) {
 			this.klassen.add(klas);
 		} else {
-			throw new NotFoundException("\"" + klas.getKlasNaam() + "\" object bestaat al!");
+			throw new IllegalArgumentException("Onjuiste waarde");
 		}
 	}
 
