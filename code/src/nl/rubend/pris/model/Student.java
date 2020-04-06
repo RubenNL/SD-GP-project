@@ -56,11 +56,15 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
 		this.langdurigAfwezig = langdurigAfwezig;
 	}
+
 	public void addKlas(Klas klas) {
-		if (klas != null) {
+		if (klas != null && (!klassen.contains(klas))) {
 			this.klassen.add(klas);
+		} else {
+			throw new IllegalArgumentException("Onjuiste waarde");
 		}
 	}
+
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
 		if (aanwezigheid != null) {
 			this.aanwezigheid.add(aanwezigheid);
