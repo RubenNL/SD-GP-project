@@ -18,6 +18,7 @@ public class Klas implements Serializable {
 	}
 
 
+
 	// Getters
 	public String getKlasNaam() {
 		return klasNaam;
@@ -62,13 +63,6 @@ public class Klas implements Serializable {
 	}
 	public void removeLes(Les les) {this.lessen.remove(les);}
 
-	// To String
-	public String toString() {
-//		het was eerder zo:
-//		return "klas: " + this.klasNaam;
-		return this.klasNaam;
-	}
-
 	public void removeKlas() {
 		for (Cursus cursus: cursusen) cursus.removeKlas(this);
 		for (Student student:studenten) student.removeKlas(this);
@@ -81,5 +75,30 @@ public class Klas implements Serializable {
 	public void removeCursus(Cursus cursus) {
 		this.cursusen.remove(cursus);
 	}
+
+
+	//Equals
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Klas klas = (Klas) o;
+		return klasNaam.equals(klas.klasNaam);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(klasNaam);
+	}
+
+	// To String
+	public String toString() {
+//		het was eerder zo:
+//		return "klas: " + this.klasNaam;
+		return this.klasNaam;
+	}
+
+
+
 
 }

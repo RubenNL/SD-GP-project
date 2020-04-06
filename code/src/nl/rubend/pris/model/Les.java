@@ -58,15 +58,21 @@ public class Les implements Serializable {
 
 	// Adders en Setters
 	public void setLokaal(String lokaal) {
-		this.lokaal = lokaal;
+		if (lokaal != null) {
+			this.lokaal = lokaal;
+		}
 	}
 	public void addDocent(Docent docent) {
-		docenten.add(docent);
-		docent.addLes(this);
+		if (docent != null) {
+			docenten.add(docent);
+			docent.addLes(this);
+		}
 	}
 	public void addKlas(Klas klas) {
-		klassen.add(klas);
-		klas.addLes(this);
+		if (klas != null) {
+			klassen.add(klas);
+			klas.addLes(this);
+		}
 	}
 	public void removeDocent(Docent docent) {
 		docenten.remove(docent);

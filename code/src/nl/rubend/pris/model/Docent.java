@@ -12,7 +12,7 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	private ArrayList<Aanwezigheid> aanwezigheidsmeldingen = new ArrayList<>();
 	private ArrayList<Student> slbStudenten=new ArrayList<>();
 
-	public Docent (String email, String wachtwoord, String naam, int dN) {
+	public Docent (String email, String wachtwoord, String naam, int dN) throws IllegalArgumentException {
 		super(email, wachtwoord, naam);
 		this.docentNummer = dN;
 	}
@@ -40,13 +40,23 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 
 	// Adders en Setters
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		this.aanwezigheidsmeldingen.add(aanwezigheid);
+		if (aanwezigheid != null) {
+			this.aanwezigheidsmeldingen.add(aanwezigheid);
+		}
 	}
 	public void removeAanwezigheid(Aanwezigheid aanwezigheid) {
 		this.aanwezigheidsmeldingen.remove(aanwezigheid);
 	}
-	public void addLes(Les les) { this.lessen.add(les); }
-	public void setCursus(Cursus cursus) {this.cursus = cursus;}
+	public void addLes(Les les) {
+		if (les != null) {
+			this.lessen.add(les);
+		}
+	}
+	public void setCursus(Cursus cursus) {
+		if (cursus != null)
+		this.cursus = cursus;
+	}
+
 	public void removeLes(Les les) {
 		this.lessen.remove(les);
 	}
@@ -54,7 +64,9 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		this.slbStudenten.remove(student);
 	}
 	public void addSlbStudent(Student student) {
-		this.slbStudenten.add(student);
+		if (student != null) {
+			this.slbStudenten.add(student);
+		}
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<>();
 	private Docent slber;
 
-	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) {
+	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) throws IllegalArgumentException {
 		super(email, wachtwoord, naam);
 		this.studentNummer = sN;
 		setSlber(slber);
@@ -56,16 +56,26 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
 		this.langdurigAfwezig = langdurigAfwezig;
 	}
+
 	public void addKlas(Klas klas) {
-		this.klassen.add(klas);
+		if (klas != null && (!klassen.contains(klas))) {
+			this.klassen.add(klas);
+		} else {
+			throw new IllegalArgumentException("Onjuiste waarde");
+		}
 	}
+
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		this.aanwezigheid.add(aanwezigheid);
+		if (aanwezigheid != null) {
+			this.aanwezigheid.add(aanwezigheid);
+		}
 	}
 	public void setSlber(Docent slber) {
-		if(this.slber instanceof Docent) this.slber.removeSlbStudent(this);
-		this.slber=slber;
-		this.slber.addSlbStudent(this);
+		if (slber != null) {
+			if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
+			this.slber = slber;
+			this.slber.addSlbStudent(this);
+		}
 	}
 	public void removeSlber() {
 		this.slber=null;
