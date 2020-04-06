@@ -85,6 +85,10 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public void removeKlas(Klas klas) {
 		this.klassen.remove(klas);
 	}
+
+	public String toString() {
+		return this.getNaam();
+	}
 	//Equals
 	@Override
 	public boolean equals(Object o) {
