@@ -24,11 +24,42 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 	@FXML DatePicker dateBox;
 	@FXML VBox lessenMenu;
 	@FXML Button lesConfirmButton;
+	@FXML Button lesCancelButton;
 	@FXML Label lesMessage;
-
 	ArrayList<ArrayList> checkboxData = new ArrayList();
 
+	@Override
+	public void setGebruiker(Gebruiker gebruiker) {
+		this.student=(Student) gebruiker;
+	}
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		Callback<DatePicker, DateCell> dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
+			@Override
+			public void updateItem(LocalDate item, boolean empty) {
+				super.updateItem(item, empty);
+				if(item.isBefore(LocalDate.now().plusDays(1))) {
+					setDisable(true);
+				}
+			}
+		};
+		lesConfirmButton.setDisable(true);
+		dateBox.setDayCellFactory(dayCellFactory);
+		dateBox.valueProperty().addListener(new ChangeListener<LocalDate>() {
+			@Override
+			public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+				if(dateBox.getValue() == null){
+					lesConfirmButton.setDisable(true);
+				}
+				else{
+					lesConfirmButton.setDisable(false);
+				}
+			}
+		});
+	}
+
 	@FXML private void dateSelect() {
+		lesMessage.setText(null);
 		lessenMenu.getChildren().removeAll(lessenMenu.getChildren());
 		createCheckBoxes();
 	}
@@ -83,24 +114,15 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 			catch (NotFoundException nietGevonden){
 				System.out.println(nietGevonden.getMessage());
 			}
+			lesMessage.setText("Opslaan gelukt");
+			lesMessage.getStyleClass().clear();
+			lesMessage.getStyleClass().add("green-text");
 		}
 	}
 
-	@Override
-	public void setGebruiker(Gebruiker gebruiker) {
-		this.student=(Student) gebruiker;
-	}
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		Callback<DatePicker, DateCell> dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
-			@Override
-			public void updateItem(LocalDate item, boolean empty) {
-				super.updateItem(item, empty);
-				if(item.isBefore(LocalDate.now().plusDays(1))) {
-					setDisable(true);
-				}
-			}
-		};
-		dateBox.setDayCellFactory(dayCellFactory);
+	@FXML
+	private void resetAllFields(){
+		dateBox.setValue(null);
+		lesMessage.setText(null);
 	}
 }
