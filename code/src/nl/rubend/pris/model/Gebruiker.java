@@ -67,17 +67,30 @@ public class Gebruiker implements Serializable {
 		if(email!=null && email.matches(pattern)) this.email = email;
 		else throw new IllegalArgumentException("Emailadres niet correct");
 	}
+//
+//	public void setWachtwoord(String password)  {
+//		if (password != null) {
+//			byte[] salt = new byte[16];
+//			random.nextBytes(salt);
+//			Base64.Encoder enc = Base64.getUrlEncoder().withoutPadding();
+//			this.saltString = enc.encodeToString(salt);
+//			this.hashedPassword = hash(password, this.saltString);
+//		}
+//	}
 
 	public void setWachtwoord(String password)  {
 		if (password != null) {
-			byte[] salt = new byte[16];
-			random.nextBytes(salt);
-			Base64.Encoder enc = Base64.getUrlEncoder().withoutPadding();
-			this.saltString = enc.encodeToString(salt);
-			this.hashedPassword = hash(password, this.saltString);
-		}
+			if (password.length() >= 8) {
+				byte[] salt = new byte[16];
+				random.nextBytes(salt);
+				Base64.Encoder enc = Base64.getUrlEncoder().withoutPadding();
+				this.saltString = enc.encodeToString(salt);
+				this.hashedPassword = hash(password, this.saltString);
+			} else {
+				throw new IllegalArgumentException("Wachtwoord is te kort!");
+			}
+		} else throw new IllegalArgumentException("Ongeldige waarde");
 	}
-
 
 
 	// Equals
