@@ -50,19 +50,20 @@ public class Klas implements Serializable {
 	protected void addLes(Les les) {
 		if (les != null && (!lessen.contains(les))) {
 			this.lessen.add(les);
-		}
+		}else throw new IllegalArgumentException("Onjuiste waarde");
+
 	}
 	public void addStudent(Student student) {
 		if (student != null && (!studenten.contains(student))) {
 			this.studenten.add(student);
 			student.addKlas(this);
-		}
+		} else throw new IllegalArgumentException("Onjuiste waarde");
 	}
 	public void addCursus(Cursus cursus) {
 		if (cursus != null && cursusen.contains(cursus)) {
 			this.cursusen.add(cursus);
 			cursus.addKlas(this);
-		}
+		} else throw new IllegalArgumentException("Onjuiste waarde");
 	}
 	public void removeStudent(Student student) {
 		this.studenten.remove(student);
