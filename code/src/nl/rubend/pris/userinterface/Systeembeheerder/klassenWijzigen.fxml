@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+
+<AnchorPane prefHeight="377.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.KlassenWijzigenController">
+   <children>
+      <ListView fx:id="klassenCodenListView" layoutX="14.0" layoutY="26.0" onMouseClicked="#handle" prefHeight="200.0" prefWidth="189.0" />
+      <ListView fx:id="studentenNamenListView" layoutX="237.0" layoutY="26.0" prefHeight="200.0" prefWidth="171.0" />
+      <Label layoutX="80.0" layoutY="5.0" text="Klassen">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="284.0" layoutY="5.0" text="Studenten">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="353.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleSuiten" text="Sluit" />
+      <AnchorPane layoutX="21.0" layoutY="239.0" prefHeight="85.0" prefWidth="379.0" style="-fx-background-color: #e0e0e0;">
+         <children>
+            <SearchableComboBox fx:id="studentZoekComboBox" layoutX="24.0" layoutY="26.0" />
+            <Button layoutX="233.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleVerwijderStudentVanGeselecteerdeKlas" text="Verwjider Student" />
+            <Button layoutX="234.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleVoegStudentToeAanGeselecteerdeKlas" text="Voeg Student toe" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

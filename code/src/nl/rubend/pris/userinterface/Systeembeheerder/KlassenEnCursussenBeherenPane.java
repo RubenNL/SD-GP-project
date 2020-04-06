@@ -4,15 +4,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -106,5 +116,25 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 				alleCursussenList.getItems().remove(selectedIdx);
 			}
 		} else melding(cursusLabel, "Selecteer eerst een cursus!", false);
+	}
+
+	public void handleWijzigKlas(ActionEvent actionEvent) throws IOException {
+		FXMLLoader loader =
+				new FXMLLoader(getClass().getResource("klassenWijzigen.fxml"));
+		Parent root = loader.load();
+		Stage newStage = new Stage();
+		newStage.setScene(new Scene(root));
+		newStage.initModality(Modality.APPLICATION_MODAL);
+		newStage.showAndWait();
+	}
+
+	public void handleWijzigCursus(ActionEvent actionEvent) throws IOException {
+		FXMLLoader loader =
+				new FXMLLoader(getClass().getResource("cursussenWijzigen.fxml"));
+		Parent root = loader.load();
+		Stage newStage = new Stage();
+		newStage.setScene(new Scene(root));
+		newStage.initModality(Modality.APPLICATION_MODAL);
+		newStage.showAndWait();
 	}
 }
