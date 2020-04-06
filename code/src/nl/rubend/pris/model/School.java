@@ -49,7 +49,7 @@ public class School implements Serializable {
 
 	// Adders (returnen void)
 	public void addGebruiker(Gebruiker gebruiker) throws NotFoundException {
-		if (!gebruikers.contains(gebruiker)) {
+		if (gebruiker != null && (!gebruikers.contains(gebruiker))) {
 			gebruikers.add(gebruiker);
 		}
 		else {
@@ -57,15 +57,19 @@ public class School implements Serializable {
 		}
 	}
 
-	public void addCursus(Cursus cursus) {
-		if (cursus != null) {
+	public void addCursus(Cursus cursus) throws NotFoundException {
+		if (cursus != null && (!cursussen.contains(cursus))) {
 			this.cursussen.add(cursus);
+		} 		else {
+			throw new NotFoundException("\"" + cursus.getCursusCode() + "\" object bestaat al!");
 		}
 	}
 
-	public void addKlas(Klas klas) {
-		if (klas != null) {
+	public void addKlas(Klas klas) throws NotFoundException {
+		if (klas != null && (!klassen.contains(klas))) {
 			this.klassen.add(klas);
+		} else {
+			throw new NotFoundException("\"" + klas.getKlasNaam() + "\" object bestaat al!");
 		}
 	}
 
