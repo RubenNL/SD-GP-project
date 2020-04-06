@@ -48,15 +48,21 @@ public class Klas implements Serializable {
 
 	// Adders en Setters
 	protected void addLes(Les les) {
-		this.lessen.add(les);
+		if (les != null && (!lessen.contains(les))) {
+			this.lessen.add(les);
+		}
 	}
 	public void addStudent(Student student) {
-		this.studenten.add(student);
-		student.addKlas(this);
+		if (student != null && (!studenten.contains(student))) {
+			this.studenten.add(student);
+			student.addKlas(this);
+		}
 	}
 	public void addCursus(Cursus cursus) {
-		this.cursusen.add(cursus);
-		cursus.addKlas(this);
+		if (cursus != null && cursusen.contains(cursus)) {
+			this.cursusen.add(cursus);
+			cursus.addKlas(this);
+		}
 	}
 	public void removeStudent(Student student) {
 		this.studenten.remove(student);
