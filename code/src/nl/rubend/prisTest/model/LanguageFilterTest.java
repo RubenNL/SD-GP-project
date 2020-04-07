@@ -1,4 +1,4 @@
-package nl.rubend.pris.model;
+package model;
 
 import org.junit.jupiter.api.Test;
 
