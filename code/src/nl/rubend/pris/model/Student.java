@@ -58,7 +58,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 
 	public void addKlas(Klas klas) {
-		if (klas != null && (!klassen.contains(klas))) this.klassen.add(klas)
+		if (klas != null && (!klassen.contains(klas))) this.klassen.add(klas);
 		else throw new IllegalArgumentException("Ongeldige waarde");
 	}
 
@@ -69,9 +69,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public void setSlber(Docent slber) {
 		if (slber != null) {
 			if(slber instanceof Docent) {
-				if (this.slber instanceof Docent) {
-					this.slber.removeSlbStudent(this);
-				}
+				if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
 				this.slber = slber;
 				this.slber.addSlbStudent(this);
 			} else throw new IllegalArgumentException("SLBer is geen Docent");
