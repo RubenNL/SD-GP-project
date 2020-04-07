@@ -1,5 +1,6 @@
 package model;
 
+import nl.rubend.pris.model.LanguageFilter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
