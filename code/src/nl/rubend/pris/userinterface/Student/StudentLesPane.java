@@ -27,6 +27,7 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 	@FXML Button lesCancelButton;
 	@FXML Label lesMessage;
 	ArrayList<ArrayList> checkboxData = new ArrayList();
+	boolean changedBoxes = false;
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
@@ -88,9 +89,11 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 					if (checkbox.isSelected()){
 						lesData.set(1, "Checked");
+						changedBoxes = true;
 					}
 					else{
 						lesData.set(1, "Unchecked");
+						changedBoxes = true;
 					}
 				}
 			});
@@ -100,6 +103,7 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 
 	@FXML
 	private void lesConfirm() throws NotFoundException {
+		System.out.println(changedBoxes);
 		for (ArrayList lesData : checkboxData){
 			Les les = (Les) lesData.get(0);
 			try{
@@ -114,9 +118,16 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 			catch (NotFoundException nietGevonden){
 				System.out.println(nietGevonden.getMessage());
 			}
+		}
+		if(changedBoxes){
 			lesMessage.setText("Opslaan gelukt");
 			lesMessage.getStyleClass().clear();
 			lesMessage.getStyleClass().add("green-text");
+			changedBoxes = false;
+		}
+		else{
+			lesMessage.setText("Niks veranderd");
+			lesMessage.getStyleClass().clear();
 		}
 	}
 
