@@ -2,6 +2,7 @@ package nl.rubend.pris.model;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.Objects;
 
 public class School implements Serializable {
 
@@ -10,7 +11,7 @@ public class School implements Serializable {
 	private ArrayList<Cursus> cursussen=new ArrayList<>();
 
 	private static School school=new School();
-
+	public static void resetSchool() {school=new School();}
 	// Getters (returnen een object)
 	public ArrayList<Klas> getKlassen() { return this.klassen; }
 	public ArrayList<Gebruiker> getGebruikers() {
@@ -106,5 +107,15 @@ public class School implements Serializable {
 		school = (School) in.readObject();
 		in.close();
 		fileIn.close();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		School school = (School) o;
+		return Objects.equals(gebruikers, school.gebruikers) &&
+				Objects.equals(klassen, school.klassen) &&
+				Objects.equals(cursussen, school.cursussen);
 	}
 }

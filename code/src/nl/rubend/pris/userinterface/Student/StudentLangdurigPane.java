@@ -2,33 +2,21 @@ package nl.rubend.pris.userinterface.Student;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Color;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import org.controlsfx.control.ToggleSwitch;
-
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class StudentLangdurigPane implements IngelogdGebruiker {
 	@FXML
 	public Label uitslagLabel;
-//	public ToggleButton toggleLDAfwezig;
 
-//	public Button buttonBevestiging;
-//	public Button buttonAnnuleren;
 	@FXML
 	private Student student;
-
-	@FXML
-	private Label labelId;
 
 	@FXML
 	public ToggleSwitch toggleLDAfwezig;
@@ -38,9 +26,6 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 
 	@FXML
 	private CheckBox controlleCheckBox;
-
-
-
 
 
 	@Override
@@ -72,7 +57,7 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 				controlleCheckBox.setDisable(false);
 			}
 		} else {
-			melding("Afmelding niet gelukt!", 1);
+			melding("Afmelding niet gelukt, geef akkoord op de gevolgen", 1);
 		}
 	}
 
@@ -116,10 +101,6 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 			}
 		}
 	}
-
-
-
-
 
 	public void melding(String str, int nr) {
 		if (nr == 1) {

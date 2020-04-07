@@ -19,13 +19,13 @@ public class Main extends Application {
 		Locale.setDefault(new Locale("nl", "NL"));
 	}
 
-	private void serializeDemoData() throws NotFoundException {
+	public static void serializeDemoData() throws NotFoundException {
 		School school=School.getSchool();
 		school.addGebruiker(new Systeembeheerder("onmogelijk@example.com","joadsijfadsofnlasdfhahsdof","Systeem"));
 		school.addCursus(new Cursus("deleted","Verwijderde cursus"));
-		school.addGebruiker(new Docent("martijn@hu.nl","martijn","Martijn Jansen", 1234));
-		school.addGebruiker(new Student("eduward@student.hu.nl","eduward","Eduward", 4564, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
-		school.addGebruiker(new Systeembeheerder("jos@hu.nl","jos","Jos"));
+		school.addGebruiker(new Docent("martijn@hu.nl","martijn1","Martijn Jansen", 1234));
+		school.addGebruiker(new Student("eduward@student.hu.nl","eduward1","Eduward", 4564, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
+		school.addGebruiker(new Systeembeheerder("jos@hu.nl","josjosjos","Jos"));
 
 		school.addKlas(new Klas("TICT-SD-V1E"));
 
