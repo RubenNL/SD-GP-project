@@ -20,15 +20,9 @@ import java.util.ResourceBundle;
 public class StudentLangdurigPane implements IngelogdGebruiker {
 	@FXML
 	public Label uitslagLabel;
-//	public ToggleButton toggleLDAfwezig;
 
-//	public Button buttonBevestiging;
-//	public Button buttonAnnuleren;
 	@FXML
 	private Student student;
-
-	@FXML
-	private Label labelId;
 
 	@FXML
 	public ToggleSwitch toggleLDAfwezig;
@@ -38,9 +32,6 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 
 	@FXML
 	private CheckBox controlleCheckBox;
-
-
-
 
 
 	@Override
@@ -72,7 +63,7 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 				controlleCheckBox.setDisable(false);
 			}
 		} else {
-			melding("Afmelding niet gelukt!", 1);
+			melding("Afmelding niet gelukt, geef akkoord op de gevolgen", 1);
 		}
 	}
 
@@ -116,10 +107,6 @@ public class StudentLangdurigPane implements IngelogdGebruiker {
 			}
 		}
 	}
-
-
-
-
 
 	public void melding(String str, int nr) {
 		if (nr == 1) {
