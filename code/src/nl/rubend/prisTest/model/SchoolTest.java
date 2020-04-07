@@ -79,8 +79,8 @@ class SchoolTest {
 
 
 	@Test
-	void test_verschillendeSubklasse_BestaandeGebruikerToevoegen() {
-		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
+	void test_verschillendeSubklasse_BestaandeGebruikerEmailToevoegen() {
+		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jaasdfaisdfn", 123412, null);
 		school.addGebruiker(student);
 		Docent docent = new Docent("jan@hu.nl", "345efgdgfdgf", "jan", 1234);
 
@@ -93,6 +93,14 @@ class SchoolTest {
 		assertTrue(thrown.getMessage().contains("bestaat al"));
 	}
 
+	@Test
+	void test_verschillendeSubklasse_BestaandeGebruikerNaamToevoegen() {
+		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 123412, null);
+		school.addGebruiker(student);
+		Docent docent = new Docent("jan2@hu.nl", "345efgdgfdgf", "jan", 1234);
+
+		assertDoesNotThrow(() ->  school.addGebruiker(docent), "ander email adres met zelfde naam zou geen probleem moeten zijn.");
+	}
 
 	@Test
 	public void test_BestaandeKlasToevoegen() {
