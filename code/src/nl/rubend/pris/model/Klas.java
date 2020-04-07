@@ -60,7 +60,7 @@ public class Klas implements Serializable {
 		} else throw new IllegalArgumentException("Onjuiste waarde");
 	}
 	public void addCursus(Cursus cursus) {
-		if (cursus != null && cursusen.contains(cursus)) {
+		if (cursus != null && !cursusen.contains(cursus)) {
 			this.cursusen.add(cursus);
 			cursus.addKlas(this);
 		} else throw new IllegalArgumentException("Onjuiste waarde");

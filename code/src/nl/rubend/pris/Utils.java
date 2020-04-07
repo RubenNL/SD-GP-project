@@ -1,12 +1,8 @@
 package nl.rubend.pris;
 
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.util.Callback;
-
 import java.time.LocalDate;
 
 public interface Utils {
@@ -54,15 +50,21 @@ public interface Utils {
 		alert.setContentText(tekstMessage);
 		alert.showAndWait();
 	}
+
 	static boolean yesNo(String bericht) {
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bericht, ButtonType.YES, ButtonType.NO);
+		ButtonType ja = new ButtonType("Ja", ButtonBar.ButtonData.YES);
+		ButtonType nee = new ButtonType("Nee", ButtonBar.ButtonData.NO);
+
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bericht, ja, nee);
+		alert.setHeaderText("Bevestiging");
 		alert.setResizable(true);
 		alert.onShownProperty().addListener(e -> {//overgenomen van stackoverflow, popups werken niet goed in Linux zonder dit.
 			Platform.runLater(() -> alert.setResizable(false));
+			System.out.println();
 		});
 		alert.setTitle("Waarschuwing!");
 		alert.showAndWait();
-		return alert.getResult() == ButtonType.YES;
+		return alert.getResult() == ja;
 	}
 
 	static boolean isAlpha(String name) {

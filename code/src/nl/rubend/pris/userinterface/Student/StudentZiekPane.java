@@ -65,7 +65,7 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 			status = Aanwezigheid.ZIEK;
 		}
 		else {
-			status = Aanwezigheid.AFWEZIG;
+			status = Aanwezigheid.GEPLAND;
 		}
 
 		if(targetLessen.size() > 0){
@@ -92,6 +92,9 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 				ziekMessage.getStyleClass().clear();
 				ziekMessage.getStyleClass().add("green-text");
 			}
+		}
+		else if(datePickerStudent.getValue() == null){
+			ziekMessage.setText("Geen dag geselecteerd");
 		}
 		else{
 			ziekMessage.setText("Geen lessen gevonden op die dag");
