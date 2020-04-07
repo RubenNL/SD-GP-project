@@ -66,6 +66,31 @@ public class Main extends Application {
 
 
 
+//
+//		school.addGebruiker(new Student("steuwart@student.hu.nl","eduward","Steuwart", 2345, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
+//		school.addGebruiker(new Student("lombaard@student.hu.nl","eduward","Lombaard", 1235, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
+//		school.addGebruiker(new Student("john@student.hu.nl","eduward","John", 7589, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
+//		school.addGebruiker(new Student("luke@student.hu.nl","eduward","Luke", 3476, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
+//
+//		school.addKlas(new Klas("TICT-SD-V1M"));
+//		school.addCursus(new Cursus("TCIF-V1GP-19_2019","SD-GroupProject"));
+//		school.addCursus(new Cursus("TCIF-V1OOP-19_2019","SD-OO Programming"));
+//		school.addCursus(new Cursus("TCIF-V1OOAD-19_2019","SD-Analysis & design"));
+//		school.addCursus(new Cursus("TCIF-V1CSN-19_2019","SD-CSN"));
+//
+//		school.getKlasByName("TICT-SD-V1M").addStudent((Student)school.getGebruikerByEmail("steuwart@student.hu.nl"));
+//		school.getKlasByName("TICT-SD-V1M").addStudent((Student)school.getGebruikerByEmail("lombaard@student.hu.nl"));
+//		school.getKlasByName("TICT-SD-V1M").addStudent((Student)school.getGebruikerByEmail("john@student.hu.nl"));
+//		school.getKlasByName("TICT-SD-V1M").addStudent((Student)school.getGebruikerByEmail("luke@student.hu.nl"));
+
+
+
+
+
+
+
+
+
 		Les les=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
