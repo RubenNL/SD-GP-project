@@ -26,7 +26,7 @@ public class Cursus implements Serializable {
 	public ArrayList<Cursus> getCursussen() {
 		ArrayList<Cursus> response=new ArrayList<Cursus>();
 		for(Klas klas:klassen) {
-			response.addAll(Klas.getCursussen());
+			response.addAll(klas.getCursussen());
 		}
 		return response;
 	}
