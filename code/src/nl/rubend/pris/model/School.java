@@ -11,7 +11,7 @@ public class School implements Serializable {
 	private ArrayList<Cursus> cursussen=new ArrayList<>();
 
 	private static School school=new School();
-
+	public static void resetSchool() {school=new School();}
 	// Getters (returnen een object)
 	public ArrayList<Klas> getKlassen() { return this.klassen; }
 	public ArrayList<Gebruiker> getGebruikers() {
