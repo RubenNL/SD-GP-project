@@ -65,7 +65,7 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 			status = Aanwezigheid.ZIEK;
 		}
 		else {
-			status = Aanwezigheid.AFWEZIG;
+			status = Aanwezigheid.GEPLAND;
 		}
 
 		if(targetLessen.size() > 0){
