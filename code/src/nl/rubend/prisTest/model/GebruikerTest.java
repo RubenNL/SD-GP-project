@@ -94,7 +94,7 @@ class GebruikerTest {
 	@Test
 	public void test_WachtwoordGelijkAanNull() {
 		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->new Gebruiker("qwe@hu.nl", null, "qwe"),"expected exception");
-		assertEquals("Wachtwoord is te kort!", e.getMessage());
+		assertEquals("Ongeldige waarde", e.getMessage());
 	}
 
 }
