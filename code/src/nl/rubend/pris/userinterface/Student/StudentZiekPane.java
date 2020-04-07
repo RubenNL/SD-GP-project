@@ -93,6 +93,9 @@ public class StudentZiekPane implements IngelogdGebruiker,Initializable {
 				ziekMessage.getStyleClass().add("green-text");
 			}
 		}
+		else if(datePickerStudent.getValue() == null){
+			ziekMessage.setText("Geen dag geselecteerd");
+		}
 		else{
 			ziekMessage.setText("Geen lessen gevonden op die dag");
 			ziekMessage.getStyleClass().clear();
