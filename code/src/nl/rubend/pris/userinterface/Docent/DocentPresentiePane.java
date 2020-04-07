@@ -3,6 +3,7 @@ package nl.rubend.pris.userinterface.Docent;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -40,6 +41,8 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 		les=lessen.get(lesBox.getItems().indexOf(lesBox.getValue()));
 		table.getChildren().removeAll(table.getChildren());
 		table.addRow(0,new Label("Naam student"),new Label("Aanwezig"),new Label("Laatst bewerkt door"));
+		table.setPadding(new Insets(8, 8, 8, 8));
+		table.setVgap(5);
 		for(Student student:les.getStudenten()) {
 			ComboBox<String> comboBox=new ComboBox<String>();
 			comboBox.getItems().addAll(Aanwezigheid.getOptions());

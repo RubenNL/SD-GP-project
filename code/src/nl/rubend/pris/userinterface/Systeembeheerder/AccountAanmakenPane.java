@@ -73,7 +73,9 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 					if (gebruikerType.equals(Student.class) && !slber.getValue().equals("")) {
 						Docent slberClass= (Docent) school.getGebruikerByEmail(slber.getValue());
 						gebruiker = gebruikerType.getDeclaredConstructor(String.class,String.class,String.class,int.class,Docent.class).newInstance(email, wachtwoord, naam, nummer,slberClass);
-						((Student) gebruiker).addKlas(school.getKlasByName(groep));
+//						((Student) gebruiker).addKlas(school.getKlasByName(groep));
+						// voegt student toe aan klas
+						school.getKlasByName(groep).addStudent((Student) gebruiker);
 					} else if (gebruikerType.equals(Docent.class)) {
 						gebruiker = gebruikerType.getDeclaredConstructor(String.class,String.class,String.class,int.class).newInstance(email, wachtwoord, naam, nummer);
 						((Docent) gebruiker).setCursus(school.getCursusByCode(groep));
