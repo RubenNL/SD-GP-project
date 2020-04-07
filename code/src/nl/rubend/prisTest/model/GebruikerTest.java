@@ -47,7 +47,7 @@ class GebruikerTest {
 	// setMail() testen
 	@Test
 	public void test_EmailNotMatchesPattern1() {
-		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail("test@iana.org-"),"expected exception");
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail("test@iana.org-		"),"expected exception");
 		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
