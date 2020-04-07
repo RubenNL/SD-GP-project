@@ -77,24 +77,5 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		slbStudenten.removeAll(slbStudenten);
 		lessen.removeAll(lessen);
 	}
-
-	// Equals
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (super.equals(o)) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		Docent docent = (Docent) o;
-
-		return docentNummer == docent.docentNummer;
-	}
-
-	@Override
-	public int hashCode() {
-		return docentNummer;
-	}
-
-
 }
 

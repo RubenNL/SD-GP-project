@@ -97,20 +97,4 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public void removeKlas(Klas klas) {
 		this.klassen.remove(klas);
 	}
-	//Equals
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (super.equals(o)) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		Student student = (Student) o;
-
-		return studentNummer == student.studentNummer;
-	}
-
-	@Override
-	public int hashCode() {
-		return studentNummer;
-	}
 }
