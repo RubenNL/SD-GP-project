@@ -1,4 +1,4 @@
-package nl.rubend.pris.model;
+package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
