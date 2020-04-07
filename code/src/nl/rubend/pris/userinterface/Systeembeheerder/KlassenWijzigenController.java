@@ -35,23 +35,30 @@ public class KlassenWijzigenController {
             }
         }
         for(Student student: alleStudenten) studentZoekComboBox.getItems().add(student.getNaam());
+//        showStudents();
+    }
 
+    public void showStudents(ArrayList<Student> stds) {
+        if (!stds.isEmpty()) {
+            for (Student student : stds) {
+                System.out.println(student);
+                studentenList.add(student);
+            }
+            studentenNamenListView.setItems(studentenList);
+        }
     }
 
 
     public void handle(MouseEvent event) throws NotFoundException {
-        Klas geselecteerdeKlas = school.getKlasByName(klassenCodenListView.getSelectionModel().getSelectedItem().getKlasNaam());
-        ArrayList<Student> studenten = geselecteerdeKlas.getStudenten();
-        if (studenten != null && !studenten.isEmpty()) {
-            for (Student student : studenten) {
-                if (!studentenList.contains(student)) {
-                    studentenList.add(student);
-                }
-            }
+        studentenList.clear();
+        Klas gesKlas = klassenCodenListView.getSelectionModel().getSelectedItem();
+        if (gesKlas!=null && school.getKlassen().contains(gesKlas)) {
+            showStudents(gesKlas.getStudenten());
+            System.out.println("yay!");
         } else {
             studentenList.clear();
+            System.out.println("wtf1");
         }
-        studentenNamenListView.setItems(studentenList);
     }
 
 
@@ -60,7 +67,6 @@ public class KlassenWijzigenController {
     }
 
     public void handleVerwijderStudentVanGeselecteerdeKlas(ActionEvent actionEvent) {
-        Student geselecteerdeStudent = studentenNamenListView.getSelectionModel().getSelectedItem();
 
     }
 
