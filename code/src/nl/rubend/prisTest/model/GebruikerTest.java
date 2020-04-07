@@ -1,8 +1,9 @@
-package nl.rubend.pris.model;
+package nl.rubend.prisTest.model;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
+import nl.rubend.pris.model.Gebruiker;
 
 import static org.junit.jupiter.api.Assertions.*;
 
