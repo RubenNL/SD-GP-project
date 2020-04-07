@@ -103,7 +103,6 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 
 	@FXML
 	private void lesConfirm() throws NotFoundException {
-		System.out.println(changedBoxes);
 		for (ArrayList lesData : checkboxData){
 			Les les = (Les) lesData.get(0);
 			try{
