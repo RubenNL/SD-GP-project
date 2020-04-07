@@ -87,7 +87,7 @@ class SchoolTest {
 		IllegalArgumentException thrown = assertThrows(
 				IllegalArgumentException.class,
 				() ->  school.addGebruiker(docent),
-				"Gebruiker (" + docent + ") bestaat al"
+				"Gebruiker zou al gevonden moeten zijn."
 		);
 
 		assertTrue(thrown.getMessage().contains("bestaat al"));
