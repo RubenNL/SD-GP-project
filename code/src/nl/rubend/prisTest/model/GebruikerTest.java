@@ -47,7 +47,7 @@ class GebruikerTest {
 	// setMail() testen
 	@Test
 	public void test_EmailNotMatchesPattern1() {
-		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail("sdf@eee.eee"),"expected exception");
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail("test@iana.org-		"),"expected exception");
 		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
@@ -94,7 +94,7 @@ class GebruikerTest {
 	@Test
 	public void test_WachtwoordGelijkAanNull() {
 		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->new Gebruiker("qwe@hu.nl", null, "qwe"),"expected exception");
-		assertEquals("Wachtwoord is te kort!", e.getMessage());
+		assertEquals("Ongeldige waarde", e.getMessage());
 	}
 
 }
