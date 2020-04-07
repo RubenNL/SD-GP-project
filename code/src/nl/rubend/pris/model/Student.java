@@ -72,12 +72,14 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 	public void setSlber(Docent slber) {
 		if (slber != null) {
-			if (this.slber instanceof Docent) {
-				this.slber.removeSlbStudent(this);
+			if(slber instanceof Docent) {
+				if (this.slber instanceof Docent) {
+					this.slber.removeSlbStudent(this);
+				}
 				this.slber = slber;
 				this.slber.addSlbStudent(this);
-			}
-		}
+			} else throw new IllegalArgumentException("SLBer is geen Docent");
+		} else throw new IllegalArgumentException("Geen slber gegeven");
 	}
 	public void removeSlber() {
 		this.slber=null;
