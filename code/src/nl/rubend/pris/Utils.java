@@ -3,9 +3,7 @@ package nl.rubend.pris;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.util.Callback;
-
 import java.time.LocalDate;
-import java.util.Optional;
 
 public interface Utils {
 
