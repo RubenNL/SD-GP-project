@@ -1,6 +1,7 @@
-package nl.rubend.pris.model;
+package model;
 
 import nl.rubend.pris.Main;
+import nl.rubend.pris.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

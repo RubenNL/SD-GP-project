@@ -66,7 +66,7 @@ public class School implements Serializable {
 			if (!cursussen.contains(cursus)) {
 				this.cursussen.add(cursus);
 			} else {
-				new IllegalArgumentException("Cursus (" + cursus + ") bestaat al");
+				throw new IllegalArgumentException("Cursus (" + cursus + ") bestaat al");
 			}
 		} else {
 			throw new IllegalArgumentException("Ongeldige waarde");
