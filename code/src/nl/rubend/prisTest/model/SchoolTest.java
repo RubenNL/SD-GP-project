@@ -1,12 +1,14 @@
-package nl.rubend.pris.model;
+package model;
 
-import nl.rubend.pris.Main;
+import nl.rubend.pris.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static nl.rubend.pris.Main.serializeDemoData;
+import static nl.rubend.pris.model.School.deserialize;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SchoolTest {
@@ -148,5 +150,10 @@ class SchoolTest {
         assertTrue(thrown.getMessage().contains("bestaat al"));
 
     }
-
+    @Test
+    public void test_serialize_deserialize() {
+        assertDoesNotThrow(()->serializeDemoData(),"Serialize zou geen foutmelding moeten geven");
+        //Gebruik van serializeDemoData omdat hier alle types al in staan, en dus ook getest worden.
+        assertDoesNotThrow(()->deserialize(),"Deserialize zou geen foutmelding moeten geven");
+    }
 }
