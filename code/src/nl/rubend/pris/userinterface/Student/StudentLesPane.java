@@ -89,12 +89,12 @@ public class StudentLesPane implements IngelogdGebruiker, Initializable {
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 					if (checkbox.isSelected()){
 						lesData.set(1, "Checked");
-						changedBoxes = true;
 					}
 					else{
 						lesData.set(1, "Unchecked");
-						changedBoxes = true;
 					}
+					changedBoxes = true;
+					lesMessage.setText(null);
 				}
 			});
 			lessenMenu.getChildren().add(checkbox);
