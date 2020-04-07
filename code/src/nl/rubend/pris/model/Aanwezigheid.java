@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Aanwezigheid implements Serializable {
 	private int status;
+	private Les les;
+	private Gebruiker gebruiker;
 	public static final String AANWEZIG="Aanwezig";
 	public static final String AFWEZIG="Afwezig";
 	public static final String ZIEK="Ziek";
@@ -20,12 +22,13 @@ public class Aanwezigheid implements Serializable {
 	public static ArrayList<String> getOptions() {
 		return opties;
 	}
-	private Les les;
-	private Gebruiker gebruiker;
+
+
+	// Constructors
 	public Aanwezigheid(Les les) {
 		this.les=les;
 		try {
-			setStatus(School.getSchool().getGebruikerByEmail("onmogelijk"),AANWEZIG);
+			setStatus(School.getSchool().getGebruikerByEmail("onmogelijk@example.com"),AANWEZIG);
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 		}
@@ -34,27 +37,35 @@ public class Aanwezigheid implements Serializable {
 		this.les=les;
 		setStatus(gebruiker,status);
 	}
+
+
+	// Getters
+	public String getStatus() {
+		return opties.get(this.status);
+	}
+	public Gebruiker getGebruiker() {
+		return this.gebruiker;
+	}
+	public Les getLes() {return les;}
+
+
+	// Setters
 	public void setStatus(Gebruiker gebruiker,String status) throws NotFoundException {
 		int intStatus=opties.indexOf(status);
 		if(intStatus==-1) throw new NotFoundException("Type niet gevonden");
 		this.status=intStatus;
 		setGebruiker(gebruiker);
 	}
-	public void removeGebruiker(boolean removeDocent) {
-		if(removeDocent && this.gebruiker!=null) if(this.gebruiker.getClass().getSimpleName().equals("Docent")) ((Docent) this.gebruiker).removeAanwezigheid(this);
-		gebruiker=null;
-	}
-	public String getStatus() {
-		return opties.get(this.status);
-	}
 	public void setGebruiker(Gebruiker gebruiker) {
 		if(this.gebruiker!=null) if(this.gebruiker.getClass().getSimpleName().equals("Docent")) ((Docent) this.gebruiker).removeAanwezigheid(this);
 		if(gebruiker.getClass().getSimpleName().equals("Docent")) ((Docent) gebruiker).addAanwezigheid(this);
 		this.gebruiker=gebruiker;
 	}
-	public Gebruiker getGebruiker() {
-		return this.gebruiker;
-	}
-	public Les getLes() {return les;}
 	public void removeLes() {les=null;}
+	public void removeGebruiker(boolean removeDocent) {
+		if(removeDocent && this.gebruiker!=null) if(this.gebruiker.getClass().getSimpleName().equals("Docent")) ((Docent) this.gebruiker).removeAanwezigheid(this);
+		gebruiker=null;
+	}
+
+
 }

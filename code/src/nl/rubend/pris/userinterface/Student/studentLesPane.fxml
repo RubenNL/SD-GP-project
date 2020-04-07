@@ -20,8 +20,8 @@
          </styleClass>
             </Label>
       <DatePicker fx:id="dateBox" layoutX="4.0" layoutY="166.0" onAction="#dateSelect" />
-      <VBox fx:id="lessenMenu" layoutX="300.0" layoutY="166.0" prefHeight="170.0" prefWidth="286.0" />
-      <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="61.0" prefHeight="71.0" prefWidth="379.0" text="Meld jezelf hier ziek of afwezig voor één les. Selecteer een dag en vink alle lessen aan waar jij je afwezig voor wilt melden." wrapText="true">
+      <VBox fx:id="lessenMenu" layoutX="300.0" layoutY="166.0" prefHeight="150.0" prefWidth="286.0" />
+      <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="61.0" prefHeight="71.0" prefWidth="356.0" text="Meld jezelf hier ziek of afwezig voor één of meerdere lessen. Selecteer een dag en vink alle lessen aan waar jij je afwezig voor wilt melden." wrapText="true">
          <styleClass>
             <String fx:value="body-text" />
             <String fx:value="grey-text" />
@@ -36,14 +36,20 @@
             <String fx:value="black-text" />
          </styleClass>
       </Label>
-      <Button layoutX="392.0" layoutY="359.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" styleClass="cancel-button" text="Annuleren" />
-      <Button layoutX="495.0" layoutY="359.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" styleClass="confirm-button" text="Afmelden" />
+      <Button fx:id="lesCancelButton" layoutX="392.0" layoutY="359.0" mnemonicParsing="false" onAction="#resetAllFields" prefHeight="26.0" prefWidth="91.0" styleClass="cancel-button" text="Annuleren" />
+      <Button fx:id="lesConfirmButton" layoutX="495.0" layoutY="359.0" mnemonicParsing="false" onAction="#lesConfirm" prefHeight="26.0" prefWidth="91.0" styleClass="confirm-button" text="Bevestigen" />
       <Label fx:id="labelId11" layoutX="300.0" layoutY="127.0" prefHeight="34.0" prefWidth="248.0" text="Lessen">
          <font>
             <Font name="Roboto" size="36.0" />
          </font>
          <styleClass>
             <String fx:value="h3" />
+            <String fx:value="black-text" />
+         </styleClass>
+      </Label>
+      <Label fx:id="lesMessage" alignment="CENTER_RIGHT" layoutX="274.0" layoutY="327.0" prefHeight="18.0" prefWidth="312.0" wrapText="true">
+         <styleClass>
+            <String fx:value="body-text" />
             <String fx:value="black-text" />
          </styleClass>
       </Label>

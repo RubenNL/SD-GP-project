@@ -4,37 +4,30 @@ import java.util.ArrayList;
 import java.io.*;
 
 public class School implements Serializable {
-	private ArrayList<Gebruiker> gebruikers=new ArrayList<Gebruiker>();
-	private ArrayList<Klas> klassen=new ArrayList<Klas>();
-	private ArrayList<Cursus> cursussen=new ArrayList<Cursus>();
+
+	private ArrayList<Gebruiker> gebruikers=new ArrayList<>();
+	private ArrayList<Klas> klassen=new ArrayList<>();
+	private ArrayList<Cursus> cursussen=new ArrayList<>();
+
 	private static School school=new School();
-	public void addGebruiker(Gebruiker gebruiker) throws Exception {
-		if (!gebruikers.contains(gebruiker)) {
-			gebruikers.add(gebruiker);
-		}
-		else {
-			throw new Exception("\"" + gebruiker.getNaam() + "\" object bestaat al!");
-		}
+
+	// Getters (returnen een object)
+	public ArrayList<Klas> getKlassen() { return this.klassen; }
+	public ArrayList<Gebruiker> getGebruikers() {
+		return gebruikers;
+  }
+
+	public ArrayList<Cursus> getCursussen() { return this.cursussen; }
+
+	public static School getSchool() {
+		return school;
 	}
+
 	public Gebruiker getGebruikerByEmail(String email) throws NotFoundException {
 		for(Gebruiker gebruiker:gebruikers) {
 			if(email.toLowerCase().equals(gebruiker.getEmail())) return gebruiker;
 		}
 		throw new NotFoundException("Gebruiker niet gevonden");
-	}
-	public void addCursus(Cursus cursus) { this.cursussen.add(cursus); }
-	public ArrayList<Cursus> getCursussen() { return this.cursussen; }
-	public Cursus getCursusByCode(String naam) throws NotFoundException {
-		for(Cursus cursus:cursussen) {
-			if(cursus.getCursusCode().equals(naam)) return cursus;
-		}
-		throw new NotFoundException("Cursus niet gevonden");
-	}
-	public ArrayList<Klas> getKlassen() { return this.klassen; }
-	public void addKlas(Klas klas) {this.klassen.add(klas);}
-
-	public ArrayList<Gebruiker> getGebruikers() {
-		return gebruikers;
 	}
 
 	public Klas getKlasByName(String klasNaam) throws NotFoundException {
@@ -45,10 +38,43 @@ public class School implements Serializable {
 		}
 		throw new NotFoundException("Klas niet gevonden");
 	}
-	public static School getSchool() {
-		return school;
+
+	public Cursus getCursusByCode(String naam) throws NotFoundException {
+		for(Cursus cursus:cursussen) {
+			if(cursus.getCursusCode().equals(naam)) return cursus;
+		}
+		throw new NotFoundException("Cursus niet gevonden");
 	}
 
+
+	// Adders (returnen void)
+	public void addGebruiker(Gebruiker gebruiker)  {
+		if (gebruiker != null && (!gebruikers.contains(gebruiker))) {
+			gebruikers.add(gebruiker);
+		}
+		else {
+			throw new IllegalArgumentException("Onjuiste waarde");
+		}
+	}
+
+	public void addCursus(Cursus cursus) {
+		if (cursus != null && (!cursussen.contains(cursus))) {
+			this.cursussen.add(cursus);
+		} 		else {
+			throw new IllegalArgumentException("Onjuiste waarde");
+		}
+	}
+
+	public void addKlas(Klas klas) {
+		if (klas != null && (!klassen.contains(klas))) {
+			this.klassen.add(klas);
+		} else {
+			throw new IllegalArgumentException("Onjuiste waarde");
+		}
+	}
+
+	public void removeKlas(Klas klas) {this.klassen.remove(klas);}
+	public void removeCursus(Cursus cursus) {this.cursussen.remove(cursus);}
 	public static void serialize() {
 		try {
 			FileOutputStream fileout= new FileOutputStream("out.ser");

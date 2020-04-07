@@ -9,40 +9,23 @@ import java.util.Objects;
 
 public class Klas implements Serializable {
 	private String klasNaam;
-	private ArrayList<Cursus> cursussen = new ArrayList<Cursus>();
-	private ArrayList<Student> studenten = new ArrayList<Student>();
-	private ArrayList<Les> lessen = new ArrayList<Les>();
+
+	private ArrayList<Cursus> cursussen = new ArrayList<>();
+	private ArrayList<Student> studenten = new ArrayList<>();
+	private ArrayList<Les> lessen = new ArrayList<>();
 
 	public Klas(String nm) {
 		this.klasNaam = nm;
 	}
 
+
+
+	// Getters
 	public String getKlasNaam() {
 		return klasNaam;
 	}
-	public ArrayList<Student> getStudenten() { return studenten; }
+	public ArrayList<Student> getStudenten() { return studenten; } git
 
-	public void addStudent(Student student) {
-		this.studenten.add(student);
-		student.addKlas(this);
-	}
-	public void removeStudent(Student student) {
-		this.studenten.remove(student);
-	}
-	public Map<Student,Aanwezigheid> getAanwezigheidBijLes(Les les) {
-		Map<Student,Aanwezigheid> response=new HashMap<Student,Aanwezigheid>();
-		for(Student student:getStudenten()) {
-			response.put(student,student.getAanwezigheidBijLes(les));
-		}
-		return response;
-	}
-	protected void addLes(Les les) {
-		this.lessen.add(les);
-	}
-	public void addCursus(Cursus cursus) {
-		this.cursussen.add(cursus);
-		cursus.addKlas(this);
-	}
 	public ArrayList<Les> getLessenOpDag(LocalDate date) {
 		ArrayList<Les> response=new ArrayList<Les>();
 		for(Les les:lessen) {
@@ -50,11 +33,78 @@ public class Klas implements Serializable {
 		}
 		return response;
 	}
+
+	public Map<Student,Aanwezigheid> getAanwezigheidBijLes(Les les) {
+		Map<Student,Aanwezigheid> response=new HashMap<Student,Aanwezigheid>();
+		for(Student student:getStudenten()) {
+			response.put(student,student.getAanwezigheidBijLes(les));
+		}
+		return response;
+	}
+
+
+
+	// Adders en Setters
+	protected void addLes(Les les) {
+		if (les != null && (!lessen.contains(les))) {
+			this.lessen.add(les);
+		}else throw new IllegalArgumentException("Onjuiste waarde");
+
+	}
+	public void addStudent(Student student) {
+		if (student != null && (!studenten.contains(student))) {
+			this.studenten.add(student);
+			student.addKlas(this);
+		} else throw new IllegalArgumentException("Onjuiste waarde");
+	}
+	public void addCursus(Cursus cursus) {
+		if (cursus != null && !cursussen.contains(cursus)) {
+			this.cursussen.add(cursus);
+			cursus.addKlas(this);
+		} else throw new IllegalArgumentException("Onjuiste waarde");
+	}
+	public void removeStudent(Student student) {
+		this.studenten.remove(student);
+	}
 	public ArrayList<Cursus> getCursussen() {
 		return this.cursussen;
 	}
+	public void removeLes(Les les) {this.lessen.remove(les);}
 
-	public String toString() {
-		return "klas: " + this.klasNaam;
+	public void removeKlas() {
+		for (Cursus cursus: cursussen) cursus.removeKlas(this);
+		for (Student student:studenten) student.removeKlas(this);
+		for(Les les:lessen) les.removeKlas(this);
+		studenten.removeAll(studenten);
+		cursussen.removeAll(cursussen);
+		lessen.removeAll(lessen);
+		School.getSchool().removeKlas(this);
 	}
+	public void removeCursus(Cursus cursus) {
+		this.cursussen.remove(cursus);
+	}
+
+
+	//Equals
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Klas klas = (Klas) o;
+		return klasNaam.equals(klas.klasNaam);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(klasNaam);
+	}
+
+	// To String
+	public String toString() {
+		return this.klasNaam;
+	}
+
+
+
+
 }

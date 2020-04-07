@@ -7,19 +7,25 @@ import java.util.ArrayList;
 public class Student extends Gebruiker implements Serializable,RemovableAccount {
 	private int studentNummer;
 	private boolean langdurigAfwezig;
-	private ArrayList<Klas> klassen=new ArrayList<Klas>();
-	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<Aanwezigheid>();
-	public Student(String email, String wachtwoord, String naam, int sN) {
+	private ArrayList<Klas> klassen=new ArrayList<>();
+	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<>();
+	private Docent slber;
+
+	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) throws IllegalArgumentException {
 		super(email, wachtwoord, naam);
 		this.studentNummer = sN;
+		setSlber(slber);
 	}
 
+	// Getters
 	public int getStudentNummer() {
 		return studentNummer;
 	}
-	public void addKlas(Klas klas) {
-		this.klassen.add(klas);
+
+	public ArrayList<Aanwezigheid> getAanwezigheidList() {
+		return aanwezigheid;
 	}
+
 	public ArrayList<Klas> getKlassen() {
 		return this.klassen;
 	}
@@ -27,20 +33,6 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		ArrayList<Les> response=new ArrayList<Les>();
 		for(Klas klas:klassen) response.addAll(klas.getLessenOpDag(dag));
 		return response;
-	}
-	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		this.aanwezigheid.add(aanwezigheid);
-	}
-	public ArrayList<Aanwezigheid> getAanwezigheidList() {
-		return aanwezigheid;
-	}
-
-	public boolean isLangdurigAfwezig() {
-		return langdurigAfwezig;
-	}
-
-	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
-		this.langdurigAfwezig = langdurigAfwezig;
 	}
 
 	public Aanwezigheid getAanwezigheidBijLes(Les les) {
@@ -50,6 +42,43 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		Aanwezigheid aanwezigheid=new Aanwezigheid(les);
 		addAanwezigheid(aanwezigheid);
 		return aanwezigheid;
+	}
+
+	public boolean isLangdurigAfwezig() {
+		return langdurigAfwezig;
+	}
+
+	public Docent getSlber() {
+		return this.slber;
+	}
+
+	// Setters en Adders
+	public void setLangdurigAfwezig(boolean langdurigAfwezig) {
+		this.langdurigAfwezig = langdurigAfwezig;
+	}
+
+	public void addKlas(Klas klas) {
+		if (klas != null && (!klassen.contains(klas))) {
+			this.klassen.add(klas);
+		} else {
+			throw new IllegalArgumentException("Onjuiste waarde");
+		}
+	}
+
+	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
+		if (aanwezigheid != null) {
+			this.aanwezigheid.add(aanwezigheid);
+		}
+	}
+	public void setSlber(Docent slber) {
+		if (slber != null) {
+			if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
+			this.slber = slber;
+			this.slber.addSlbStudent(this);
+		}
+	}
+	public void removeSlber() {
+		this.slber=null;
 	}
 	@Override
 	public void removeAccount() {
@@ -61,7 +90,12 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 			melding.removeGebruiker(true);
 			melding.removeLes();
 		}
+		slber.removeSlbStudent(this);
 	}
+	public void removeKlas(Klas klas) {
+		this.klassen.remove(klas);
+	}
+	//Equals
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
