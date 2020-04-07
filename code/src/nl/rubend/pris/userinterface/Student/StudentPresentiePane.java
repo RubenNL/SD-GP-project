@@ -6,16 +6,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ChoiceBox;
+import nl.rubend.pris.model.Cursus;
 import nl.rubend.pris.model.Gebruiker;
 import nl.rubend.pris.model.Student;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 import nl.rubend.pris.model.Aanwezigheid;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
     private Student student;
+    private Cursus cursus;
     private int aanwezig;
     private int ziek;
     private int afwezig;
@@ -43,6 +46,7 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
                 new PieChart.Data("Langdurig", langdurig),
                 new PieChart.Data("Gepland", gepland)
         );
+        cursusBox = FXCollections.observableArrayList(cursus.getCursussen());
         pieChart.setData(pieChartData);
     }
 

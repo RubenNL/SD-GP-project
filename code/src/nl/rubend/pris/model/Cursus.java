@@ -1,5 +1,8 @@
 package nl.rubend.pris.model;
 
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -20,4 +23,11 @@ public class Cursus implements Serializable {
 		return cursusCode;
 	}
 
+	public ArrayList<Cursus> getCursussen() {
+		ArrayList<Cursus> response=new ArrayList<Cursus>();
+		for(Klas klas:klassen) {
+			response.addAll(Klas.getCursussen());
+		}
+		return response;
+	}
 }

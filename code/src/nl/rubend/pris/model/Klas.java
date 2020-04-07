@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Klas implements Serializable {
 	private String klasNaam;
-	private ArrayList<Cursus> cursusen = new ArrayList<Cursus>();
+	private ArrayList<Cursus> cursussen = new ArrayList<Cursus>();
 	private ArrayList<Student> studenten = new ArrayList<Student>();
 	private ArrayList<Les> lessen = new ArrayList<Les>();
 
@@ -40,7 +40,7 @@ public class Klas implements Serializable {
 		this.lessen.add(les);
 	}
 	public void addCursus(Cursus cursus) {
-		this.cursusen.add(cursus);
+		this.cursussen.add(cursus);
 		cursus.addKlas(this);
 	}
 	public ArrayList<Les> getLessenOpDag(LocalDate date) {
@@ -50,8 +50,8 @@ public class Klas implements Serializable {
 		}
 		return response;
 	}
-	public ArrayList<Cursus> getCursusen() {
-		return this.cursusen;
+	public ArrayList<Cursus> getCursussen() {
+		return this.cursussen;
 	}
 
 	public String toString() {
