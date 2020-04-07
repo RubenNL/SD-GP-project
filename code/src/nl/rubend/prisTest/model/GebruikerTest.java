@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
@@ -10,52 +11,35 @@ import static org.junit.jupiter.api.Assertions.*;
 class GebruikerTest {
 
 
-
-
+	private Gebruiker gebruiker;
+	@BeforeEach
+	public void init() {
+		gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
+	}
 	// setNaam() testen
 	@Test
 	public void test_NaamAlsLegeString() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setNaam("");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Ongeldige waarde", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setNaam(""),"expected exception");
+		assertEquals("Ongeldige waarde", e.getMessage());
 	}
 
 	@Test
 	public void test_NaamGelijkAanNull() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setNaam(null);
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Ongeldige waarde", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setNaam(null),"expected exception");
+		assertEquals("Ongeldige waarde", e.getMessage());
 	}
 
 
 	@Test
 	public void test_NaamBevatNietAlphabetischeCharacters() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setNaam("Marks123");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Ongeldige waarde", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setNaam("Marks123"),"expected exception");
+		assertEquals("Ongeldige waarde", e.getMessage());
 	}
 
 	@Test
 	public void test_NaamUitNietAlphabetischeCharacters() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setNaam("2342$#@");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Ongeldige waarde", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setNaam("2342$#@"),"expected exception");
+		assertEquals("Ongeldige waarde", e.getMessage());
 	}
 
 
@@ -63,60 +47,35 @@ class GebruikerTest {
 	// setMail() testen
 	@Test
 	public void test_EmailNotMatchesPattern1() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setEmail("sdf@eee.eee");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Emailadres niet correct", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail("sdf@eee.eee"),"expected exception");
+		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
 
 	@Test
 	public void test_EmailNotMatchesPattern2() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setEmail("sdf @hu.nl");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Emailadres niet correct", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail("sdf @hu.nl"),"expected exception");
+		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
 
 	@Test
 	public void test_EmailGelijkAanNull() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setEmail(null);
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Emailadres niet correct", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail(null),"expected exception");
+		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
 
 	@Test
 	public void test_EmailNotMatchesPattern3() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setEmail("sdfhu.nl");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Emailadres niet correct", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail("sdfhu.nl"),"expected exception");
+		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
 	@Test
 	public void EmailAlsEenLegeString() {
-		Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sssadfsdfsdf", "qwe");
-		try {
-			gebruiker.setEmail("");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Emailadres niet correct", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->gebruiker.setEmail(""),"expected exception");
+		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
 	@Test
