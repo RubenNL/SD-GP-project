@@ -30,7 +30,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		return this.klassen;
 	}
 	public ArrayList<Les> getLessenOpDag(LocalDate dag) {
-		ArrayList<Les> response=new ArrayList<Les>();
+		ArrayList<Les> response=new ArrayList<>();
 		for(Klas klas:klassen) response.addAll(klas.getLessenOpDag(dag));
 		return response;
 	}
@@ -61,7 +61,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		if (klas != null && (!klassen.contains(klas))) {
 			this.klassen.add(klas);
 		} else {
-			throw new IllegalArgumentException("Onjuiste waarde");
+			throw new IllegalArgumentException("Ongeldige waarde");
 		}
 	}
 
@@ -72,9 +72,11 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 	public void setSlber(Docent slber) {
 		if (slber != null) {
-			if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
-			this.slber = slber;
-			this.slber.addSlbStudent(this);
+			if (this.slber instanceof Docent) {
+				this.slber.removeSlbStudent(this);
+				this.slber = slber;
+				this.slber.addSlbStudent(this);
+			}
 		}
 	}
 	public void removeSlber() {

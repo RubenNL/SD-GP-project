@@ -49,27 +49,39 @@ public class School implements Serializable {
 
 	// Adders (returnen void)
 	public void addGebruiker(Gebruiker gebruiker)  {
-		if (gebruiker != null && (!gebruikers.contains(gebruiker))) {
-			gebruikers.add(gebruiker);
+		if (gebruiker != null) {
+			if (!gebruikers.contains(gebruiker)) {
+				gebruikers.add(gebruiker);
+			} else {
+				throw new IllegalArgumentException("Gebruiker (" + gebruiker + ") bestaat al" );
+			}
 		}
 		else {
-			throw new IllegalArgumentException("Onjuiste waarde");
+			throw new IllegalArgumentException("Ongeldige waarde");
 		}
 	}
 
 	public void addCursus(Cursus cursus) {
-		if (cursus != null && (!cursussen.contains(cursus))) {
-			this.cursussen.add(cursus);
-		} 		else {
-			throw new IllegalArgumentException("Onjuiste waarde");
+		if (cursus != null) {
+			if (!cursussen.contains(cursus)) {
+				this.cursussen.add(cursus);
+			} else {
+				new IllegalArgumentException("Cursus (" + cursus + ") bestaat al");
+			}
+		} else {
+			throw new IllegalArgumentException("Ongeldige waarde");
 		}
 	}
 
 	public void addKlas(Klas klas) {
-		if (klas != null && (!klassen.contains(klas))) {
-			this.klassen.add(klas);
+		if (klas != null) {
+			if (!klassen.contains(klas)) {
+				this.klassen.add(klas);
+			} else {
+				throw new IllegalArgumentException("Klas (" + klas + ") bestaat al");
+			}
 		} else {
-			throw new IllegalArgumentException("Onjuiste waarde");
+			throw new IllegalArgumentException("Ongeldige waarde");
 		}
 	}
 
