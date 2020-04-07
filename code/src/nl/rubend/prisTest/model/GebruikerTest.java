@@ -80,34 +80,21 @@ class GebruikerTest {
 
 	@Test
 	public void test_EmailExceptionBijInstantieren() {
-		try {
-			Gebruiker gebruiker = new Gebruiker("sdfsdfsdf", "sdfsdf", "qwe");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Emailadres niet correct", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->new Gebruiker("sdfsdfsdf", "sdfsdf", "qwe"),"expected exception");
+		assertEquals("Emailadres niet correct", e.getMessage());
 	}
 
 
 	@Test
 	public void test_WachtwoordTekortIs() {
-		// korter dan 8 characters
-		try {
-			Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", "sdfsdf", "qwe");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Wachtwoord is te kort!", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->new Gebruiker("qwe@hu.nl", "sdfsdf", "qwe"),"expected exception");
+		assertEquals("Wachtwoord is te kort!", e.getMessage());
 	}
 
 	@Test
 	public void test_WachtwoordGelijkAanNull() {
-		try {
-			Gebruiker gebruiker = new Gebruiker("qwe@hu.nl", null, "qwe");
-		}
-		catch (IllegalArgumentException iae){
-			assertEquals("Ongeldige waarde", iae.getMessage());
-		}
+		IllegalArgumentException e=assertThrows(IllegalArgumentException.class,()->new Gebruiker("qwe@hu.nl", null, "qwe"),"expected exception");
+		assertEquals("Wachtwoord is te kort!", e.getMessage());
 	}
 
 }
