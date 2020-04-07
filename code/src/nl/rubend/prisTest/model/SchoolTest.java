@@ -5,12 +5,6 @@ import nl.rubend.pris.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-import static nl.rubend.pris.Main.serializeDemoData;
-import static nl.rubend.pris.model.School.deserialize;
-import static nl.rubend.pris.model.School.getSchool;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SchoolTest {
@@ -145,7 +139,7 @@ class SchoolTest {
 
 
 	@Test
-	public void test_GebruikerGetByEmailNotFound() throws NotFoundException {
+	public void test_GebruikerGetByEmailNotFound() {
 		School school=School.getSchool();
 		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
 		school.addGebruiker(student);
@@ -169,7 +163,7 @@ class SchoolTest {
 
 
 	@Test
-	public void test_KlasGetByNameNotFound() throws NotFoundException {
+	public void test_KlasGetByNameNotFound() {
 		School school=School.getSchool();
 		Klas klas = new Klas("TICT-SD-V1E");
 		school.addKlas(klas);
@@ -193,7 +187,7 @@ class SchoolTest {
 
 
 	@Test
-	public void test_CursusGetByCodeNotFound() throws NotFoundException {
+	public void test_CursusGetByCodeNotFound() {
 		School school=School.getSchool();
 		Cursus cursus =  new Cursus("TCIF-V1GP-19_2019","SD-GroupProject");
 		school.addCursus(cursus);
@@ -210,11 +204,11 @@ class SchoolTest {
 	@Test
 	public void test_serialize_deserialize() {
 		School.resetSchool();
-		assertDoesNotThrow(()->serializeDemoData(),"Serialize zou geen foutmelding moeten geven");
+		assertDoesNotThrow(Main::serializeDemoData,"Serialize zou geen foutmelding moeten geven");
 		School school1=School.getSchool();
 		School.resetSchool();
 		//Gebruik van serializeDemoData omdat hier alle types al in staan, en dus ook getest worden.
-		assertDoesNotThrow(()->deserialize(),"Deserialize zou geen foutmelding moeten geven");
+		assertDoesNotThrow(School::deserialize,"Deserialize zou geen foutmelding moeten geven");
 		assertEquals(School.getSchool(),school1,"School objecten zouden gelijk moeten zijn.");
 	}
 
