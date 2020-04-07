@@ -150,4 +150,89 @@ class SchoolTest {
 
     }
 
+
+    @Test
+    public void test_GebruikerGetByEmail() throws NotFoundException {
+        School school=School.getSchool();
+        Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
+        school.addGebruiker(student);
+        assertEquals(school.getGebruikerByEmail("jan@hu.nl"), student);
+    }
+
+
+    @Test
+    public void test_GebruikerGetByEmailNotFound() throws NotFoundException {
+        School school=School.getSchool();
+        Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
+        school.addGebruiker(student);
+
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
+                () -> school.getGebruikerByEmail("test@email.com"),
+                "Gebruiker niet gevonden"
+        );
+
+        assertTrue(thrown.getMessage().contains("niet gevonden"));
+    }
+
+
+
+
+
+
+    @Test
+    public void test_KlasGetByName() throws NotFoundException {
+        School school=School.getSchool();
+        Klas klas = new Klas("TICT-SD-V1E");
+        school.addKlas(klas);
+        assertEquals(school.getKlasByName("TICT-SD-V1E"), klas);
+    }
+
+
+    @Test
+    public void test_KlasGetByNameNotFound() throws NotFoundException {
+        School school=School.getSchool();
+        Klas klas = new Klas("TICT-SD-V1E");
+        school.addKlas(klas);
+        assertEquals(school.getKlasByName("TICT-SD-V1E"), klas);
+
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
+                () -> school.getKlasByName("test"),
+                "Klas niet gevonden"
+        );
+
+        assertTrue(thrown.getMessage().contains("niet gevonden"));
+    }
+
+
+
+
+
+
+
+    @Test
+    public void test_CursusGetByCode() throws NotFoundException {
+        School school=School.getSchool();
+        Cursus cursus =  new Cursus("TCIF-V1GP-19_2019","SD-GroupProject");
+        school.addCursus(cursus);
+        assertEquals(school.getCursusByCode("TCIF-V1GP-19_2019"), cursus);
+    }
+
+
+    @Test
+    public void test_CursusGetByCodeNotFound() throws NotFoundException {
+        School school=School.getSchool();
+        Cursus cursus =  new Cursus("TCIF-V1GP-19_2019","SD-GroupProject");
+        school.addCursus(cursus);
+
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
+                () -> school.getCursusByCode("test"),
+                "Cursus niet gevonden"
+        );
+
+        assertTrue(thrown.getMessage().contains("niet gevonden"));
+    }
+
 }
