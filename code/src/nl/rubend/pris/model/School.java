@@ -86,8 +86,18 @@ public class School implements Serializable {
 		}
 	}
 
-	public void removeKlas(Klas klas) {this.klassen.remove(klas);}
-	public void removeCursus(Cursus cursus) {this.cursussen.remove(cursus);}
+	public void removeKlas(Klas klas) throws NotFoundException {
+		if (this.klassen.contains(klas)) {
+			this.klassen.remove(klas);
+		} else throw new NotFoundException("Klas niet gevonden");
+	}
+
+	public void removeCursus(Cursus cursus) throws NotFoundException {
+		if (this.cursussen.contains(cursus)) {
+			this.cursussen.remove(cursus);
+		} else throw new NotFoundException("Cursus niet gevonden");
+	}
+
 	public static void serialize() {
 		try {
 			FileOutputStream fileout= new FileOutputStream("out.ser");

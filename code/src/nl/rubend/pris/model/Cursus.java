@@ -28,7 +28,8 @@ public class Cursus implements Serializable {
 	}
 	public void addLes(Les les) {this.lessen.add(les);}
 	public void removeKlas(Klas klas) { this.klassen.remove(klas); }
-	public void removeCursus() {
+
+	public void removeCursus() throws NotFoundException {
 		for(Klas klas:klassen) klas.removeCursus(this);
 		for(Les les:lessen) les.unsetCursus();
 		klassen.removeAll(klassen);

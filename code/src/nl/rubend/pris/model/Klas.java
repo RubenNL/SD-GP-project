@@ -70,7 +70,7 @@ public class Klas implements Serializable {
 	}
 	public void removeLes(Les les) {this.lessen.remove(les);}
 
-	public void removeKlas() {
+	public void removeKlas() throws NotFoundException {
 		for (Cursus cursus: cursusen) cursus.removeKlas(this);
 		for (Student student:studenten) student.removeKlas(this);
 		for(Les les:lessen) les.removeKlas(this);

@@ -18,7 +18,6 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	}
 
 	// Getters
-
 	public int getDocentNummer() {
 		return docentNummer;
 	}

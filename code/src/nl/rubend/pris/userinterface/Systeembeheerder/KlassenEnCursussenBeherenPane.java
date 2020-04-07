@@ -86,7 +86,7 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 	}
 
 
-	public void handleRemoveKlas(ActionEvent actionEvent) {
+	public void handleRemoveKlas(ActionEvent actionEvent) throws NotFoundException {
 		final int selectedIdx = alleKlassenList.getSelectionModel().getSelectedIndex();
 		if (selectedIdx != -1) {
 			if (Utils.yesNo("Wil je zeker deze klas verwijderen?")) {
@@ -97,7 +97,7 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 		} else melding(klasLabel, "Selecteer eerst een klas!", false);
 	}
 
-	public void handleRemoveCursus(ActionEvent actionEvent) {
+	public void handleRemoveCursus(ActionEvent actionEvent) throws NotFoundException {
 		final int selectedIdx = alleCursussenList.getSelectionModel().getSelectedIndex();
 		if (selectedIdx != -1) {
 			if (Utils.yesNo("Wil je zeker deze cursus verwijderen?")) {

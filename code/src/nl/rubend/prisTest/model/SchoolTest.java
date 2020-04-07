@@ -10,6 +10,7 @@ import java.time.LocalTime;
 
 import static nl.rubend.pris.Main.serializeDemoData;
 import static nl.rubend.pris.model.School.deserialize;
+import static nl.rubend.pris.model.School.getSchool;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SchoolTest {
@@ -85,7 +86,7 @@ class SchoolTest {
 
 		IllegalArgumentException thrown = assertThrows(
 				IllegalArgumentException.class,
-				() ->            school.addGebruiker(docent),
+				() ->  school.addGebruiker(docent),
 				"Gebruiker (" + docent + ") bestaat al"
 		);
 
@@ -150,11 +151,6 @@ class SchoolTest {
 		assertTrue(thrown.getMessage().contains("niet gevonden"));
 	}
 
-
-
-
-
-
 	@Test
 	public void test_KlasGetByName() throws NotFoundException {
 		School school=School.getSchool();
@@ -169,7 +165,6 @@ class SchoolTest {
 		School school=School.getSchool();
 		Klas klas = new Klas("TICT-SD-V1E");
 		school.addKlas(klas);
-		assertEquals(school.getKlasByName("TICT-SD-V1E"), klas);
 
 		NotFoundException thrown = assertThrows(
 				NotFoundException.class,
@@ -179,12 +174,6 @@ class SchoolTest {
 
 		assertTrue(thrown.getMessage().contains("niet gevonden"));
 	}
-
-
-
-
-
-
 
 	@Test
 	public void test_CursusGetByCode() throws NotFoundException {
@@ -220,4 +209,66 @@ class SchoolTest {
 		assertDoesNotThrow(()->deserialize(),"Deserialize zou geen foutmelding moeten geven");
 		assertEquals(School.getSchool(),school1,"School objecten zouden gelijk moeten zijn.");
 	}
+
+	@Test
+	public void test_removeBestaandeKlas() throws NotFoundException {
+		School school=School.getSchool();
+		Klas klas = new Klas("TICT-SD-V1E");
+		school.addKlas(klas);
+		school.removeKlas(klas);
+		NotFoundException thrown = assertThrows(
+				NotFoundException.class,
+				() -> school.getKlasByName("TICT-SD-V1E"),
+				"Klas niet gevonden"
+		);
+
+		assertTrue(thrown.getMessage().contains("niet gevonden"));
+	}
+
+	@Test
+	public void test_removeNietBestaandeKlas() {
+		School school=School.getSchool();
+		Klas klas = new Klas("TICT-SD-V1E");
+		NotFoundException thrown = assertThrows(
+				NotFoundException.class,
+				() ->  school.removeKlas(klas),
+				"Klas niet gevonden"
+		);
+
+		assertTrue(thrown.getMessage().contains("niet gevonden"));
+
+	}
+
+
+	@Test
+	public void test_removeBestaandeCursus() throws NotFoundException {
+		School school=School.getSchool();
+		Cursus cursus =  new Cursus("TCIF-V1GP-19_2019","SD-GroupProject");
+		school.addCursus(cursus);
+		school.removeCursus(cursus);
+
+
+		NotFoundException thrown = assertThrows(
+				NotFoundException.class,
+				() -> school.getKlasByName("TICT-SD-V1E"),
+				"Klas niet gevonden"
+		);
+
+		assertTrue(thrown.getMessage().contains("niet gevonden"));
+	}
+
+	@Test
+	public void test_removeNietBestaandeCursus() {
+		School school=School.getSchool();
+		Cursus cursus =  new Cursus("TCIF-V1GP-19_2019","SD-GroupProject");
+		NotFoundException thrown = assertThrows(
+				NotFoundException.class,
+				() ->  school.removeCursus(cursus),
+				"Klas niet gevonden"
+		);
+
+		assertTrue(thrown.getMessage().contains("niet gevonden"));
+
+	}
+
 }
