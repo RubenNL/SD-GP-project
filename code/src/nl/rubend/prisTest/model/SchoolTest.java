@@ -58,9 +58,11 @@ class SchoolTest {
 
 	@Test
 	void test_dezelfdeSubklasse_BestaandeGebruikerToevoegen() {
-		Student student1 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
+		Docent slber=new Docent("123@456.789","1233456434235","SlbTest",6432);
+		school.addGebruiker(slber);
+		Student student1 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, slber);
 		school.addGebruiker(student1);
-		Student student2 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
+		Student student2 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, slber);
 
 		IllegalArgumentException thrown = assertThrows(
 				IllegalArgumentException.class,
@@ -70,7 +72,12 @@ class SchoolTest {
 
 		assertTrue(thrown.getMessage().contains("bestaat al"));
 	}
-
+	@Test
+	void test_slberNietInSchool() {
+		Docent slber=new Docent("123@456.789","1233456434235","SlbTest",6432);
+		IllegalArgumentException thrown=assertThrows(IllegalArgumentException.class,()->new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, slber),"Geen foutmelding bij selecteren van SLBer die niet in school zit");
+		assertEquals(thrown.getMessage(),"SLBer niet in School");
+	}
 
 	@Test
 	void test_verschillendeSubklasse_BestaandeGebruikerEmailToevoegen() {

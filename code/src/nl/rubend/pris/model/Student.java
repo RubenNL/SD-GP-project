@@ -69,6 +69,11 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	public void setSlber(Docent slber) {
 		if (slber != null) {
 			if(slber instanceof Docent) {
+				try {
+					School.getSchool().getGebruikerByEmail(slber.getEmail());
+				} catch (NotFoundException e) {
+					throw new IllegalArgumentException("SLBer niet in School");
+				}
 				if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
 				this.slber = slber;
 				this.slber.addSlbStudent(this);
