@@ -24,8 +24,7 @@ public class Klas implements Serializable {
 	public String getKlasNaam() {
 		return klasNaam;
 	}
-	public ArrayList<Student> getStudenten() { return studenten; } git
-
+	public ArrayList<Student> getStudenten() { return studenten; }
 	public ArrayList<Les> getLessenOpDag(LocalDate date) {
 		ArrayList<Les> response=new ArrayList<Les>();
 		for(Les les:lessen) {

@@ -6,14 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ChoiceBox;
-import nl.rubend.pris.model.Cursus;
-import nl.rubend.pris.model.Gebruiker;
-import nl.rubend.pris.model.Student;
+import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
-import nl.rubend.pris.model.Aanwezigheid;
 
-import java.awt.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
@@ -46,7 +44,17 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
                 new PieChart.Data("Langdurig", langdurig),
                 new PieChart.Data("Gepland", gepland)
         );
-        cursusBox = FXCollections.observableArrayList(cursus.getCursussen());
+
+        List<Cursus> anderelijst = new ArrayList<>();
+        System.out.println(student);
+        System.out.println(student.getKlassen());
+        for(Klas k : student.getKlassen()) {
+            for(Cursus c : k.getCursussen()){
+                if (!anderelijst.contains(c)) anderelijst.add(c);
+            }
+        }
+        ObservableList cursusBoxList = FXCollections.observableArrayList(anderelijst);
+        cursusBox.setItems(cursusBoxList);
         pieChart.setData(pieChartData);
     }
 
@@ -58,13 +66,13 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
             else if (aanwezigheid.getStatus()==Aanwezigheid.ZIEK){
                 ziek ++;
             }
-        else if (aanwezigheid.getStatus()==Aanwezigheid.AFWEZIG){
+            else if (aanwezigheid.getStatus()==Aanwezigheid.AFWEZIG){
                 afwezig ++;
             }
-        else if (aanwezigheid.getStatus()==Aanwezigheid.LANGDURIG){
+            else if (aanwezigheid.getStatus()==Aanwezigheid.LANGDURIG){
                 langdurig ++;
             }
-        else if (aanwezigheid.getStatus()==Aanwezigheid.GEPLAND){
+            else if (aanwezigheid.getStatus()==Aanwezigheid.GEPLAND){
                 gepland ++;
             }
         }
