@@ -105,7 +105,7 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	public void handleAccountVerwijderen(ActionEvent actionEvent) {
 		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
 		if (pos != null) {
-			if (Utils.yesNo("Wilt u zeker dit account verwijderen?")) {
+			if (Utils.yesNo("weet u zeker dat u dit account wil verwijderen?")) {
 				int row = pos.getRow();
 				OverzichtAccountDatamodel item = tableView.getItems().get(row);
 				try {

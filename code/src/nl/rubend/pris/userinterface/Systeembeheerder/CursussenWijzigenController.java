@@ -3,9 +3,8 @@ package nl.rubend.pris.userinterface.Systeembeheerder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nl.rubend.pris.Utils;
@@ -63,7 +62,7 @@ public class CursussenWijzigenController {
     public void handleVerwijderCursus(ActionEvent actionEvent) throws NotFoundException {
         Object item = listView.getSelectionModel().getSelectedItem();
         if (item != null && item.toString().contains(":")) {
-            if (Utils.yesNo("Wilt u zeker de cursus verwijderen?")) {
+            if (Utils.yesNo("Weet u zeker dat u deze cursus wilt verwijderen?")) {
                 String[] parts = item.toString().split(" : ");
                 Cursus gesCursus = school.getCursusByCode(parts[1]);
                 for (Docent docent : alleDocenten) {

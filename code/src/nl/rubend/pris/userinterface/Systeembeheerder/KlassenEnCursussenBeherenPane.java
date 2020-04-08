@@ -97,7 +97,7 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 	public void handleRemoveKlas(ActionEvent actionEvent) throws NotFoundException {
 		final int selectedIdx = alleKlassenList.getSelectionModel().getSelectedIndex();
 		if (selectedIdx != -1) {
-			if (Utils.yesNo("Wilt u zeker deze klas verwijderen?")) {
+			if (Utils.yesNo("Weet u zeker dat u deze klas wilt verwijderen?")) {
 				Klas klas=klassenList.get(selectedIdx);
 				klas.removeKlas();
 				alleKlassenList.getItems().remove(selectedIdx);

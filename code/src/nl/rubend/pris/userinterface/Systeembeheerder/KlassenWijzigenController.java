@@ -3,7 +3,6 @@ package nl.rubend.pris.userinterface.Systeembeheerder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -11,8 +10,8 @@ import javafx.stage.Stage;
 import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import org.controlsfx.control.SearchableComboBox;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class KlassenWijzigenController {
 
@@ -81,13 +80,13 @@ public class KlassenWijzigenController {
         Student gekStud = studentZoekComboBox.getValue();
 
         if (gesKlas != null && gesStud != null) {
-            if (Utils.yesNo("Wilt u zeker student: (" + gesStud + ") uit klas: (" + gesKlas + ") halen?")) {
+            if (Utils.yesNo("Weet u zeker dat u deze student uit de klas wilt halen?")) {
                 gesStud.removeKlas(gesKlas);
                 gesKlas.removeStudent(gesStud);
                 showStudents(gesKlas.getStudenten());
             }
         } if (gekStud != null && gesKlas != null && gesKlas.getStudenten().contains(gekStud)) {
-            if (Utils.yesNo("Wilt u zeker student: (" + gekStud + ") uit klas: (" + gesKlas + ") halen?")) {
+            if (Utils.yesNo("Weet u zeker dat u deze student uit de klas wilt halen?")) {
                 gekStud.removeKlas(gesKlas);
                 gesKlas.removeStudent(gekStud);
                 showStudents(gesKlas.getStudenten());
