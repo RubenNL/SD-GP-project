@@ -52,7 +52,6 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		}
 	}
 	public void setCursus(Cursus cursus) {
-		if (cursus != null)
 		this.cursus = cursus;
 	}
 
