@@ -11,6 +11,7 @@ public class DemoData {
 		school.addGebruiker(new Docent("martijn@hu.nl","martijn1","Martijn Jansen", 1234));
 		school.addGebruiker(new Student("eduward@student.hu.nl","eduward1","Eduward", 4564, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
 		school.addGebruiker(new Systeembeheerder("jos@hu.nl","josjosjos","Jos"));
+		school.addGebruiker(new Student("bernard@student.hu.nl","bernardbernard","Bernard", 4565, (Docent) school.getGebruikerByEmail("martijn@hu.nl")));
 
 		school.addKlas(new Klas("TICT-SD-V1E"));
 
