@@ -30,7 +30,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		return this.klassen;
 	}
 	public ArrayList<Les> getLessenOpDag(LocalDate dag) {
-		ArrayList<Les> response=new ArrayList<Les>();
+		ArrayList<Les> response=new ArrayList<>();
 		for(Klas klas:klassen) response.addAll(klas.getLessenOpDag(dag));
 		return response;
 	}
@@ -78,24 +78,27 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 
 	public void addKlas(Klas klas) {
-		if (klas != null && (!klassen.contains(klas))) {
-			this.klassen.add(klas);
-		} else {
-			throw new IllegalArgumentException("Onjuiste waarde");
-		}
+		if (klas != null && (!klassen.contains(klas))) this.klassen.add(klas);
+		else throw new IllegalArgumentException("Ongeldige waarde");
 	}
 
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		if (aanwezigheid != null) {
-			this.aanwezigheid.add(aanwezigheid);
-		}
+		if (aanwezigheid != null && aanwezigheid instanceof Aanwezigheid) this.aanwezigheid.add(aanwezigheid);
+		else throw new IllegalArgumentException("Aanwezigheid is geen aanwezigheid");
 	}
 	public void setSlber(Docent slber) {
 		if (slber != null) {
-			if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
-			this.slber = slber;
-			this.slber.addSlbStudent(this);
-		}
+			if(slber instanceof Docent) {
+				try {
+					School.getSchool().getGebruikerByEmail(slber.getEmail());
+				} catch (NotFoundException e) {
+					throw new IllegalArgumentException("SLBer niet in School");
+				}
+				if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
+				this.slber = slber;
+				this.slber.addSlbStudent(this);
+			} else throw new IllegalArgumentException("SLBer is geen Docent");
+		} else throw new IllegalArgumentException("Geen slber gegeven");
 	}
 	public void removeSlber() {
 		this.slber=null;
@@ -114,21 +117,5 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 	public void removeKlas(Klas klas) {
 		this.klassen.remove(klas);
-	}
-	//Equals
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
-
-		Student student = (Student) o;
-
-		return studentNummer == student.studentNummer;
-	}
-
-	@Override
-	public int hashCode() {
-		return studentNummer;
 	}
 }

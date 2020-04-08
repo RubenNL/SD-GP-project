@@ -41,7 +41,7 @@ public class LanguageFilter {
 		String s = tekst.toLowerCase();
 		if (scheldwoorden != null) {
 			for (String woord : scheldwoorden) {
-				if (s.contains(woord)) {
+				if (s.contains(" " + woord + " ")) {
 					return false;
 				}
 			}

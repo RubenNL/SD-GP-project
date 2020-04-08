@@ -62,16 +62,16 @@ public class Les implements Serializable {
 		}
 	}
 	public void addDocent(Docent docent) {
-		if (docent != null) {
+		if (docent != null && docent instanceof Docent) {
 			docenten.add(docent);
 			docent.addLes(this);
-		}
+		} else throw new IllegalArgumentException("docent is geen docent");
 	}
 	public void addKlas(Klas klas) {
-		if (klas != null) {
+		if (klas != null && klas instanceof Klas) {
 			klassen.add(klas);
 			klas.addLes(this);
-		}
+		} else throw new IllegalArgumentException("klas is geen Klas");
 	}
 	public void removeDocent(Docent docent) {
 		docenten.remove(docent);
