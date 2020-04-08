@@ -11,7 +11,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	private ArrayList<Aanwezigheid> aanwezigheid=new ArrayList<>();
 	private Docent slber;
 
-	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) throws IllegalArgumentException {
+	public Student(String email, String wachtwoord, String naam, int sN,Docent slber) {
 		super(email, wachtwoord, naam);
 		this.studentNummer = sN;
 		setSlber(slber);
@@ -30,7 +30,7 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		return this.klassen;
 	}
 	public ArrayList<Les> getLessenOpDag(LocalDate dag) {
-		ArrayList<Les> response=new ArrayList<>();
+		ArrayList<Les> response=new ArrayList<Les>();
 		for(Klas klas:klassen) response.addAll(klas.getLessenOpDag(dag));
 		return response;
 	}
@@ -117,5 +117,25 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 	public void removeKlas(Klas klas) {
 		this.klassen.remove(klas);
+	}
+
+	public String toString() {
+		return this.getNaam();
+	}
+	//Equals
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
+		Student student = (Student) o;
+
+		return studentNummer == student.studentNummer;
+	}
+
+	@Override
+	public int hashCode() {
+		return studentNummer;
 	}
 }
