@@ -208,7 +208,7 @@ class SchoolTest {
 	@Test
 	public void test_serialize_deserialize() {
 		School.resetSchool();
-		assertDoesNotThrow(Main::serializeDemoData,"Serialize zou geen foutmelding moeten geven");
+		assertDoesNotThrow(Main::initData,"Serialize zou geen foutmelding moeten geven");
 		School school1=School.getSchool();
 		School.resetSchool();
 		//Gebruik van serializeDemoData omdat hier alle types al in staan, en dus ook getest worden.
