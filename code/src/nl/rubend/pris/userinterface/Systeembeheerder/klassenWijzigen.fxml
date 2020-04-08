@@ -5,9 +5,9 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<AnchorPane prefHeight="377.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.KlassenWijzigenController">
+<AnchorPane onMouseClicked="#handleMainPaneClicked" prefHeight="377.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.KlassenWijzigenController">
    <children>
-      <ListView fx:id="klassenCodenListView" layoutX="14.0" layoutY="26.0" onMouseClicked="#handle" prefHeight="200.0" prefWidth="189.0" />
+      <ListView fx:id="klassenCodenListView" layoutX="14.0" layoutY="26.0" onMouseClicked="#handleKlasListClicked" prefHeight="200.0" prefWidth="189.0" />
       <ListView fx:id="studentenNamenListView" layoutX="237.0" layoutY="26.0" prefHeight="200.0" prefWidth="171.0" />
       <Label layoutX="80.0" layoutY="5.0" text="Klassen">
          <font>
