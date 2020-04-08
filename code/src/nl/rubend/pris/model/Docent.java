@@ -39,8 +39,9 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 
 	// Adders en Setters
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		if (aanwezigheid != null && aanwezigheid instanceof Aanwezigheid) this.aanwezigheidsmeldingen.add(aanwezigheid);
-		else throw new IllegalArgumentException("aanwezigheid is geen Aanwezigheid");
+		if (aanwezigheid != null) {
+			this.aanwezigheidsmeldingen.add(aanwezigheid);
+		}
 	}
 	public void removeAanwezigheid(Aanwezigheid aanwezigheid) {
 		this.aanwezigheidsmeldingen.remove(aanwezigheid);
@@ -50,7 +51,7 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		else throw new IllegalArgumentException("aanwezigheid is geen Aanwezigheid");
 	}
 	public void setCursus(Cursus cursus) {
-		if (cursus != null && cursus instanceof Cursus) this.cursus = cursus;
+		if (cursus instanceof Cursus) this.cursus = cursus;
 		else throw new IllegalArgumentException("cursus is geen Cursus");
 	}
 
