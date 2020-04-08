@@ -58,38 +58,38 @@ public class Main extends Application {
 		les4.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 
 		Les les5=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
-		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
-		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		les5.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les5.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.AFWEZIG,les));
 
 		Les les6=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
-		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
-		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		les6.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les6.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.AANWEZIG,les));
 
 		Les les7=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
-		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
-		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		les7.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les7.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.GEPLAND,les));
 
 		Les les8=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
-		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
-		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		les8.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les8.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.ZIEK,les));
 
 		Les les9=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,22),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
-		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
-		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		les9.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les9.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les));
 
 		Les les10=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,24),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
-		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
-		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		les10.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les10.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les));
 
 		Les les11=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,25),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
-		les.addKlas(school.getKlasByName("TICT-SD-V1E"));
-		les.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		les11.addKlas(school.getKlasByName("TICT-SD-V1E"));
+		les11.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
 		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les));
 
 
