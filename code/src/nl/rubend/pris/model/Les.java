@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Les implements Serializable {
 	private LocalTime beginTijd;
@@ -63,16 +62,16 @@ public class Les implements Serializable {
 		}
 	}
 	public void addDocent(Docent docent) {
-		if (docent != null) {
+		if (docent != null && docent instanceof Docent) {
 			docenten.add(docent);
 			docent.addLes(this);
-		}
+		} else throw new IllegalArgumentException("docent is geen docent");
 	}
 	public void addKlas(Klas klas) {
-		if (klas != null) {
+		if (klas != null && klas instanceof Klas) {
 			klassen.add(klas);
 			klas.addLes(this);
-		}
+		} else throw new IllegalArgumentException("klas is geen Klas");
 	}
 	public void removeDocent(Docent docent) {
 		docenten.remove(docent);
@@ -84,17 +83,6 @@ public class Les implements Serializable {
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-	// Equals
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Les that = (Les) o;
-		return Objects.equals(beginTijd, that.beginTijd) &&
-				Objects.equals(eindTijd, that.eindTijd) &&
-				Objects.equals(datum, that.datum) &&
-				Objects.equals(lokaal, that.lokaal);
 	}
 
 }

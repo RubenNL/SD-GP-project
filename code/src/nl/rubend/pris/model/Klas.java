@@ -9,7 +9,8 @@ import java.util.Objects;
 
 public class Klas implements Serializable {
 	private String klasNaam;
-	private ArrayList<Cursus> cursusen = new ArrayList<>();
+
+	private ArrayList<Cursus> cursussen = new ArrayList<>();
 	private ArrayList<Student> studenten = new ArrayList<>();
 	private ArrayList<Les> lessen = new ArrayList<>();
 
@@ -24,10 +25,6 @@ public class Klas implements Serializable {
 		return klasNaam;
 	}
 	public ArrayList<Student> getStudenten() { return studenten; }
-	public ArrayList<Cursus> getCursusen() {
-		return this.cursusen;
-	}
-
 	public ArrayList<Les> getLessenOpDag(LocalDate date) {
 		ArrayList<Les> response=new ArrayList<Les>();
 		for(Les les:lessen) {
@@ -60,27 +57,30 @@ public class Klas implements Serializable {
 		} else throw new IllegalArgumentException("Onjuiste waarde");
 	}
 	public void addCursus(Cursus cursus) {
-		if (cursus != null && !cursusen.contains(cursus)) {
-			this.cursusen.add(cursus);
+		if (cursus != null && !cursussen.contains(cursus)) {
+			this.cursussen.add(cursus);
 			cursus.addKlas(this);
 		} else throw new IllegalArgumentException("Onjuiste waarde");
 	}
 	public void removeStudent(Student student) {
 		this.studenten.remove(student);
 	}
+	public ArrayList<Cursus> getCursussen() {
+		return this.cursussen;
+	}
 	public void removeLes(Les les) {this.lessen.remove(les);}
 
-	public void removeKlas() {
-		for (Cursus cursus: cursusen) cursus.removeKlas(this);
+	public void removeKlas() throws NotFoundException {
+		for (Cursus cursus: cursussen) cursus.removeKlas(this);
 		for (Student student:studenten) student.removeKlas(this);
 		for(Les les:lessen) les.removeKlas(this);
 		studenten.removeAll(studenten);
-		cursusen.removeAll(cursusen);
+		cursussen.removeAll(cursussen);
 		lessen.removeAll(lessen);
 		School.getSchool().removeKlas(this);
 	}
 	public void removeCursus(Cursus cursus) {
-		this.cursusen.remove(cursus);
+		this.cursussen.remove(cursus);
 	}
 
 
@@ -100,8 +100,6 @@ public class Klas implements Serializable {
 
 	// To String
 	public String toString() {
-//		het was eerder zo:
-//		return "klas: " + this.klasNaam;
 		return this.klasNaam;
 	}
 

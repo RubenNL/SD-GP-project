@@ -18,7 +18,6 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 	}
 
 	// Getters
-
 	public int getDocentNummer() {
 		return docentNummer;
 	}
@@ -40,21 +39,19 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 
 	// Adders en Setters
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		if (aanwezigheid != null) {
-			this.aanwezigheidsmeldingen.add(aanwezigheid);
-		}
+		if (aanwezigheid != null && aanwezigheid instanceof Aanwezigheid) this.aanwezigheidsmeldingen.add(aanwezigheid);
+		else throw new IllegalArgumentException("aanwezigheid is geen Aanwezigheid");
 	}
 	public void removeAanwezigheid(Aanwezigheid aanwezigheid) {
 		this.aanwezigheidsmeldingen.remove(aanwezigheid);
 	}
 	public void addLes(Les les) {
-		if (les != null) {
-			this.lessen.add(les);
-		}
+		if (les != null && les instanceof Les) this.lessen.add(les);
+		else throw new IllegalArgumentException("aanwezigheid is geen Aanwezigheid");
 	}
 	public void setCursus(Cursus cursus) {
-		if (cursus != null)
-		this.cursus = cursus;
+		if (cursus != null && cursus instanceof Cursus) this.cursus = cursus;
+		else throw new IllegalArgumentException("cursus is geen Cursus");
 	}
 
 	public void removeLes(Les les) {
@@ -64,9 +61,8 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		this.slbStudenten.remove(student);
 	}
 	public void addSlbStudent(Student student) {
-		if (student != null) {
-			this.slbStudenten.add(student);
-		}
+		if (student != null && student instanceof Student) this.slbStudenten.add(student);
+		else throw new IllegalArgumentException("student is geen Student");
 	}
 
 	@Override
@@ -78,24 +74,5 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		slbStudenten.removeAll(slbStudenten);
 		lessen.removeAll(lessen);
 	}
-
-	// Equals
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
-
-		Docent docent = (Docent) o;
-
-		return docentNummer == docent.docentNummer;
-	}
-
-	@Override
-	public int hashCode() {
-		return docentNummer;
-	}
-
-
 }
 
