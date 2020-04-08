@@ -32,11 +32,10 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
     @Override
     public void setGebruiker(Gebruiker gebruiker) {
         this.student = (Student) gebruiker;
-    }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(student);
+        System.out.println(student.getKlassen());
+        List<Cursus> anderelijst = new ArrayList<>();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Aanwezig", aanwezig),
                 new PieChart.Data("Ziek", ziek),
@@ -44,10 +43,6 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
                 new PieChart.Data("Langdurig", langdurig),
                 new PieChart.Data("Gepland", gepland)
         );
-
-        List<Cursus> anderelijst = new ArrayList<>();
-        System.out.println(student);
-        System.out.println(student.getKlassen());
         for(Klas k : student.getKlassen()) {
             for(Cursus c : k.getCursussen()){
                 if (!anderelijst.contains(c)) anderelijst.add(c);
@@ -56,6 +51,11 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
         ObservableList cursusBoxList = FXCollections.observableArrayList(anderelijst);
         cursusBox.setItems(cursusBoxList);
         pieChart.setData(pieChartData);
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
     }
 
     public void getAanwezigheid() {
