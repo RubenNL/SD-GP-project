@@ -95,6 +95,7 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 		label.setText(str);
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
 		pause.setOnFinished(f -> label.setText(""));
+		pause.play();
 	}
 
 
