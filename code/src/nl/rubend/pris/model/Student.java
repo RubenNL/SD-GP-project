@@ -50,9 +50,16 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		}
 		return cursussen;
 	}
-	public ArrayList<Aanwezigheid> getAanwezigheidBijCursus(Cursus cursus) {
+	private ArrayList<Aanwezigheid> getAanwezigheidVerleden() {
 		ArrayList<Aanwezigheid> response = new ArrayList<>();
 		for(Aanwezigheid aanwezigheidItem:aanwezigheid) {
+			if(aanwezigheidItem.getLes().getDatum().isBefore(LocalDate.now())) response.add(aanwezigheidItem);
+		}
+		return response;
+	}
+	public ArrayList<Aanwezigheid> getAanwezigheidBijCursus(Cursus cursus) {
+		ArrayList<Aanwezigheid> response = new ArrayList<>();
+		for(Aanwezigheid aanwezigheidItem:getAanwezigheidVerleden()) {
 			if(aanwezigheidItem.getLes().getCursus()==cursus) response.add(aanwezigheidItem);
 		}
 		return response;
