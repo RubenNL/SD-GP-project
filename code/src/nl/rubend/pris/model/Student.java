@@ -43,7 +43,27 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 		addAanwezigheid(aanwezigheid);
 		return aanwezigheid;
 	}
-
+	public ArrayList<Cursus> getCursussen() {
+		ArrayList<Cursus> cursussen=new ArrayList();
+		for(Klas k : klassen) {
+			for(Cursus c : k.getCursussen())cursussen.add(c);
+		}
+		return cursussen;
+	}
+	private ArrayList<Aanwezigheid> getAanwezigheidVerleden() {
+		ArrayList<Aanwezigheid> response = new ArrayList<>();
+		for(Aanwezigheid aanwezigheidItem:aanwezigheid) {
+			if(aanwezigheidItem.getLes().getDatum().isBefore(LocalDate.now())) response.add(aanwezigheidItem);
+		}
+		return response;
+	}
+	public ArrayList<Aanwezigheid> getAanwezigheidBijCursus(Cursus cursus) {
+		ArrayList<Aanwezigheid> response = new ArrayList<>();
+		for(Aanwezigheid aanwezigheidItem:getAanwezigheidVerleden()) {
+			if(aanwezigheidItem.getLes().getCursus()==cursus) response.add(aanwezigheidItem);
+		}
+		return response;
+	}
 	public boolean isLangdurigAfwezig() {
 		return langdurigAfwezig;
 	}
