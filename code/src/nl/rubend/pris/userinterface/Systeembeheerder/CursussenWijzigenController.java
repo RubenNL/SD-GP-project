@@ -68,7 +68,6 @@ public class CursussenWijzigenController {
                 for (Docent docent : alleDocenten) {
                     if (docent.getNaam().equals(parts[0])) {
                         docent.setCursus(null);
-                        System.out.println(docent.getCursus());
                         fillList();
                     }
                 }

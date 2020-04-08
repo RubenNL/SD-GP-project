@@ -1,5 +1,6 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
@@ -91,6 +93,9 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 		if (isTrue) label.setTextFill(Color.GREEN);
 		else label.setTextFill(Color.RED);
 		label.setText(str);
+		PauseTransition pause = new PauseTransition(Duration.seconds(2));
+		pause.setOnFinished(f -> label.setText(""));
+		pause.play();
 	}
 
 

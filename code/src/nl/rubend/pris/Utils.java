@@ -68,7 +68,6 @@ public interface Utils {
 		alert.setResizable(true);
 		alert.onShownProperty().addListener(e -> {//overgenomen van stackoverflow, popups werken niet goed in Linux zonder dit.
 			Platform.runLater(() -> alert.setResizable(false));
-			System.out.println();
 		});
 		alert.setTitle("Waarschuwing!");
 		alert.showAndWait();

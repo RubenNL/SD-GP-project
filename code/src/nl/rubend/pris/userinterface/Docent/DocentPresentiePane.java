@@ -38,6 +38,7 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 		lesBox.setItems(FXCollections.observableArrayList(items));
 	}
 	@FXML void selectLes() {
+		table.getChildren().clear();
 		int lesBoxItem=lesBox.getItems().indexOf(lesBox.getValue());
 		if(lesBoxItem>-1) {
 			les=lessen.get(lesBoxItem);
@@ -57,8 +58,7 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 				try {
 					changedBy.setText(aanwezigheid.getGebruiker().getNaam());
 				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("Dit moet nog een betere melding worden");
+					//Dit zou nooit moeten gebeuren, maar moet wel een catch hebben.
 				}
 				table.addRow(table.getRowCount()+1,new Label(student.getNaam()),comboBox,changedBy,slbButton);
 				comboBox.setOnAction(actionEvent ->  {

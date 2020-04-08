@@ -55,7 +55,6 @@ public class KlassenWijzigenController {
         Klas gesKlas = klassenCodenListView.getSelectionModel().getSelectedItem();
         if (gesKlas!=null && school.getKlassen().contains(gesKlas)) {
             showStudents(gesKlas.getStudenten());
-            System.out.println("yay!");
         }
     }
 
@@ -98,7 +97,6 @@ public class KlassenWijzigenController {
         studentenList.clear();
         if (!stds.isEmpty()) {
             for (Student student : stds) {
-                System.out.println(student);
                 studentenList.add(student);
             }
             studentenNamenListView.setItems(studentenList);
