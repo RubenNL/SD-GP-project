@@ -19,7 +19,7 @@
     <children>
         <ComboBox fx:id="accountTypeComboBox" layoutX="21.0" layoutY="53.0" onAction="#handlecomboBoxGebruikersType" prefHeight="26.0" prefWidth="124.0" />
         <VBox layoutX="58.0" layoutY="121.0" spacing="24.0" />
-        <Button layoutX="313.0" layoutY="346.0" mnemonicParsing="false" onAction="#maakAccountAan" prefHeight="26.0" prefWidth="81.0" text="Ok" />
+        <Button layoutX="300.0" layoutY="343.0" mnemonicParsing="false" onAction="#maakAccountAan" prefHeight="26.0" prefWidth="81.0" text="Ok" />
         <Text fill="#464646" layoutX="16.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account aanmaken" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="20.0" />
@@ -46,13 +46,13 @@
                 <Label text="Wachtwoord" textAlignment="CENTER" GridPane.rowIndex="2" />
                 <PasswordField fx:id="nieuwAccountWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label fx:id="nummberLabel" text="nummer" textAlignment="CENTER" GridPane.rowIndex="3" />
-                <Spinner fx:id="nieuwAccountNummer" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Spinner fx:id="nieuwAccountNummer" editable="true" prefHeight="26.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Label fx:id="hoortBijLabel" text="" textAlignment="CENTER" GridPane.rowIndex="4" />
-                <SearchableComboBox fx:id="comboBoxGroep" prefHeight="26.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <SearchableComboBox fx:id="comboBoxGroep" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <Label fx:id="slbLabel" text="SLBer" GridPane.rowIndex="5" />
-                <SearchableComboBox fx:id="slber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <SearchableComboBox fx:id="slber" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
         </GridPane>
-      <Label fx:id="errorMeldingLabel" layoutX="190.0" layoutY="79.0" />
+      <Label fx:id="errorMeldingLabel" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="79.0" prefHeight="18.0" prefWidth="190.0" />
     </children>
 </AnchorPane>
