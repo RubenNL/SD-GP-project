@@ -1,6 +1,7 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,9 +11,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import nl.rubend.pris.model.*;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import nl.rubend.pris.Utils;
+import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -77,8 +81,13 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 	}
 
 	public void handleNieuwWachtWoordOpstellen(ActionEvent actionEvent) {
-
-		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+		TablePosition pos;
+		try {
+			pos=tableView.getSelectionModel().getSelectedCells().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			//Hier niks te doen, melding is niet nodig.
+			return;
+		}
 		if (pos != null) {
 			int row = pos.getRow();
 			OverzichtAccountDatamodel item = tableView.getItems().get(row);
@@ -142,6 +151,14 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 		dialog.setTitle("Waarschuwing!");
 		dialog.setHeaderText("Nieuw Wachtwoord Opstellen:");
 		dialog.setContentText("wachtwoord:");
+		Stage stage=((Stage) dialog.getDialogPane().getScene().getWindow());
+		stage.getIcons().add(new Image("file:icon.png"));
+		stage.setTitle("PRIS");
+		dialog.setResizable(true);
+		dialog.onShownProperty().addListener(e -> {//overgenomen van stackoverflow, popups werken niet goed in Linux zonder dit.
+			Platform.runLater(() -> dialog.setResizable(false));
+			System.out.println();
+		});
 		Optional<String> result = dialog.showAndWait();
 		result.ifPresent(psswd -> {
 			gebruiker.setWachtwoord(psswd);
