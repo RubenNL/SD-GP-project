@@ -52,10 +52,13 @@ public class Main extends Application {
 		Les les3 = new Les(LocalTime.of(14,30),LocalTime.of(15,30), LocalDate.of(2020,4,10),"HL15-1.203",school.getCursusByCode("TCIF-V1OOP-19_2019"));
 		les3.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les3.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("eduward@student.hu.nl"),Aanwezigheid.AANWEZIG,les2));
+
 
 		Les les4 = new Les(LocalTime.of(15,45),LocalTime.of(17,00), LocalDate.of(2020,4,10),"HL15-1.203",school.getCursusByCode("TCIF-V1OOAD-19_2019"));
 		les4.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les4.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("eduward@student.hu.nl"),Aanwezigheid.GEPLAND,les2));
 
 		School.serialize();
 	}
