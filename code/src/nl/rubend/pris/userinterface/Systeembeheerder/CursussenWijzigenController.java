@@ -34,7 +34,8 @@ public class CursussenWijzigenController {
             }
         }
         fillList();
-        for(Cursus cursus: school.getCursussen()) CursusZoekComboBox.getItems().add(cursus);
+
+        for(Cursus cursus: school.getCursussen()) if(!cursus.getCursusCode().equals("deleted")) CursusZoekComboBox.getItems().add(cursus);
 
     }
 
