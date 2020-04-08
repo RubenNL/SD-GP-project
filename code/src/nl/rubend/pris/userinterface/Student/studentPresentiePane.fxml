@@ -15,11 +15,6 @@
             <Font size="48.0" />
          </font>
       </Text>
-      <Text layoutX="486.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abc Def">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
       <PieChart fx:id="pieChart" layoutX="286.0" layoutY="81.0" prefHeight="300.0" prefWidth="300.0" title="Aanwezigheid" />
       <HBox alignment="CENTER" layoutY="131.0" prefHeight="28.0" prefWidth="267.0">
          <children>
