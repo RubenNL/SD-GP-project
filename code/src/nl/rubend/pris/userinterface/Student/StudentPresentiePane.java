@@ -45,8 +45,6 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
 		this.student = (Student) gebruiker;
-		System.out.println(student);
-        System.out.println(student.getKlassen());
         ObservableList cursusBoxList = FXCollections.observableArrayList(student.getCursussen());
         cursusBox.setItems(cursusBoxList);
         pieChart.setLabelLineLength(10);
