@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.KlassenEnCursussenBeherenPane">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.rubend.pris.userinterface.Systeembeheerder.KlassenEnCursussenBeherenPane">
    <children>
       <ListView fx:id="alleKlassenList" layoutX="373.0" layoutY="32.0" prefHeight="139.0" prefWidth="200.0" />
       <ListView fx:id="alleCursussenList" layoutX="373.0" layoutY="217.0" prefHeight="145.0" prefWidth="200.0" />
@@ -31,7 +28,9 @@
       </Label>
       <Label fx:id="klasLabel" layoutX="66.0" layoutY="64.0" prefHeight="26.0" prefWidth="234.0" />
       <Label fx:id="cursusLabel" layoutX="66.0" layoutY="245.0" prefHeight="26.0" prefWidth="234.0" />
-      <Button layoutX="493.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleRemoveKlas" text="Verwijder" />
-      <Button layoutX="493.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleRemoveCursus" text="Verwijder" />
+      <Button layoutX="486.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleWijzigKlas" prefHeight="26.0" prefWidth="80.0" text="Wijzig" />
+      <Button layoutX="384.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleRemoveKlas" text="Verwijder" />
+      <Button layoutX="384.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleRemoveCursus" text="Verwijder" />
+      <Button layoutX="486.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleWijzigCursus" prefHeight="26.0" prefWidth="80.0" text="Wijzig" />
    </children>
 </AnchorPane>

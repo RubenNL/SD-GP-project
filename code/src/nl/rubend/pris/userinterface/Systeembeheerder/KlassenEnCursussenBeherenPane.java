@@ -4,15 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -70,12 +77,13 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 		String cursusCode = cursusCodeTextField.getText();
 		if (cursusNaam != null && !(cursusNaam.equals(""))
 				|| (cursusCode != null && !(cursusCode.equals("")))) {
-			Cursus newCursus = new Cursus(cursusNaam, cursusCode);
+			Cursus newCursus = new Cursus(cursusCode, cursusNaam);
 			school.addCursus(newCursus);
 			cursusenList.add(newCursus);
 			alleCursussenList.setItems(cursusenList);
-			melding(cursusLabel, "Curus maken gelukt!", true);
+			melding(cursusLabel, "Cursus maken gelukt!", true);
 			cursusNaamTextField.setText("");
+			cursusCodeTextField.setText("");
 		} else melding(cursusLabel, "Ongeldige invoer!", false);
 	}
 
@@ -89,7 +97,7 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 	public void handleRemoveKlas(ActionEvent actionEvent) throws NotFoundException {
 		final int selectedIdx = alleKlassenList.getSelectionModel().getSelectedIndex();
 		if (selectedIdx != -1) {
-			if (Utils.yesNo("Wil je zeker deze klas verwijderen?")) {
+			if (Utils.yesNo("Wilt u zeker deze klas verwijderen?")) {
 				Klas klas=klassenList.get(selectedIdx);
 				klas.removeKlas();
 				alleKlassenList.getItems().remove(selectedIdx);
@@ -106,5 +114,29 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 				alleCursussenList.getItems().remove(selectedIdx);
 			}
 		} else melding(cursusLabel, "Selecteer eerst een cursus!", false);
+	}
+
+	public void handleWijzigKlas(ActionEvent actionEvent) throws IOException {
+		FXMLLoader loader =
+				new FXMLLoader(getClass().getResource("klassenWijzigen.fxml"));
+		Parent root = loader.load();
+		Stage newStage = new Stage();
+		newStage.getIcons().add(new Image("file:icon.png"));
+		newStage.setTitle("PRIS");
+		newStage.setScene(new Scene(root));
+		newStage.initModality(Modality.APPLICATION_MODAL);
+		newStage.showAndWait();
+	}
+
+	public void handleWijzigCursus(ActionEvent actionEvent) throws IOException {
+		FXMLLoader loader =
+				new FXMLLoader(getClass().getResource("cursussenWijzigen.fxml"));
+		Parent root = loader.load();
+		Stage newStage = new Stage();
+		newStage.getIcons().add(new Image("file:icon.png"));
+		newStage.setTitle("PRIS");
+		newStage.setScene(new Scene(root));
+		newStage.initModality(Modality.APPLICATION_MODAL);
+		newStage.showAndWait();
 	}
 }

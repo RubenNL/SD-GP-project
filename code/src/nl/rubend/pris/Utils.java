@@ -2,6 +2,8 @@ package nl.rubend.pris;
 
 import javafx.application.Platform;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.time.LocalDate;
 
@@ -43,6 +45,9 @@ public interface Utils {
 	static void melding(String tekstMessage) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setResizable(true);
+		Stage stage=((Stage) alert.getDialogPane().getScene().getWindow());
+		stage.getIcons().add(new Image("file:icon.png"));
+		stage.setTitle("PRIS");
 		alert.onShownProperty().addListener(e -> {
 			Platform.runLater(() -> alert.setResizable(false));
 		});
@@ -56,6 +61,9 @@ public interface Utils {
 		ButtonType nee = new ButtonType("Nee", ButtonBar.ButtonData.NO);
 
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bericht, ja, nee);
+		Stage stage=((Stage) alert.getDialogPane().getScene().getWindow());
+		stage.getIcons().add(new Image("file:icon.png"));
+		stage.setTitle("PRIS");
 		alert.setHeaderText("Bevestiging");
 		alert.setResizable(true);
 		alert.onShownProperty().addListener(e -> {//overgenomen van stackoverflow, popups werken niet goed in Linux zonder dit.
