@@ -103,7 +103,13 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 
 	public void handleAccountVerwijderen(ActionEvent actionEvent) {
-		TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+		TablePosition pos;
+		try {
+			pos=tableView.getSelectionModel().getSelectedCells().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			//Hier niks te doen, melding is niet nodig.
+			return;
+		}
 		if (pos != null) {
 			if (Utils.yesNo("weet u zeker dat u dit account wil verwijderen?")) {
 				int row = pos.getRow();

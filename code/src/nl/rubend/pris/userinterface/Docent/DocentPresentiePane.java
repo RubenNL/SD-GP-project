@@ -38,6 +38,7 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 		lesBox.setItems(FXCollections.observableArrayList(items));
 	}
 	@FXML void selectLes() {
+		table.getChildren().clear();
 		int lesBoxItem=lesBox.getItems().indexOf(lesBox.getValue());
 		if(lesBoxItem>-1) {
 			les=lessen.get(lesBoxItem);

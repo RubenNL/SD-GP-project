@@ -11,8 +11,8 @@
       <AnchorPane layoutX="26.0" layoutY="241.0" prefHeight="100.0" prefWidth="379.0" style="-fx-background-color: #e0e0e0;">
          <children>
             <SearchableComboBox fx:id="CursusZoekComboBox" layoutX="22.0" layoutY="37.0" />
-            <Button layoutX="269.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleVerwijderCursus" prefHeight="44.0" prefWidth="89.0" text="Verwjider Cursus" textAlignment="CENTER" wrapText="true" />
-            <Button layoutX="269.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleZetCursus" text="Zet Cursus" />
+            <Button layoutX="269.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleVerwijderCursus" prefHeight="44.0" prefWidth="89.0" text="Verwijder Cursus" textAlignment="CENTER" wrapText="true" />
+            <Button layoutX="269.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleZetCursus" text="cursus toevoegen" />
          </children>
       </AnchorPane>
       <ListView fx:id="listView" layoutX="26.0" layoutY="46.0" prefHeight="180.0" prefWidth="373.0" />

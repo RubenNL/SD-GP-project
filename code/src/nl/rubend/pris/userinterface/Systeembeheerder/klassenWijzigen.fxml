@@ -23,7 +23,7 @@
       <AnchorPane layoutX="21.0" layoutY="239.0" prefHeight="85.0" prefWidth="379.0" style="-fx-background-color: #e0e0e0;">
          <children>
             <SearchableComboBox fx:id="studentZoekComboBox" layoutX="24.0" layoutY="26.0" />
-            <Button layoutX="233.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleVerwijderStudentVanGeselecteerdeKlas" text="Verwjider Student" />
+            <Button layoutX="233.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleVerwijderStudentVanGeselecteerdeKlas" text="verwijder Student" />
             <Button layoutX="234.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleVoegStudentToeAanGeselecteerdeKlas" text="Voeg Student toe" />
          </children>
       </AnchorPane>
