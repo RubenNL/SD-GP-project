@@ -28,7 +28,10 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
     private ChoiceBox<?> cursusBox;
     @FXML
     private ChoiceBox<?> periodeBox;
-
+    @FXML
+    private void cursusUpdate() {
+        System.out.println("cursus "+cursusBox.getValue()+" geselecteerd!");
+    }
     @Override
     public void setGebruiker(Gebruiker gebruiker) {
         this.student = (Student) gebruiker;
