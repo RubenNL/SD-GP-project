@@ -11,7 +11,6 @@ import nl.rubend.pris.userinterface.IngelogdGebruiker;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
@@ -25,20 +24,13 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
     @FXML
     private PieChart pieChart;
     @FXML
-    private ChoiceBox<?> cursusBox;
+    private ChoiceBox<Cursus> cursusBox;
     @FXML
     private ChoiceBox<?> periodeBox;
     @FXML
     private void cursusUpdate() {
         System.out.println("cursus "+cursusBox.getValue()+" geselecteerd!");
-    }
-    @Override
-    public void setGebruiker(Gebruiker gebruiker) {
-        this.student = (Student) gebruiker;
-
-        System.out.println(student);
-        System.out.println(student.getKlassen());
-        List<Cursus> anderelijst = new ArrayList<>();
+        getAanwezigheid(cursusBox.getValue());
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Aanwezig", aanwezig),
                 new PieChart.Data("Ziek", ziek),
@@ -46,14 +38,16 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
                 new PieChart.Data("Langdurig", langdurig),
                 new PieChart.Data("Gepland", gepland)
         );
-        for(Klas k : student.getKlassen()) {
-            for(Cursus c : k.getCursussen()){
-                if (!anderelijst.contains(c)) anderelijst.add(c);
-            }
-        }
-        ObservableList cursusBoxList = FXCollections.observableArrayList(anderelijst);
-        cursusBox.setItems(cursusBoxList);
         pieChart.setData(pieChartData);
+    }
+    @Override
+    public void setGebruiker(Gebruiker gebruiker) {
+        this.student = (Student) gebruiker;
+
+        System.out.println(student);
+        System.out.println(student.getKlassen());
+        ObservableList cursusBoxList = FXCollections.observableArrayList(student.getCursussen());
+        cursusBox.setItems(cursusBoxList);
     }
 
 
@@ -61,8 +55,16 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    public void getAanwezigheid() {
-        for(Aanwezigheid aanwezigheid:student.getAanwezigheidList()) {
+    public void getAanwezigheid(Cursus cursus) {
+        ArrayList<Aanwezigheid> items=null;
+        if(cursus!=null) items=student.getAanwezigheidBijCursus(cursus);
+        else items=student.getAanwezigheidList();
+        aanwezig=0;
+        ziek=0;
+        afwezig=0;
+        langdurig=0;
+        gepland=0;
+        for(Aanwezigheid aanwezigheid:items) {
             if (aanwezigheid.getStatus()==Aanwezigheid.AANWEZIG) {
                 aanwezig++;
             }
