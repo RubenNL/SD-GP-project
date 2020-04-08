@@ -54,7 +54,7 @@ public class School implements Serializable {
 			if (!gebruikers.contains(gebruiker)) {
 				gebruikers.add(gebruiker);
 			} else throw new IllegalArgumentException("Gebruiker (" + gebruiker + ") bestaat al" );
-		} else throw new IllegalArgumentException("Ongeldige waarde");
+		} else throw new IllegalArgumentException("Gebruiker is geen Gebruiker?");
 	}
 
 	public void addCursus(Cursus cursus) {

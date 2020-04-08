@@ -1,10 +1,12 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
@@ -78,8 +80,10 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 			maakAccountAanWerkelijk();
 		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} catch (IllegalArgumentException | NotFoundException | InvocationTargetException e) {
+		} catch (NotFoundException | InvocationTargetException e) {
 			melding(e.getCause().getMessage());
+		} catch (IllegalArgumentException e) {
+			melding(e.getMessage());
 		}
 	}
 
@@ -130,8 +134,10 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 
 	@Override
 	public void setGebruiker(Gebruiker gebruiker) {
-		comboBoxGroep.getItems().removeAll(comboBoxGroep.getItems());
-		slber.getItems().removeAll(slber.getItems());
+		try {
+			comboBoxGroep.getItems().removeAll(comboBoxGroep.getItems());
+			slber.getItems().removeAll(slber.getItems());
+		} catch (Exception e) {}
 		systeembeheerder = (Systeembeheerder) gebruiker;
 		accountTypeComboBox.setValue(Student.class.getSimpleName());
 		accountTypeComboBox.getOnAction().handle(null);
@@ -139,8 +145,12 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 
 	@FXML
 	void handlecomboBoxGebruikersType(ActionEvent actionEvent) {
-		comboBoxGroep.getItems().removeAll(comboBoxGroep.getItems());
-		slber.getItems().removeAll(slber.getItems());
+		try {
+			comboBoxGroep.getItems().removeAll(comboBoxGroep.getItems());
+			slber.getItems().removeAll(slber.getItems());
+		} catch (Exception e) {
+			//dit geeft een foutmelding, maar kan gewoon genegeerd worden. Catch doet bij deze niet goed zijn werk.
+		}
 		//Deze functies hierboven geven foutmeldingen, maar een Try-Catch vangt ze niet af.
 		String gebruikersType = accountTypeComboBox.getValue();
 		nummberLabel.setVisible(true);
@@ -173,6 +183,9 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 	public void melding(String str) {
 //		Het zou misschien beter met CSS gestyled kunnen
 		errorMeldingLabel.setTextFill(Color.RED);
+		PauseTransition pause = new PauseTransition(Duration.seconds(2));
+		pause.setOnFinished(f -> errorMeldingLabel.setText(""));
+		pause.play();
 		errorMeldingLabel.setText(str);
 	}
 }

@@ -10,7 +10,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Objects;
 
 public class Gebruiker implements Serializable {
 	private String email;
@@ -25,6 +24,11 @@ public class Gebruiker implements Serializable {
 	}};
 
 	public Gebruiker(String email, String wachtwoord, String naam) throws IllegalArgumentException {
+		try {
+			School.getSchool().getGebruikerByEmail(email);
+			throw new IllegalArgumentException("Account bestaat al");
+		} catch (NotFoundException e) {
+		}
 		setEmail(email);
 		setWachtwoord(wachtwoord);
 		this.naam=naam;
