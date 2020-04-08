@@ -1,6 +1,7 @@
 package nl.rubend.pris.userinterface.Systeembeheerder;
 
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -139,14 +140,23 @@ public class AccountWeergevenPane implements Initializable, IngelogdGebruiker {
 
 	public void nieuwWachtwoordMelding(Gebruiker gebruiker) {
 		TextInputDialog dialog = new TextInputDialog("");
-		dialog.setTitle("Waarschuwing!");
+		dialog.setTitle("Stel een nieuw wachtwoord in.");
 		dialog.setHeaderText("Nieuw Wachtwoord Opstellen:");
 		dialog.setContentText("wachtwoord:");
+		dialog.setResizable(true);
+		dialog.onShownProperty().addListener(e -> {
+			Platform.runLater(() -> dialog.setResizable(false));
+		});
 		Optional<String> result = dialog.showAndWait();
 		result.ifPresent(psswd -> {
-			gebruiker.setWachtwoord(psswd);
-			Utils.melding("Het is gelukt!");
-			dialog.close();
+			try {
+				gebruiker.setWachtwoord(psswd);
+				Utils.melding("Het is gelukt!");
+				dialog.close();
+			} catch (IllegalArgumentException e) {
+				Utils.melding(e.getMessage());
+				nieuwWachtwoordMelding(gebruiker);
+			}
 		});
 	}
 }
