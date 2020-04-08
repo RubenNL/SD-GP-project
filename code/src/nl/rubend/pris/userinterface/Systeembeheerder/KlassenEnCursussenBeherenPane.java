@@ -80,12 +80,13 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 		String cursusCode = cursusCodeTextField.getText();
 		if (cursusNaam != null && !(cursusNaam.equals(""))
 				|| (cursusCode != null && !(cursusCode.equals("")))) {
-			Cursus newCursus = new Cursus(cursusNaam, cursusCode);
+			Cursus newCursus = new Cursus(cursusCode, cursusNaam);
 			school.addCursus(newCursus);
 			cursusenList.add(newCursus);
 			alleCursussenList.setItems(cursusenList);
-			melding(cursusLabel, "Curus maken gelukt!", true);
+			melding(cursusLabel, "Cursus maken gelukt!", true);
 			cursusNaamTextField.setText("");
+			cursusCodeTextField.setText("");
 		} else melding(cursusLabel, "Ongeldige invoer!", false);
 	}
 
@@ -99,7 +100,7 @@ public class KlassenEnCursussenBeherenPane implements Initializable, IngelogdGeb
 	public void handleRemoveKlas(ActionEvent actionEvent) throws NotFoundException {
 		final int selectedIdx = alleKlassenList.getSelectionModel().getSelectedIndex();
 		if (selectedIdx != -1) {
-			if (Utils.yesNo("Wil je zeker deze klas verwijderen?")) {
+			if (Utils.yesNo("Wilt u zeker deze klas verwijderen?")) {
 				Klas klas=klassenList.get(selectedIdx);
 				klas.removeKlas();
 				alleKlassenList.getItems().remove(selectedIdx);
