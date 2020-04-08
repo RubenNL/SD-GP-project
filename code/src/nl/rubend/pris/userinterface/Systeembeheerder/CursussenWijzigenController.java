@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import nl.rubend.pris.Utils;
 import nl.rubend.pris.model.*;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -54,23 +55,25 @@ public class CursussenWijzigenController {
 
 
     public void handleMainPaneClicked(MouseEvent mouseEvent) {
+        listView.getSelectionModel().clearSelection();
     }
 
 
     public void handleVerwijderCursus(ActionEvent actionEvent) throws NotFoundException {
         Object item = listView.getSelectionModel().getSelectedItem();
-        if (item != null) {
-            String[] parts = item.toString().split(" : ");
-            Cursus gesCursus = school.getCursusByCode(parts[1]);
-            for (Docent docent : alleDocenten) {
-                if (docent.getNaam().equals(parts[0])) {
-                    docent.setCursus(null);
-                    System.out.println(docent.getCursus());
-                    fillList();
+        if (item != null && item.toString().contains(":")) {
+            if (Utils.yesNo("Wilt u zeker de cursus verwijderen?")) {
+                String[] parts = item.toString().split(" : ");
+                Cursus gesCursus = school.getCursusByCode(parts[1]);
+                for (Docent docent : alleDocenten) {
+                    if (docent.getNaam().equals(parts[0])) {
+                        docent.setCursus(null);
+                        System.out.println(docent.getCursus());
+                        fillList();
+                    }
                 }
             }
         }
-
     }
 
     public void handleZetCursus(ActionEvent actionEvent) throws NotFoundException {
