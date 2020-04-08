@@ -47,12 +47,12 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		this.aanwezigheidsmeldingen.remove(aanwezigheid);
 	}
 	public void addLes(Les les) {
-		if (les != null) {
-			this.lessen.add(les);
-		}
+		if (les != null && les instanceof Les) this.lessen.add(les);
+		else throw new IllegalArgumentException("aanwezigheid is geen Aanwezigheid");
 	}
 	public void setCursus(Cursus cursus) {
-		this.cursus = cursus;
+		if (cursus instanceof Cursus) this.cursus = cursus;
+		else throw new IllegalArgumentException("cursus is geen Cursus");
 	}
 
 	public void removeLes(Les les) {
@@ -62,9 +62,8 @@ public class Docent extends Gebruiker implements Serializable,RemovableAccount {
 		this.slbStudenten.remove(student);
 	}
 	public void addSlbStudent(Student student) {
-		if (student != null) {
-			this.slbStudenten.add(student);
-		}
+		if (student != null && student instanceof Student) this.slbStudenten.add(student);
+		else throw new IllegalArgumentException("student is geen Student");
 	}
 
 	@Override

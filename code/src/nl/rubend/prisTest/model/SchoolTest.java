@@ -10,10 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class SchoolTest {
 
 	private School school;
+	private Docent slber;
 	@BeforeEach
 	public void initialize() {
 		School.resetSchool();
 		school=School.getSchool();
+		slber=new Docent("test123@abdsoifj.nl","asodfijasdf","osjdfasdf",212123);
+		school.addGebruiker(slber);
 	}
 
 
@@ -58,9 +61,9 @@ class SchoolTest {
 
 	@Test
 	void test_dezelfdeSubklasse_BestaandeGebruikerToevoegen() {
-		Student student1 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
+		Student student1 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, slber);
 		school.addGebruiker(student1);
-		Student student2 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
+		Student student2 = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, slber);
 
 		IllegalArgumentException thrown = assertThrows(
 				IllegalArgumentException.class,
@@ -70,11 +73,16 @@ class SchoolTest {
 
 		assertTrue(thrown.getMessage().contains("bestaat al"));
 	}
-
+	@Test
+	void test_slberNietInSchool() {
+		Docent slber2=new Docent("123@456.789","1233456434235","SlbTest",6432);
+		IllegalArgumentException thrown=assertThrows(IllegalArgumentException.class,()->new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, slber2),"Geen foutmelding bij selecteren van SLBer die niet in school zit");
+		assertEquals(thrown.getMessage(),"SLBer niet in School");
+	}
 
 	@Test
 	void test_verschillendeSubklasse_BestaandeGebruikerEmailToevoegen() {
-		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jaasdfaisdfn", 123412, null);
+		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jaasdfaisdfn", 123412, slber);
 		school.addGebruiker(student);
 		Docent docent = new Docent("jan@hu.nl", "345efgdgfdgf", "jan", 1234);
 
@@ -89,7 +97,7 @@ class SchoolTest {
 
 	@Test
 	void test_verschillendeSubklasse_BestaandeGebruikerNaamToevoegen() {
-		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 123412, null);
+		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 123412, slber);
 		school.addGebruiker(student);
 		Docent docent = new Docent("jan2@hu.nl", "345efgdgfdgf", "jan", 1234);
 
@@ -132,18 +140,14 @@ class SchoolTest {
 	@Test
 	public void test_GebruikerGetByEmail() throws NotFoundException {
 		School school=School.getSchool();
-		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
-		school.addGebruiker(student);
-		assertEquals(school.getGebruikerByEmail("jan@hu.nl"), student);
+		Systeembeheerder systeembeheerder = new Systeembeheerder("jan@hu.nl", "sssadfsdfsdf","Jan de Man");
+		school.addGebruiker(systeembeheerder);
+		assertEquals(school.getGebruikerByEmail("jan@hu.nl"), systeembeheerder);
 	}
 
 
 	@Test
 	public void test_GebruikerGetByEmailNotFound() {
-		School school=School.getSchool();
-		Student student = new Student("jan@hu.nl", "sssadfsdfsdf", "jan", 1234, null);
-		school.addGebruiker(student);
-
 		NotFoundException thrown = assertThrows(
 				NotFoundException.class,
 				() -> school.getGebruikerByEmail("test@email.com"),

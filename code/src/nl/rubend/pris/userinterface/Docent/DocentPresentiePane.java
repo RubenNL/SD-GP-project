@@ -38,37 +38,40 @@ public class DocentPresentiePane extends Application implements IngelogdGebruike
 		lesBox.setItems(FXCollections.observableArrayList(items));
 	}
 	@FXML void selectLes() {
-		les=lessen.get(lesBox.getItems().indexOf(lesBox.getValue()));
-		table.getChildren().removeAll(table.getChildren());
-		table.addRow(0,new Label("Naam student"),new Label("Aanwezig"),new Label("Laatst bewerkt door"));
-		table.setPadding(new Insets(8, 8, 8, 8));
-		table.setVgap(5);
-		for(Student student:les.getStudenten()) {
-			ComboBox<String> comboBox=new ComboBox<String>();
-			comboBox.getItems().addAll(Aanwezigheid.getOptions());
-			Aanwezigheid aanwezigheid=student.getAanwezigheidBijLes(les);
-			comboBox.setValue(aanwezigheid.getStatus());
-			Label changedBy=new Label();
-			Button slbButton=new Button("E-mail SLBer");
-			slbButton.setOnAction(actionEvent -> {
-				sendMail(student.getSlber().getEmail(),"Student "+student.getNaam()+" is veel afwezig","");
-			});
-			try {
-				changedBy.setText(aanwezigheid.getGebruiker().getNaam());
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Dit moet nog een betere melding worden");
-			}
-			table.addRow(table.getRowCount()+1,new Label(student.getNaam()),comboBox,changedBy,slbButton);
-			comboBox.setOnAction(actionEvent ->  {
+		int lesBoxItem=lesBox.getItems().indexOf(lesBox.getValue());
+		if(lesBoxItem>-1) {
+			les=lessen.get(lesBoxItem);
+			table.addRow(0,new Label("Naam student"),new Label("Aanwezig"),new Label("Laatst bewerkt door"));
+			table.setPadding(new Insets(8, 8, 8, 8));
+			table.setVgap(5);
+			for(Student student:les.getStudenten()) {
+				ComboBox<String> comboBox=new ComboBox<String>();
+				comboBox.getItems().addAll(Aanwezigheid.getOptions());
+				Aanwezigheid aanwezigheid=student.getAanwezigheidBijLes(les);
+				comboBox.setValue(aanwezigheid.getStatus());
+				Label changedBy=new Label();
+				Button slbButton=new Button("E-mail SLBer");
+				slbButton.setOnAction(actionEvent -> {
+					sendMail(student.getSlber().getEmail(),"Student "+student.getNaam()+" is veel afwezig","");
+				});
 				try {
-					aanwezigheid.setStatus(docent,comboBox.getValue());
-				} catch (NotFoundException e) {
+					changedBy.setText(aanwezigheid.getGebruiker().getNaam());
+				} catch (Exception e) {
 					e.printStackTrace();
+					System.out.println("Dit moet nog een betere melding worden");
 				}
-				changedBy.setText(aanwezigheid.getGebruiker().getNaam());
-			});
+				table.addRow(table.getRowCount()+1,new Label(student.getNaam()),comboBox,changedBy,slbButton);
+				comboBox.setOnAction(actionEvent ->  {
+					try {
+						aanwezigheid.setStatus(docent,comboBox.getValue());
+					} catch (NotFoundException e) {
+						e.printStackTrace();
+					}
+					changedBy.setText(aanwezigheid.getGebruiker().getNaam());
+				});
+			}
 		}
+		else table.getChildren().removeAll(table.getChildren());
 	}
 	private String encodeValue(String value) {
 		try {

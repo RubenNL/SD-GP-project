@@ -54,6 +54,7 @@ public class AccountAanmakenPane implements Initializable, IngelogdGebruiker {
 		}
 	}
 	private void maakAccountAanWerkelijk() throws NoSuchMethodException, NotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException, IllegalArgumentException, ClassNotFoundException {
+		//Deze functie is bijzonder ingewikkeld, met de hoop dat er nieuwe user-types kunnen worden toegevoegd zonder deze code aan te passen.
 		if (accountTypeComboBox.getValue().equals("")) {
 			melding("geen accounttype geselecteerd!");
 			return;
