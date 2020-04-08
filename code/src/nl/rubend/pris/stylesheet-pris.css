@@ -112,3 +112,8 @@
     -fx-background-color:#efefef;
     -fx-text-fill:#6e6e6e;
 }
+.default-color0.chart-pie { -fx-pie-color: #00FF00; }
+.default-color1.chart-pie { -fx-pie-color: #ffa500; }
+.default-color2.chart-pie { -fx-pie-color: #860061; }
+.default-color3.chart-pie { -fx-pie-color: #adff2f; }
+.default-color4.chart-pie { -fx-pie-color: #ff5700; }
