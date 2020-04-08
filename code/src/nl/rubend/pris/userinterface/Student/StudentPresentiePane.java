@@ -2,14 +2,10 @@ package nl.rubend.pris.userinterface.Student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import nl.rubend.pris.model.Aanwezigheid;
 import nl.rubend.pris.model.Cursus;
 import nl.rubend.pris.model.Gebruiker;
@@ -26,7 +22,6 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
 	private int aanwezig;
 	private int ziek;
 	private int afwezig;
-	private int langdurig;
 	private int gepland;
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 	@FXML
@@ -37,11 +32,14 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
 	@FXML
 	private void cursusUpdate() {
 		getAanwezigheid(cursusBox.getValue());
-        pieChartData.get(0).setPieValue(aanwezig);
-        pieChartData.get(1).setPieValue(ziek);
-        pieChartData.get(2).setPieValue(afwezig);
-        pieChartData.get(3).setPieValue(langdurig);
-        pieChartData.get(4).setPieValue(gepland);
+		pieChartData.removeAll(pieChartData);
+		addNode("Aanwezig",aanwezig);
+		addNode("Afwezig",afwezig);
+		addNode("Ziek",ziek);
+		addNode("Gepland",gepland);
+	}
+	private void addNode(String naam,int value) {
+		pieChartData.add(new PieChart.Data(naam,value));
 	}
 
 	@Override
@@ -51,32 +49,13 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
         System.out.println(student.getKlassen());
         ObservableList cursusBoxList = FXCollections.observableArrayList(student.getCursussen());
         cursusBox.setItems(cursusBoxList);
+        pieChart.setLabelLineLength(10);
+        pieChart.setData(pieChartData);
 	}
 
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-        pieChart.setLabelLineLength(10);
-        pieChart.setData(pieChartData);
-        final Label caption = new Label("");
-        caption.setTextFill(Color.DARKORANGE);
-        caption.setStyle("-fx-font: 24 arial;");
-
-        for (final PieChart.Data data : pieChart.getData()) {
-            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent e) {
-                        caption.setTranslateX(e.getSceneX());
-                        caption.setTranslateY(e.getSceneY());
-                        caption.setText(String.valueOf(data.getPieValue()) + "%");
-                    }
-            });
-        }
-	    pieChartData.add(new PieChart.Data("Aanwezig",0));
-        pieChartData.add(new PieChart.Data("Ziek",0));
-        pieChartData.add(new PieChart.Data("Afwezig",0));
-        pieChartData.add(new PieChart.Data("Langdurig",0));
-        pieChartData.add(new PieChart.Data("Gepland",0));
 	}
 
 	public void getAanwezigheid(Cursus cursus) {
@@ -86,7 +65,6 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
 		aanwezig = 0;
 		ziek = 0;
 		afwezig = 0;
-		langdurig = 0;
 		gepland = 0;
 		for (Aanwezigheid aanwezigheid : items) {
 			if (aanwezigheid.getStatus() == Aanwezigheid.AANWEZIG) {
@@ -96,7 +74,7 @@ public class StudentPresentiePane implements IngelogdGebruiker, Initializable {
 			} else if (aanwezigheid.getStatus() == Aanwezigheid.AFWEZIG) {
 				afwezig++;
 			} else if (aanwezigheid.getStatus() == Aanwezigheid.LANGDURIG) {
-				langdurig++;
+				afwezig++;
 			} else if (aanwezigheid.getStatus() == Aanwezigheid.GEPLAND) {
 				gepland++;
 			}
