@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Les implements Serializable {
 	private LocalTime beginTijd;
@@ -84,17 +83,6 @@ public class Les implements Serializable {
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-	// Equals
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Les that = (Les) o;
-		return Objects.equals(beginTijd, that.beginTijd) &&
-				Objects.equals(eindTijd, that.eindTijd) &&
-				Objects.equals(datum, that.datum) &&
-				Objects.equals(lokaal, that.lokaal);
 	}
 
 }
