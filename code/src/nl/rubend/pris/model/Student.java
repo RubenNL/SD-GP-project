@@ -78,24 +78,23 @@ public class Student extends Gebruiker implements Serializable,RemovableAccount 
 	}
 
 	public void addKlas(Klas klas) {
-		if (klas != null && (!klassen.contains(klas))) {
-			this.klassen.add(klas);
-		} else {
-			throw new IllegalArgumentException("Ongeldige waarde");
-		}
+		if (klas != null && (!klassen.contains(klas))) this.klassen.add(klas);
+		else throw new IllegalArgumentException("Ongeldige waarde");
 	}
 
 	public void addAanwezigheid(Aanwezigheid aanwezigheid) {
-		if (aanwezigheid != null) {
-			this.aanwezigheid.add(aanwezigheid);
-		}
+		if (aanwezigheid != null && aanwezigheid instanceof Aanwezigheid) this.aanwezigheid.add(aanwezigheid);
+		else throw new IllegalArgumentException("Aanwezigheid is geen aanwezigheid");
 	}
 	public void setSlber(Docent slber) {
 		if (slber != null) {
 			if(slber instanceof Docent) {
-				if (this.slber instanceof Docent) {
-					this.slber.removeSlbStudent(this);
+				try {
+					School.getSchool().getGebruikerByEmail(slber.getEmail());
+				} catch (NotFoundException e) {
+					throw new IllegalArgumentException("SLBer niet in School");
 				}
+				if (this.slber instanceof Docent) this.slber.removeSlbStudent(this);
 				this.slber = slber;
 				this.slber.addSlbStudent(this);
 			} else throw new IllegalArgumentException("SLBer is geen Docent");
