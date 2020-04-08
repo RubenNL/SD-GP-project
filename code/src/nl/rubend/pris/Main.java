@@ -60,37 +60,37 @@ public class Main extends Application {
 		Les les5=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les5.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les5.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
-		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.AFWEZIG,les));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.AFWEZIG,les5));
 
 		Les les6=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les6.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les6.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
-		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.AANWEZIG,les));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.AANWEZIG,les6));
 
 		Les les7=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les7.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les7.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
-		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.GEPLAND,les));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.GEPLAND,les7));
 
 		Les les8=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,26),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les8.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les8.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
-		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.ZIEK,les));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.ZIEK,les8));
 
 		Les les9=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,22),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les9.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les9.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
-		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les9));
 
 		Les les10=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,24),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les10.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les10.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
-		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les10));
 
 		Les les11=new Les(LocalTime.of(10,00),LocalTime.of(13,00), LocalDate.of(2020,3,25),"HL15-1.203",school.getCursusByCode("TCIF-V1GP-19_2019"));
 		les11.addKlas(school.getKlasByName("TICT-SD-V1E"));
 		les11.addDocent((Docent) school.getGebruikerByEmail("martijn@hu.nl"));
-		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les));
+		((Student)school.getGebruikerByEmail("eduward@student.hu.nl")).addAanwezigheid(new Aanwezigheid(school.getGebruikerByEmail("martijn@hu.nl"),Aanwezigheid.LANGDURIG,les11));
 
 
 		School.serialize();
